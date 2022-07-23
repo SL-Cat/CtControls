@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/ct_rfid_clean_ll"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/ct_rfid_clean_clean_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="清空"
+            android:gravity="center"
+            android:background="@color/color_49AAB9"
+            android:textColor="@color/color_ffffff"
+            android:padding="15dp"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"></TextView>
+
+        <TextView
+            android:id="@+id/ct_rfid_clean_continue_btn"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:text="继续读取"
+            android:gravity="center"
+            android:background="@color/color_014099"
+            android:textColor="@color/color_ffffff"
+            android:padding="15dp"
+            android:layout_centerInParent="true"
+            android:layout_height="wrap_content"></TextView>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/ct_rfid_clean_start_btn"
+        android:layout_width="match_parent"
+        android:text="开始读取"
+        android:gravity="center"
+        android:background="@color/color_014099"
+        android:textColor="@color/color_ffffff"
+        android:padding="15dp"
+        android:layout_centerInParent="true"
+        android:layout_height="wrap_content"></TextView>
+</RelativeLayout>
