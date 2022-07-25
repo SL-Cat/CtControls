@@ -8,7 +8,6 @@ import android.widget.AbsListView;
 import android.widget.FrameLayout;
 
 
-
 public class SwipeItemLayout extends FrameLayout {
 	private View contentView = null;
 	private View menuView = null;

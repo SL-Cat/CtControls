@@ -5,6 +5,11 @@
     android:layout_height="match_parent">
 
 
+    <cat.customize.view.ISelectButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+    </cat.customize.view.ISelectButton>
 
 
 </LinearLayout>

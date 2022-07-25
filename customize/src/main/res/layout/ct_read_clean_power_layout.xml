@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/default_read_button"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+    <TextView
+        android:id="@+id/read_start_btn"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="100dp"
+        android:background="@drawable/ct_read_start_btn"
+        android:gravity="center"
+        android:text="开始读取(RFID)"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/read_reset_btn"
+        android:layout_width="90dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="30dp"
+        android:background="@drawable/ct_read_reset_btn"
+        android:gravity="center"
+        android:text="重置"
+        android:textColor="@color/color_ffffff"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/read_power_btn"
+        android:layout_width="50dp"
+        android:layout_height="match_parent"
+        android:background="@drawable/ct_read_power_btn"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/read_power_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="30"
+            android:textColor="@color/color_ffffff"
+            android:textSize="16sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="dBM"
+            android:textColor="@color/color_ffffff"
+            android:textSize="8sp" />
+    </LinearLayout>
+</FrameLayout>
