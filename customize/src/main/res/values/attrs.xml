@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <attr name="text" format="string"/>
+    <attr name="image" format="integer"/>
+
     <declare-styleable name="ISelectBtnStyle">
         <attr name="left_text" format="string"/>
         <attr name="right_text" format="string"/>
+    </declare-styleable>
+
+    <declare-styleable name="ISpringStyle">
+        <attr name="spring_text" format="string"/>
+        <attr name="spring_image" format="integer"/>
     </declare-styleable>
 
 </resources>
