@@ -35,6 +35,7 @@ import cat.customize.xlist.BaseListAdapter;
 public class PopuSpringView extends LinearLayout {
 
     private ListView lsView;
+    private View inflate;
 
     public interface OnPopuSpringListener {
         void OnClickItem(int id);
@@ -84,10 +85,15 @@ public class PopuSpringView extends LinearLayout {
         springTv.setText(tvStr);
         springIg.setImageResource(loadIg);
 
+        // 设置布局文件
+        inflate = LayoutInflater.from(context).inflate(R.layout.ct_popu_spring_list_layout, null);
+        lsView = (ListView) inflate.findViewById(R.id.ct_popu_spring_ls);
+
         springCard.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPop(springCard);
+
             }
         });
     }
@@ -137,10 +143,7 @@ public class PopuSpringView extends LinearLayout {
      * @param view 在view控件下方
      */
     private void showPop(View view) {
-        // 设置布局文件
-        View inflate = LayoutInflater.from(context).inflate(R.layout.ct_popu_spring_list_layout, null);
         int width = view.getWidth();
-        lsView = (ListView) inflate.findViewById(R.id.ct_popu_spring_ls);
         ViewGroup.LayoutParams layoutParams = lsView.getLayoutParams();
         layoutParams.width = width;
         lsView.setLayoutParams(layoutParams);
@@ -160,24 +163,46 @@ public class PopuSpringView extends LinearLayout {
         // 设置点击pop外侧消失，默认为false；在focusable为true时点击外侧始终消失
         mPopupWindow.setOutsideTouchable(true);
         // 相对于 + 号正下面，同时可以设置偏移量
-        mPopupWindow.showAsDropDown(view, 0, 5);
+        mPopupWindow.showAsDropDown(view, 0, 3);
 
-        adapter = new PopuSpringAdapter(context, mList);
-        lsView.setAdapter(adapter);
-        lsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                PopuStrBean popuStrBean = mList.get(position);
-                springTv.setText(popuStrBean.getName());
-                mPopupWindow.dismiss();
-                if (onPopuSpringListener != null) {
-                    onPopuSpringListener.OnClickItem(popuStrBean.getId());
+        if (!openCustFlag) {
+            adapter = new PopuSpringAdapter(context, mList);
+            lsView.setAdapter(adapter);
+            lsView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    PopuStrBean popuStrBean = mList.get(position);
+                    springTv.setText(popuStrBean.getName());
+                    mPopupWindow.dismiss();
+                    if (onPopuSpringListener != null) {
+                        onPopuSpringListener.OnClickItem(popuStrBean.getId());
+                    }
                 }
-            }
-        });
+            });
+        }
         startAnimator();
     }
 
+    private boolean openCustFlag = false; //判断是否启用自定义的adapter
+
+    /**
+     * 使用自定义的adapter 布局样式
+     *
+     * @param adapter
+     * @param onItemClickListener
+     */
+    public void setAdapter(BaseListAdapter adapter, AdapterView.OnItemClickListener onItemClickListener) {
+        openCustFlag = true;
+        lsView.setAdapter(adapter);
+        lsView.setOnItemClickListener(onItemClickListener);
+        adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * 返回PopuWindow
+     *
+     * @return
+     */
     public PopupWindow getPopupWindow() {
         if (mPopupWindow != null) {
             return mPopupWindow;
@@ -186,29 +211,45 @@ public class PopuSpringView extends LinearLayout {
         }
     }
 
-    public void dismiss(){
-        if(mPopupWindow!=null){
+    public void dismiss() {
+        if (mPopupWindow != null) {
             mPopupWindow.dismiss();
             mPopupWindow = null;
         }
     }
 
+    /**
+     * 添加数据，包含点击回调
+     *
+     * @param popuStrBeanList
+     * @param onPopuSpringListener
+     */
     public void setData(List<PopuStrBean> popuStrBeanList, OnPopuSpringListener onPopuSpringListener) {
-        this.onPopuSpringListener = onPopuSpringListener;
-        mList.clear();
-        mList.addAll(popuStrBeanList);
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
+        if (!openCustFlag) {
+            this.onPopuSpringListener = onPopuSpringListener;
+            mList.clear();
+            mList.addAll(popuStrBeanList);
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
         }
     }
 
+    /**
+     * 添加数据,仅做展示
+     *
+     * @param popuStrBeanList
+     */
     public void setData(List<PopuStrBean> popuStrBeanList) {
-        mList.clear();
-        mList.addAll(popuStrBeanList);
-        if (adapter != null) {
-            adapter.notifyDataSetChanged();
+        if (!openCustFlag) {
+            mList.clear();
+            mList.addAll(popuStrBeanList);
+            if (adapter != null) {
+                adapter.notifyDataSetChanged();
+            }
         }
     }
+
 
     public void setSelectTextColor(int clickBaColor, int unClickBaColor, int clickTextColor, int unClickTextColor) {
         this.clickBaColor = clickBaColor;
@@ -219,12 +260,10 @@ public class PopuSpringView extends LinearLayout {
 
     private class PopuSpringAdapter extends BaseListAdapter<PopuStrBean> {
 
-
         public PopuSpringAdapter(Context context, List<PopuStrBean> list) {
             super(context, list);
         }
 
-        @SuppressLint("ResourceAsColor")
         @Override
         public View bindView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
@@ -234,30 +273,6 @@ public class PopuSpringView extends LinearLayout {
             LinearLayout Ll = (LinearLayout) convertView.findViewById(R.id.ct_popu_spring_list_item_ll);
             PopuStrBean popuStrBean = list.get(position);
             tv.setText(popuStrBean.getName());
-//            Ll.setBackgroundColor(clickBaColor);
-//            if (popuStrBean.isSelect()) {
-//                if (clickBaColor != 0) {
-//                    Ll.setBackgroundResource(mContext.getResources().getColor(clickBaColor));
-//                } else {
-//                    Ll.setBackgroundResource(mContext.getResources().getColor(R.color.color_ffffff));
-//                }
-//                if (clickTextColor != 0) {
-//                    tv.setTextColor(clickTextColor);
-//                } else {
-//                    tv.setTextColor(R.color.color_000000);
-//                }
-//            } else {
-//                if (unClickBaColor != 0) {
-//                    Ll.setBackgroundResource(unClickBaColor);
-//                } else {
-//                    Ll.setBackgroundResource(mContext.getResources().getColor(R.color.color_ffffff));
-//                }
-//                if (unClickTextColor != 0) {
-//                    tv.setTextColor(unClickTextColor);
-//                } else {
-//                    tv.setTextColor(R.color.color_000000);
-//                }
-//            }
             return convertView;
         }
 
