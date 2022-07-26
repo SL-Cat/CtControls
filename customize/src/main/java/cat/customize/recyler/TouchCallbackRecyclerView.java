@@ -35,21 +35,22 @@ public class TouchCallbackRecyclerView extends RecyclerView {
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
                 super.onScrollStateChanged(recyclerView, newState);
                 LinearLayoutManager manager = (LinearLayoutManager) recyclerView.getLayoutManager();
-                // 当不滑动时
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    //获取最后一个完全显示的itemPosition
-                    int lastItemPosition = manager.findLastCompletelyVisibleItemPosition();
-                    int itemCount = manager.getItemCount();
+                if(!isLoad) {
+                    // 当不滑动时
+                    if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                        //获取最后一个完全显示的itemPosition
+                        int lastItemPosition = manager.findLastCompletelyVisibleItemPosition();
+                        int itemCount = manager.getItemCount();
 
-                    // 判断是否滑动到了最后一个item，并且是向上滑动
-                    if (lastItemPosition == (itemCount - 1) && isSlidingUpward) {
-                        //加载更多
-                       if(mOnLoadMoreCallback!=null){
-                           mOnLoadMoreCallback.onLoadListernr();
-                       }
+                        // 判断是否滑动到了最后一个item，并且是向上滑动
+                        if (lastItemPosition == (itemCount - 1) && isSlidingUpward) {
+                            //加载更多
+                            if (mOnLoadMoreCallback != null) {
+                                mOnLoadMoreCallback.onLoadListernr();
+                            }
+                        }
                     }
                 }
-
             }
 
             @Override
@@ -117,6 +118,13 @@ public class TouchCallbackRecyclerView extends RecyclerView {
             mScrollCallback.onTouchUp(mMovingY - mDownY);
         }
         return super.dispatchTouchEvent(ev);
+    }
+
+
+    private boolean isLoad = false;
+
+    public void isLoadStatus(boolean loadStatus){
+        isLoad = loadStatus;
     }
 
 }

@@ -40,6 +40,11 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
         this.footLayoutId = footViewId;
     }
 
+    public void removeFoot(){
+        footLayoutId = -1;
+        notifyDataSetChanged();
+    }
+
     public interface OnItemClickListener {
 
         void onItemClickListener(int position);

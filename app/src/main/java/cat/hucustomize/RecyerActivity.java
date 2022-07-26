@@ -3,6 +3,8 @@ package cat.hucustomize;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.view.View;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,10 +25,12 @@ public class RecyerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyer);
         ry = ((TouchCallbackRecyclerView) findViewById(R.id.main_ry_load));
+        TextView tv = ((TextView) findViewById(R.id.main_ry_tv));
+
         for (int i = 0; i < 20; i++) {
-            mList.add(""+i);
+            mList.add("" + i);
         }
-        adapter = new RecyerLoadAdapter(this,mList);
+        adapter = new RecyerLoadAdapter(this, mList);
         ry.setLayoutManager(new LinearLayoutManager(this));
         ry.setAdapter(adapter);
         adapter.addFootView(R.layout.foot_item);
@@ -37,6 +41,12 @@ public class RecyerActivity extends AppCompatActivity {
 //                    mList.add(""+i);
 //                }
                 adapter.notifyDataSetChanged();
+            }
+        });
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                adapter.removeFoot();
             }
         });
     }
