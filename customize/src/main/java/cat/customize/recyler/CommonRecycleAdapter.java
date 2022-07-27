@@ -40,7 +40,7 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
         this.footLayoutId = footViewId;
     }
 
-    public void removeFoot(){
+    public void removeFoot() {
         footLayoutId = -1;
         notifyDataSetChanged();
     }
@@ -104,7 +104,13 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
                     onItemClickListener.onItemLongClickListener(v, position);
             }
         });
-        bindData(holder, dataList, position);
+        if (footLayoutId > 0) {
+            if (position > dataList.size()) {
+                bindData(holder, dataList, position);
+            }
+        } else {
+            bindData(holder, dataList, position);
+        }
     }
 
     @Override
