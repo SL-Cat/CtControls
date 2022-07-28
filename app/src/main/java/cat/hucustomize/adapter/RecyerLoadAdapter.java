@@ -1,6 +1,7 @@
 package cat.hucustomize.adapter;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.List;
 
@@ -20,6 +21,5 @@ public class RecyerLoadAdapter extends CommonRecycleAdapter<String> {
 
     @Override
     protected void bindData(CommonViewHolder holder, List<String> data, int position) {
-
     }
 }

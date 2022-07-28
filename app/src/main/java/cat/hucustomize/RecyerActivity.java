@@ -3,12 +3,14 @@ package cat.hucustomize;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.customize.recyler.CommonRecycleAdapter;
 import cat.customize.recyler.TouchCallbackRecyclerView;
 import cat.hucustomize.adapter.RecyerLoadAdapter;
 
@@ -31,6 +33,17 @@ public class RecyerActivity extends AppCompatActivity {
             mList.add("" + i);
         }
         adapter = new RecyerLoadAdapter(this, mList);
+        adapter.setOnItemClickListener(new CommonRecycleAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClickListener(int position) {
+                ToastUlit.Toast(RecyerActivity.this,mList.get(position));
+            }
+
+            @Override
+            public void onItemLongClickListener(View view, int position) {
+
+            }
+        });
         ry.setLayoutManager(new LinearLayoutManager(this));
         ry.setAdapter(adapter);
         adapter.addFootView(R.layout.foot_item);

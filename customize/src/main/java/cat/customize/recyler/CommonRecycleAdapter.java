@@ -91,24 +91,37 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
-        holder.setCommonClickListener(new CommonViewHolder.onItemCommonClickListener() {
-            @Override
-            public void onItemClickListener(int position) {
-                if (onItemClickListener != null)
-                    onItemClickListener.onItemClickListener(position);
-            }
-
-            @Override
-            public void onItemLongClickListener(View v, int position) {
-                if (onItemClickListener != null)
-                    onItemClickListener.onItemLongClickListener(v, position);
-            }
-        });
         if (footLayoutId > 0) {
-            if (position > dataList.size()) {
+            if (position < dataList.size()) {
+                holder.setCommonClickListener(new CommonViewHolder.onItemCommonClickListener() {
+                    @Override
+                    public void onItemClickListener(int position) {
+                        if (onItemClickListener != null)
+                            onItemClickListener.onItemClickListener(position);
+                    }
+
+                    @Override
+                    public void onItemLongClickListener(View v, int position) {
+                        if (onItemClickListener != null)
+                            onItemClickListener.onItemLongClickListener(v, position);
+                    }
+                });
                 bindData(holder, dataList, position);
             }
         } else {
+            holder.setCommonClickListener(new CommonViewHolder.onItemCommonClickListener() {
+                @Override
+                public void onItemClickListener(int position) {
+                    if (onItemClickListener != null)
+                        onItemClickListener.onItemClickListener(position);
+                }
+
+                @Override
+                public void onItemLongClickListener(View v, int position) {
+                    if (onItemClickListener != null)
+                        onItemClickListener.onItemLongClickListener(v, position);
+                }
+            });
             bindData(holder, dataList, position);
         }
     }
