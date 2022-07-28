@@ -86,10 +86,10 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         if (startText != null) {
             startTv.setText(startText);
         }
-        if(stopText!=null) {
+        if (stopText != null) {
             stopTv.setText(stopText);
         }
-        if(resetText!=null) {
+        if (resetText != null) {
             resetTv.setText(resetText);
         }
 
@@ -128,19 +128,9 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
                 }
             }
         } else if (i == R.id.ct_read_start_btn) {
-            scanFlag = true;
-            readRl.setVisibility(GONE);
-            stopTv.setVisibility(VISIBLE);
-            if (onReadCleanPowerListener != null) {
-                onReadCleanPowerListener.readOrStop(scanFlag);
-            }
+            startReadStatus();
         } else if (i == R.id.ct_read_stop_btn) {
-            scanFlag = false;
-            readRl.setVisibility(VISIBLE);
-            stopTv.setVisibility(GONE);
-            if (onReadCleanPowerListener != null) {
-                onReadCleanPowerListener.readOrStop(scanFlag);
-            }
+            stopReadStatus();
         }
     }
 
@@ -180,6 +170,25 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
     public void dismissDialog() {
         if (sd != null && sd.isShowing()) {
             sd.dismiss();
+        }
+    }
+
+    public void startReadStatus() {
+        scanFlag = true;
+        readRl.setVisibility(GONE);
+        stopTv.setVisibility(VISIBLE);
+        if (onReadCleanPowerListener != null) {
+            onReadCleanPowerListener.readOrStop(scanFlag);
+        }
+    }
+
+
+    public void stopReadStatus() {
+        scanFlag = false;
+        readRl.setVisibility(VISIBLE);
+        stopTv.setVisibility(GONE);
+        if (onReadCleanPowerListener != null) {
+            onReadCleanPowerListener.readOrStop(scanFlag);
         }
     }
 }
