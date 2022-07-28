@@ -13,4 +13,20 @@
         <attr name="spring_image" format="integer"/>
     </declare-styleable>
 
+    <declare-styleable name="IReadCleanPowerStyle">
+        <attr name="start_text" format="string"/>
+        <attr name="stop_text" format="string"/>
+        <attr name="reset_text" format="string"/>
+        <attr name="start_text_color" format="color"/>
+        <attr name="stop_text_color" format="color"/>
+        <attr name="reset_text_color" format="color"/>
+        <attr name="power_text_color" format="color"/>
+        <attr name="start_background" format="reference"/>
+        <attr name="stop_background" format="reference"/>
+        <attr name="reset_background" format="reference"/>
+        <attr name="power_background" format="reference"/>
+        <attr name="button_height" format="dimension"/>
+    </declare-styleable>
+
+
 </resources>

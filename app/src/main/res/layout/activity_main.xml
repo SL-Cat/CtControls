@@ -10,4 +10,10 @@
         android:layout_width="200dp"
         app:spring_text = "全部显示"
         android:layout_height="wrap_content"></cat.customize.view.PopuSpringView>
+
+    <cat.customize.view.ReadCleanPowerButton
+        android:id="@+id/ct_main_read_btn"
+        android:layout_width="match_parent"
+        app:start_text_color = "@color/color_FFC107"
+        android:layout_height="wrap_content"></cat.customize.view.ReadCleanPowerButton>
 </LinearLayout>
