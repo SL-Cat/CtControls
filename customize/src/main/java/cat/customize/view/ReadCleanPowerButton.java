@@ -137,6 +137,7 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
     public void setPowerCode(int power) {
         if (power > 0 && power <= 30) {
             this.btnPower = power;
+            powerTv.setText(String.valueOf(btnPower));
         }
     }
 
