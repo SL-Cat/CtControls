@@ -17,7 +17,14 @@
     <cat.customize.recyler.TouchCallbackRecyclerView
         android:id="@+id/main_ry_load"
         android:layout_width="match_parent"
+        android:visibility="gone"
         android:layout_height="match_parent"></cat.customize.recyler.TouchCallbackRecyclerView>
+
+
+    <cat.customize.xlist.XListView
+        android:id="@+id/lst"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></cat.customize.xlist.XListView>
 
 
 </LinearLayout>

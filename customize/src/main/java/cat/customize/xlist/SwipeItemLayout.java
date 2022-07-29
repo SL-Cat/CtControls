@@ -24,7 +24,7 @@ public class SwipeItemLayout extends FrameLayout {
 	private static final int STATE_CLOSE = 0;
 	private static final int STATE_OPEN = 1;
 
-	public SwipeItemLayout(View contentView, View menuView, Interpolator closeInterpolator, Interpolator openInterpolator){
+	public SwipeItemLayout(View contentView,View menuView,Interpolator closeInterpolator, Interpolator openInterpolator){
 		super(contentView.getContext());
 		this.contentView = contentView;
 		this.menuView = menuView;
@@ -56,7 +56,7 @@ public class SwipeItemLayout extends FrameLayout {
 		contentView.setLayoutParams(contentParams);
 
 		menuView.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT,
-				LayoutParams.WRAP_CONTENT));
+				LayoutParams.MATCH_PARENT));
 
 		addView(contentView);
 		addView(menuView);
@@ -104,7 +104,7 @@ public class SwipeItemLayout extends FrameLayout {
 				contentView.getWidth() - dis, getMeasuredHeight());
 		menuView.layout(contentView.getWidth() - dis, menuView.getTop(),
 				contentView.getWidth() + menuView.getWidth() - dis,
-				getMeasuredHeight());
+				menuView.getBottom());
 	}
 
 	@Override

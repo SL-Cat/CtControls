@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/MyCustomize.iml" filepath="$PROJECT_DIR$/MyCustomize.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://D:\mydemo\MyCustomize\customize\custmoize.iml" filepath="D:\mydemo\MyCustomize\customize\custmoize.iml" />
+      <module fileurl="file://$PROJECT_DIR$/customize/customize.iml" filepath="$PROJECT_DIR$/customize/customize.iml" />
+    </modules>
+  </component>
+</project>

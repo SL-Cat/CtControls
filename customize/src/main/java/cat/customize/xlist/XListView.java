@@ -1,14 +1,16 @@
 package cat.customize.xlist;
 
-
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.support.v4.view.MotionEventCompat;
 import android.text.format.Time;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
 import android.view.animation.DecelerateInterpolator;
+import android.view.animation.Interpolator;
 import android.widget.AbsListView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
@@ -38,7 +40,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 	private XListViewFooter mFooterView = null;
 	private boolean mEnablePullLoad = false;
 	private boolean mPullLoading = false;
-	
+
 	// total list items, used to detect is at the bottom of listview.
 	private int mTotalItemCount;
 
@@ -49,10 +51,10 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 
 	private final static int SCROLL_DURATION = 400; // scroll back duration
 	private final static int PULL_LOAD_MORE_DELTA = 50; // when pull up >= 50px
-														// at bottom, trigger
-														// load more.
+	// at bottom, trigger
+	// load more.
 	private final static float OFFSET_RADIO = 1.8f; // support iOS like pull
-													// feature.
+	// feature.
 	private Context m_context;
 
 	/**
@@ -96,16 +98,25 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 						getViewTreeObserver().removeGlobalOnLayoutListener(this);
 					}
 				});
+
+		MAX_X = dp2px(MAX_X);
+		MAX_Y = dp2px(MAX_Y);
+		mTouchState = TOUCH_STATE_NONE;
+	}
+
+	private int dp2px(int dp) {
+		return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
+				getContext().getResources().getDisplayMetrics());
 	}
 
 	public boolean getPullLoading() {
 		return this.mPullLoading;
 	}
-	
+
 	public boolean getPullRefreshing() {
 		return this.mPullRefreshing;
 	}
-	
+
 	public void pullRefreshing() {
 		if (!mEnablePullRefresh) {
 			return;
@@ -117,7 +128,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 
 	/**
 	 * enable or disable pull down refresh feature.
-	 * 
+	 *
 	 * @param enable
 	 */
 	public void setPullRefreshEnable(boolean enable) {
@@ -131,13 +142,13 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 
 	/**
 	 * enable or disable pull up load more feature.
-	 * 
+	 *
 	 * @param enable
 	 */
 	public void setPullLoadEnable(boolean enable) {
 		if (mEnablePullLoad == enable)
 			return;
-		
+
 		mEnablePullLoad = enable;
 		if (!mEnablePullLoad) {
 			if (mFooterView != null) {
@@ -219,7 +230,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 		if (mPullRefreshing && height > mHeaderViewHeight) {
 			finalHeight = mHeaderViewHeight;
 		}
-		
+
 		mScrollBack = SCROLLBACK_HEADER;
 		mScroller.startScroll(0, height, 0, finalHeight - height,
 				SCROLL_DURATION);
@@ -231,7 +242,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 		int height = mFooterView.getBottomMargin() + (int) delta;
 		if (mEnablePullLoad && !mPullLoading) {
 			if (height > PULL_LOAD_MORE_DELTA) { // height enough to invoke load
-													// more.
+				// more.
 				mFooterView.setState(XListViewFooter.STATE_READY);
 			} else {
 				mFooterView.setState(XListViewFooter.STATE_NORMAL);
@@ -260,54 +271,136 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 		}
 	}
 
+	private static final int TOUCH_STATE_NONE = 0;
+	private static final int TOUCH_STATE_X = 1;
+	private static final int TOUCH_STATE_Y = 2;
+
+	private int MAX_Y = 5;
+	private int MAX_X = 3;
+	private float mDownX;
+	private float mDownY;
+	private int mTouchState;
+	private int mTouchPosition;
+	private SwipeItemLayout mTouchView;
+
+	private Interpolator mCloseInterpolator;
+	private Interpolator mOpenInterpolator;
+
 	@SuppressLint("ClickableViewAccessibility")
 	@Override
 	public boolean onTouchEvent(MotionEvent ev) {
+		if (ev.getAction() != MotionEvent.ACTION_DOWN && mTouchView == null)
+			return super.onTouchEvent(ev);
+		int action = MotionEventCompat.getActionMasked(ev);
+		action = ev.getAction();
+
 		if (mLastY == -1) {
 			mLastY = ev.getRawY();
 		}
 
-		switch (ev.getAction()) {
-		case MotionEvent.ACTION_DOWN:
-			mLastY = ev.getRawY();
-			break;
-		case MotionEvent.ACTION_MOVE:
-			final float deltaY = ev.getRawY() - mLastY;
-			mLastY = ev.getRawY();
-			if (getFirstVisiblePosition() == 0
-					&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
-				// the first item is showing, header has shown or pull down.
-				updateHeaderHeight(deltaY / OFFSET_RADIO);
-				invokeOnScrolling();
-			} else if (mEnablePullLoad && (getLastVisiblePosition() == mTotalItemCount - 1)
-					&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
-				// last item, already pulled up or want to pull up.
-				updateFooterHeight(-deltaY / OFFSET_RADIO);
-			}
-			break;
-		default:
-			mLastY = -1; // reset
-			if (getFirstVisiblePosition() == 0) {
-				// invoke refresh
-				if (mEnablePullRefresh
-						&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
-					mPullRefreshing = true;
-					mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
-					if (mListViewListener != null) {
-						mListViewListener.onRefresh();
+		switch (action) {
+			case MotionEvent.ACTION_DOWN:
+				mLastY = ev.getRawY();
+				int oldPos = mTouchPosition;
+				mDownX = ev.getX();
+				mDownY = ev.getY();
+				mTouchState = TOUCH_STATE_NONE;
+
+				mTouchPosition = pointToPosition((int) ev.getX(), (int) ev.getY());
+
+				if (mTouchPosition == oldPos && mTouchView != null
+						&& mTouchView.isOpen()) {
+					mTouchState = TOUCH_STATE_X;
+					mTouchView.onSwipe(ev);
+					return true;
+				}
+
+				View view = getChildAt(mTouchPosition - getFirstVisiblePosition());
+
+				if (mTouchView != null && mTouchView.isOpen()) {
+					mTouchView.smoothCloseMenu();
+					mTouchView = null;
+					return super.onTouchEvent(ev);
+				}
+				if (view instanceof SwipeItemLayout) {
+					mTouchView = (SwipeItemLayout) view;
+				}
+				if (mTouchView != null) {
+					mTouchView.onSwipe(ev);
+				}
+				break;
+			case MotionEvent.ACTION_MOVE:
+				final float deltaY = ev.getRawY() - mLastY;
+				mLastY = ev.getRawY();
+				if (getFirstVisiblePosition() == 0
+						&& (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
+					// the first item is showing, header has shown or pull down.
+					updateHeaderHeight(deltaY / OFFSET_RADIO);
+					invokeOnScrolling();
+				} else if (mEnablePullLoad && (getLastVisiblePosition() == mTotalItemCount - 1)
+						&& (mFooterView.getBottomMargin() > 0 || deltaY < 0)) {
+					// last item, already pulled up or want to pull up.
+					updateFooterHeight(-deltaY / OFFSET_RADIO);
+				}
+//				float dy = Math.abs((ev.getY() - mDownY));
+//				float dx = Math.abs((ev.getX() - mDownX));
+//				if (mTouchState == TOUCH_STATE_X) {
+//					if (mTouchView != null) {
+//						mTouchView.onSwipe(ev);
+//					}
+//					getSelector().setState(new int[] { 0 });
+//					ev.setAction(MotionEvent.ACTION_CANCEL);
+//					super.onTouchEvent(ev);
+//					return true;
+//				} else if (mTouchState == TOUCH_STATE_NONE) {
+//					if (Math.abs(dy) > MAX_Y) {
+//						mTouchState = TOUCH_STATE_Y;
+//					} else if (dx > MAX_X) {
+//						mTouchState = TOUCH_STATE_X;
+//					}
+//				}
+				break;
+			case MotionEvent.ACTION_UP:
+				if (mTouchState == TOUCH_STATE_X) {
+					if (mTouchView != null) {
+						mTouchView.onSwipe(ev);
+						if (!mTouchView.isOpen()) {
+							mTouchPosition = -1;
+							mTouchView = null;
+						}
+					}
+
+//				if (mOnSwipeListener != null) {
+//					mOnSwipeListener.onSwipeEnd(mTouchPosition);
+//				}
+					ev.setAction(MotionEvent.ACTION_CANCEL);
+					super.onTouchEvent(ev);
+					return true;
+				}
+				break;
+			default:
+				mLastY = -1; // reset
+				if (getFirstVisiblePosition() == 0) {
+					// invoke refresh
+					if (mEnablePullRefresh
+							&& mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+						mPullRefreshing = true;
+						mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
+						if (mListViewListener != null) {
+							mListViewListener.onRefresh();
+						}
+					}
+					resetHeaderHeight();
+				} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
+					// invoke load more.
+					if (mEnablePullLoad) {
+						if (mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+							startLoadMore();
+						}
+						resetFooterHeight();
 					}
 				}
-				resetHeaderHeight();
-			} else if (getLastVisiblePosition() == mTotalItemCount - 1) {
-				// invoke load more.
-				if (mEnablePullLoad) {
-					if (mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-						startLoadMore();
-					}
-					resetFooterHeight();
-				}
-			}
-			break;
+				break;
 		}
 		return super.onTouchEvent(ev);
 	}
@@ -340,7 +433,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 
 	@Override
 	public void onScroll(AbsListView view, int firstVisibleItem,
-                         int visibleItemCount, int totalItemCount) {
+						 int visibleItemCount, int totalItemCount) {
 		// send to user's listener
 
 		mTotalItemCount = totalItemCount;
@@ -371,3 +464,4 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 		public void onLoadMore();
 	}
 }
+

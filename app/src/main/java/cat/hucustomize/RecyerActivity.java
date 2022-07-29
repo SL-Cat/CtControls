@@ -12,13 +12,18 @@ import java.util.List;
 
 import cat.customize.recyler.CommonRecycleAdapter;
 import cat.customize.recyler.TouchCallbackRecyclerView;
+import cat.customize.xlist.XListView;
+import cat.hucustomize.adapter.LstAdapter;
 import cat.hucustomize.adapter.RecyerLoadAdapter;
 
-public class RecyerActivity extends AppCompatActivity {
+public class RecyerActivity extends AppCompatActivity implements XListView.IXListViewListener {
 
     private TouchCallbackRecyclerView ry;
 
     private RecyerLoadAdapter adapter;
+
+    private LstAdapter lstAdapter;
+
 
     private List<String> mList = new ArrayList<>();
 
@@ -26,6 +31,23 @@ public class RecyerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyer);
+        ry();
+        ls();
+    }
+
+    private void ls() {
+        XListView ls = (XListView) findViewById(R.id.lst);
+        for (int i = 0; i < 20; i++) {
+            mList.add("" + i);
+        }
+        lstAdapter =new LstAdapter(this,mList);
+        ls.setPullLoadEnable(true);
+        ls.setPullRefreshEnable(true);
+        ls.setXListViewListener(this);
+        ls.setAdapter(lstAdapter);
+    }
+
+    private void ry() {
         ry = ((TouchCallbackRecyclerView) findViewById(R.id.main_ry_load));
         TextView tv = ((TextView) findViewById(R.id.main_ry_tv));
 
@@ -62,5 +84,15 @@ public class RecyerActivity extends AppCompatActivity {
                 adapter.removeFoot();
             }
         });
+    }
+
+    @Override
+    public void onRefresh() {
+
+    }
+
+    @Override
+    public void onLoadMore() {
+
     }
 }
