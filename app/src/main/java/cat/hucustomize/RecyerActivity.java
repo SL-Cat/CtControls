@@ -1,10 +1,12 @@
 package cat.hucustomize;
 
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -26,6 +28,7 @@ public class RecyerActivity extends AppCompatActivity implements XListView.IXLis
 
 
     private List<String> mList = new ArrayList<>();
+    private XListView ls;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,15 +39,29 @@ public class RecyerActivity extends AppCompatActivity implements XListView.IXLis
     }
 
     private void ls() {
-        XListView ls = (XListView) findViewById(R.id.lst);
+        ls = (XListView) findViewById(R.id.lst);
         for (int i = 0; i < 20; i++) {
             mList.add("" + i);
         }
-        lstAdapter =new LstAdapter(this,mList);
+        lstAdapter = new LstAdapter(this, mList);
         ls.setPullLoadEnable(true);
         ls.setPullRefreshEnable(true);
         ls.setXListViewListener(this);
         ls.setAdapter(lstAdapter);
+        ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ToastUlit.Toast(RecyerActivity.this, position + "");
+            }
+        });
+
+        ls.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                ToastUlit.Toast(RecyerActivity.this, position + "");
+                return true;
+            }
+        });
     }
 
     private void ry() {
@@ -58,7 +75,7 @@ public class RecyerActivity extends AppCompatActivity implements XListView.IXLis
         adapter.setOnItemClickListener(new CommonRecycleAdapter.OnItemClickListener() {
             @Override
             public void onItemClickListener(int position) {
-                ToastUlit.Toast(RecyerActivity.this,mList.get(position));
+                ToastUlit.Toast(RecyerActivity.this, mList.get(position));
             }
 
             @Override
@@ -88,11 +105,21 @@ public class RecyerActivity extends AppCompatActivity implements XListView.IXLis
 
     @Override
     public void onRefresh() {
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ls.stopRefresh();
+            }
+        }, 2000);
     }
 
     @Override
     public void onLoadMore() {
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                ls.stopLoadMore();
+            }
+        }, 2000);
     }
 }

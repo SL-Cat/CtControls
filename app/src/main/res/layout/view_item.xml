@@ -4,10 +4,13 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="50dp"
+        android:id="@+id/ls_item_tv"
+        android:layout_width="wrap_content"
         android:text="可以滑动"
+        android:background="@color/color_014099"
+        android:padding="10dp"
         android:gravity="center"
-        android:textColor="@color/color_014099"
-        android:layout_height="100dp" />
+        android:textColor="@color/color_ffffff"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

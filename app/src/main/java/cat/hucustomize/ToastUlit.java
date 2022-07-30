@@ -10,6 +10,6 @@ import android.widget.Toast;
 public class ToastUlit {
 
     public static void Toast(Context context,String str){
-        android.widget.Toast.makeText(context,str, android.widget.Toast.LENGTH_LONG).show();
+        android.widget.Toast.makeText(context,str, Toast.LENGTH_SHORT).show();
     }
 }
