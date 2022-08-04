@@ -1,19 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
-    <cat.customize.view.PopuSpringView
-        android:id="@+id/ct_main_popu_spring"
-        android:layout_width="200dp"
-        app:spring_text = "全部显示"
-        android:layout_height="wrap_content"></cat.customize.view.PopuSpringView>
-
-    <cat.customize.view.ReadCleanPowerButton
-        android:id="@+id/ct_main_read_btn"
+    <LinearLayout
         android:layout_width="match_parent"
-        app:start_text_color = "@color/color_FFC107"
-        android:layout_height="wrap_content"></cat.customize.view.ReadCleanPowerButton>
-</LinearLayout>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <cat.customize.view.PopuSpringView
+            android:id="@+id/ct_main_popu_spring"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            app:spring_text="一个popuwind改的spring"></cat.customize.view.PopuSpringView>
+
+        <TextView
+            android:id="@+id/ct_main_touchcallbackrecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_bg"
+            android:padding="10dp"
+            android:text="一个长按起遮挡幕的TouchCallbackRecyclerView" />
+
+        <TextView
+            android:id="@+id/ct_main_xlistview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_bg"
+            android:padding="10dp"
+            android:text="一个可以下拉刷新,上拉加载，横滑Item的XListview" />
+
+        <cat.customize.view.ReadCleanPowerButton
+            android:id="@+id/ct_main_read_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"></cat.customize.view.ReadCleanPowerButton>
+
+
+        <cat.customize.view.ISelectButton
+            android:id="@+id/ct_main_select_btn"
+            android:layout_marginTop="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            app:left_text = "左侧按钮"
+            app:right_text= "右侧按钮"
+            android:layout_height="wrap_content"></cat.customize.view.ISelectButton>
+
+
+        <cat.customize.view.RfidCleanButton
+            android:id="@+id/ct_main_read_clean_btn"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"></cat.customize.view.RfidCleanButton>
+
+        <TextView
+            android:id="@+id/ct_main_wave_rfid_tv"
+            android:background="@drawable/ct_radius_divider_bg"
+            android:layout_width="wrap_content"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:text="一个水波纹的圆"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:id="@+id/ct_main_more_fg"
+            android:layout_width="match_parent"
+            android:layout_margin="10dp"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"></LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

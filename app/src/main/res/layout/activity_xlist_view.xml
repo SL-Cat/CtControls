@@ -3,17 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="cat.hucustomize.list.RecyerActivity">
+    android:layout_height="match_parent"
+    tools:context="cat.hucustomize.list.XListViewActivity">
 
-
-    <cat.customize.recyler.TouchCallbackRecyclerView
-        android:id="@+id/main_ry_load"
-        android:layout_width="match_parent"
+    <cat.customize.xlist.XListView
+        android:id="@+id/lst"
         android:layout_weight="1"
-        android:layout_height="0dp"></cat.customize.recyler.TouchCallbackRecyclerView>
-
-
+        android:layout_width="match_parent"
+        android:layout_height="0dp"></cat.customize.xlist.XListView>
 
 </LinearLayout>
