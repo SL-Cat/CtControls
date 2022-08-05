@@ -7,13 +7,13 @@ package cat.customize.bean;
 public class PopuStrBean {
 
     private String name;
-    private String id;
+    private int id;
     private boolean isSelect = false;
 
     public PopuStrBean() {
     }
 
-    public PopuStrBean(String name, String id) {
+    public PopuStrBean(String name, int id) {
         this.name = name;
         this.id = id;
     }
@@ -34,11 +34,11 @@ public class PopuStrBean {
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 }

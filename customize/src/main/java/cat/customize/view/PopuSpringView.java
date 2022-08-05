@@ -38,7 +38,7 @@ public class PopuSpringView extends LinearLayout {
     private View inflate;
 
     public interface OnPopuSpringListener {
-        void OnClickItem(String id);
+        void OnClickItem(int id);
     }
 
     private OnPopuSpringListener onPopuSpringListener;
