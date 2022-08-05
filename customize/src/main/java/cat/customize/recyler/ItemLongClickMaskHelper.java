@@ -23,12 +23,13 @@ public class ItemLongClickMaskHelper {
     private final TextView fristBtn;
     private final TextView secondBtn;
     private final TextView threeBtn;
+    private int position = 0;
 
     public ItemLongClickMaskHelper(Context context) {
         mMaskItemLayout = new ItemMaskLayout(context);
-        fristBtn = mMaskItemLayout.findViewById(R.id.default_list_item_mask_tv_one);
-        secondBtn = mMaskItemLayout.findViewById(R.id.default_list_item_mask_tv_second);
-        threeBtn = mMaskItemLayout.findViewById(R.id.default_list_item_mask_tv_three);
+        fristBtn = mMaskItemLayout.findViewById(R.id.default_list_item_mask_tv_delete);
+        secondBtn = mMaskItemLayout.findViewById(R.id.default_list_item_mask_tv_reset);
+        threeBtn = mMaskItemLayout.findViewById(R.id.default_list_item_mask_tv_review);
 
         mMaskItemLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +51,7 @@ public class ItemLongClickMaskHelper {
             public void onClick(View v) {
                 if (mItemMaskClickListener != null) {
                     dismissMaskLayout();
-                    mItemMaskClickListener.fristBtn();
+                    mItemMaskClickListener.fristBtn(position);
                 }
             }
         });
@@ -60,7 +61,7 @@ public class ItemLongClickMaskHelper {
             public void onClick(View v) {
                 if (mItemMaskClickListener != null) {
                     dismissMaskLayout();
-                    mItemMaskClickListener.secondBtn();
+                    mItemMaskClickListener.secondBtn(position);
                 }
             }
         });
@@ -70,13 +71,13 @@ public class ItemLongClickMaskHelper {
             public void onClick(View v) {
                 if (mItemMaskClickListener != null) {
                     dismissMaskLayout();
-                    mItemMaskClickListener.threeBtn();
+                    mItemMaskClickListener.threeBtn(position);
                 }
             }
         });
     }
 
-    public synchronized void setRootFrameLayout(FrameLayout frameLayout) {
+    public synchronized void setRootFrameLayout(FrameLayout frameLayout,int position) {
         if (mRootFrameLayout != null) {
             mRootFrameLayout.removeView(mMaskItemLayout);
         }
@@ -86,6 +87,7 @@ public class ItemLongClickMaskHelper {
         scaleAnimation.setDuration(200);
         mMaskItemLayout.setAnimation(scaleAnimation);
         scaleAnimation.start();
+        this.position = position;
 //        mAnimSet.start();
     }
 
@@ -100,11 +102,11 @@ public class ItemLongClickMaskHelper {
     }
 
     public interface ItemMaskClickListener {
-        void fristBtn();
+        void fristBtn(int position);
 
-        void secondBtn();
+        void secondBtn(int position);
 
-        void threeBtn();
+        void threeBtn(int position);
     }
 
     private int dip2px(Context context, float dip) {
