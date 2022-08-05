@@ -133,10 +133,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void popuSring() {
         final List<PopuStrBean> mList = new ArrayList<>();
-        mList.add(new PopuStrBean("code01", 1));
-        mList.add(new PopuStrBean("code02", 2));
-        mList.add(new PopuStrBean("code03", 3));
-        mList.add(new PopuStrBean("code04", 4));
+        mList.add(new PopuStrBean("code01", "1"));
+        mList.add(new PopuStrBean("code02", "2"));
+        mList.add(new PopuStrBean("code03", "3"));
+        mList.add(new PopuStrBean("code04", "4"));
         final PopuSpringView springView = (PopuSpringView) findViewById(R.id.ct_main_popu_spring);
 
 //两种方法，这种直接设置数据用默认的adapter ，或者换自定义的adapter
