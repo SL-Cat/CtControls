@@ -83,6 +83,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_506FAF"
         android:gravity="center"
+        android:textStyle="bold"
         android:text="停止读取(RFID)"
         android:textColor="@color/color_ffffff"
         android:textSize="18sp"
@@ -118,7 +119,7 @@
                     android:gravity="center|left"
                     android:paddingLeft="10dp"
                     android:textStyle="bold"
-                    android:text="30"
+                    android:text="10"
                     android:textColor="@color/color_ffffff"
                     android:textSize="16sp" />
 
