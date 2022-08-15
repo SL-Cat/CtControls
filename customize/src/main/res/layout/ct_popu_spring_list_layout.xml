@@ -7,8 +7,6 @@
     <ListView
         android:id="@+id/ct_popu_spring_ls"
         android:layout_width="wrap_content"
-        android:background="@drawable/ct_radius_divider_bg"
         android:padding="5dp"
         android:layout_height="match_parent"></ListView>
-
 </LinearLayout>
