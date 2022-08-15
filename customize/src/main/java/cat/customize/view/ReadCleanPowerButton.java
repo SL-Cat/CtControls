@@ -178,28 +178,32 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         return sd != null ? sd : null;
     }
 
-    public boolean powerIsShow(){
-        if(sd!=null) {
+    public boolean powerIsShow() {
+        if (sd != null) {
             return sd.isShowing();
-        }else return false;
+        } else return false;
     }
 
     public void startReadStatus() {
-        scanFlag = true;
-        readRl.setVisibility(GONE);
-        stopTv.setVisibility(VISIBLE);
-        if (onReadCleanPowerListener != null) {
-            onReadCleanPowerListener.readOrStop(scanFlag);
+        if (!powerIsShow()) {
+            scanFlag = true;
+            readRl.setVisibility(GONE);
+            stopTv.setVisibility(VISIBLE);
+            if (onReadCleanPowerListener != null) {
+                onReadCleanPowerListener.readOrStop(scanFlag);
+            }
         }
     }
 
 
     public void stopReadStatus() {
-        scanFlag = false;
-        readRl.setVisibility(VISIBLE);
-        stopTv.setVisibility(GONE);
-        if (onReadCleanPowerListener != null) {
-            onReadCleanPowerListener.readOrStop(scanFlag);
+        if (!powerIsShow()) {
+            scanFlag = false;
+            readRl.setVisibility(VISIBLE);
+            stopTv.setVisibility(GONE);
+            if (onReadCleanPowerListener != null) {
+                onReadCleanPowerListener.readOrStop(scanFlag);
+            }
         }
     }
 
