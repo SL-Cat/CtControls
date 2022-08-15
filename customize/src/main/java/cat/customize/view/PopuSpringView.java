@@ -137,16 +137,33 @@ public class PopuSpringView extends LinearLayout {
         valueAnimator.start();
     }
 
+    private boolean listWidthFlag = true;
+    private int listWidth = -1;
+
+    public void maxListToTitle(boolean maxWidth) {
+        this.listWidthFlag = maxWidth;
+    }
+
+    public void setListWidth(int width) {
+        this.listWidth = width;
+    }
+
     /**
      * 弹出窗口
      *
      * @param view 在view控件下方
      */
     private void showPop(View view) {
-        int width = view.getWidth();
-        ViewGroup.LayoutParams layoutParams = lsView.getLayoutParams();
-        layoutParams.width = width;
-        lsView.setLayoutParams(layoutParams);
+        if (listWidthFlag) {
+            int width = view.getWidth();
+            ViewGroup.LayoutParams layoutParams = lsView.getLayoutParams();
+            if (listWidth > 0) {
+                layoutParams.width = listWidth;
+            } else {
+                layoutParams.width = width;
+            }
+            lsView.setLayoutParams(layoutParams);
+        }
 
         mPopupWindow.setContentView(inflate);
         // 为了避免部分机型不显示，我们需要重新设置一下宽高
