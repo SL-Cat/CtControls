@@ -174,6 +174,16 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         }
     }
 
+    public SettingPowerBottomDialog getPowerView() {
+        return sd != null ? sd : null;
+    }
+
+    public boolean powerIsShow(){
+        if(sd!=null) {
+            return sd.isShowing();
+        }else return false;
+    }
+
     public void startReadStatus() {
         scanFlag = true;
         readRl.setVisibility(GONE);
@@ -192,4 +202,17 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
             onReadCleanPowerListener.readOrStop(scanFlag);
         }
     }
+
+    public TextView getStartTv() {
+        return startTv != null ? startTv : null;
+    }
+
+    public TextView getStopTv() {
+        return stopTv != null ? stopTv : null;
+    }
+
+    public TextView getResetTv() {
+        return resetTv != null ? resetTv : null;
+    }
+
 }
