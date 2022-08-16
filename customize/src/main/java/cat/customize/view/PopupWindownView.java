@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
 import cat.customize.R;
@@ -136,8 +137,8 @@ public class PopupWindownView {
         // 设置布局文件
         mPopupWindow.setContentView(LayoutInflater.from(activity).inflate(layout, null));
         // 为了避免部分机型不显示，我们需要重新设置一下宽高
-        mPopupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
-        mPopupWindow.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        mPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         // 设置pop透明效果
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0x0000));
         // 设置pop出入动画
