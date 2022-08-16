@@ -102,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         ReadCleanPowerButton readbtn = (ReadCleanPowerButton) findViewById(R.id.ct_main_read_btn);
         readbtn.setPowerCode(10);
+        readbtn.getPowerLl().setOnClickListener(null);
         readbtn.setOnReadCleanPowerListener(new ReadCleanPowerButton.OnReadCleanPowerListener() {
             @Override
             public void readOrStop(boolean scanFlag) {
