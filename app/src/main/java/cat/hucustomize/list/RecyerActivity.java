@@ -6,12 +6,15 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.FrameLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cat.customize.recyler.CommonRecycleAdapter;
+import cat.customize.recyler.ItemLongClickMaskHelper;
 import cat.customize.recyler.TouchCallbackRecyclerView;
 import cat.customize.xlist.XListView;
 import cat.hucustomize.R;
@@ -27,6 +30,7 @@ public class RecyerActivity extends AppCompatActivity {
 
 
     private List<String> mList = new ArrayList<>();
+    private ItemLongClickMaskHelper clickMaskHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,7 @@ public class RecyerActivity extends AppCompatActivity {
 
     private void ry() {
         ry = ((TouchCallbackRecyclerView) findViewById(R.id.main_ry_load));
+        clickMaskHelper = new ItemLongClickMaskHelper(this);
 
         adapter = new RecyerLoadAdapter(this, mList);
         adapter.setOnItemClickListener(new CommonRecycleAdapter.OnItemClickListener() {
@@ -52,16 +57,40 @@ public class RecyerActivity extends AppCompatActivity {
 
             @Override
             public void onItemLongClickListener(View view, int position) {
-
+                clickMaskHelper.dismissMaskLayout(); //关闭之前的
+                clickMaskHelper.setRootFrameLayout((FrameLayout) view,position);
             }
         });
+
         ry.setLayoutManager(new LinearLayoutManager(this));
         ry.setAdapter(adapter);
         adapter.addFootView(R.layout.foot_item);
         ry.setOnLoadMoreCallback(new TouchCallbackRecyclerView.OnLoadMoreCallback() {
             @Override
             public void onLoadListernr() {
+                ToastUlit.Toast(RecyerActivity.this,"底部");
                 adapter.notifyDataSetChanged();
+            }
+        });
+        ry.setScrollCallback(new TouchCallbackRecyclerView.ScrollCallback() {
+            @Override
+            public void onTouchUp(float diffY) {
+                clickMaskHelper.dismissMaskLayout();
+            }
+        });
+        clickMaskHelper.setMaskItemListener(new ItemLongClickMaskHelper.ItemMaskClickListener() {
+            @Override
+            public void fristBtn(int positon) {
+            }
+
+            @Override
+            public void secondBtn(int positon) {
+
+            }
+
+            @Override
+            public void threeBtn(int positon) {
+
             }
         });
     }

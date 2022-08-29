@@ -9,7 +9,12 @@
         android:textColor="@color/color_000000"
         android:padding="10dp"
         android:text="item"
+        android:textSize="20sp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/color_000000"/>
 </LinearLayout>

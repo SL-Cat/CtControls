@@ -2,16 +2,16 @@ package cat.hucustomize;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,8 +20,10 @@ import java.util.List;
 import cat.customize.bean.PopuStrBean;
 import cat.customize.view.ISelectButton;
 import cat.customize.view.PopuSpringView;
+import cat.customize.view.PopupWindownView;
 import cat.customize.view.ReadCleanPowerButton;
 import cat.customize.view.RfidCleanButton;
+import cat.customize.view.ScanResetReadButton;
 import cat.customize.view.SettingPowerBottomDialog;
 import cat.customize.xlist.BaseListAdapter;
 import cat.hucustomize.frg.WaveRfidFragment;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     private MainActivity instance;
     private LinearLayout frags;
+    private TextView popuTv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,70 @@ public class MainActivity extends AppCompatActivity {
         popuSring();
         readBtn();
         selectBtn();
+        midIgBtn();
         moreView();
+        popuWind();
+        findViewById(R.id.ct_to_last_frg).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+
+    private void midIgBtn() {
+        final ScanResetReadButton readButton = (ScanResetReadButton) findViewById(R.id.ct_scan_reset_read_btn);
+        readButton.setOnScanResetReadListener(new ScanResetReadButton.OnScanResetReadListener() {
+            @Override
+            public void scanButton() {
+
+            }
+
+            @Override
+            public void readOrStop(boolean isFalg) {
+
+            }
+
+            @Override
+            public void midImage() {
+
+            }
+
+            @Override
+            public void readIng() {
+
+            }
+        });
+        findViewById(R.id.ct_hide_all).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readButton.hideOrOpenReadBtn(true);
+                readButton.hideOrOpenScanBtn(true);
+            }
+        });
+        findViewById(R.id.ct_hide_read).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readButton.hideOrOpenReadBtn(true);
+            }
+        });
+    }
+
+    private void popuWind() {
+        popuTv = (TextView) findViewById(R.id.ct_main_wave_popu);
+        popuTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PopupWindownView popupWindownView = new PopupWindownView(MainActivity.this);
+                popupWindownView.showPop(popuTv, R.layout.ct_popu_layout, 0, 0, new PopupWindownView.PopupCallBack() {
+                    @Override
+                    public void onCallBack(PopupWindow mPopupWindow) {
+                    }
+                });
+            }
+        });
+
     }
 
     private void moreView() {
@@ -106,7 +172,6 @@ public class MainActivity extends AppCompatActivity {
         readbtn.setOnReadCleanPowerListener(new ReadCleanPowerButton.OnReadCleanPowerListener() {
             @Override
             public void readOrStop(boolean scanFlag) {
-                Log.d("myDemo", "readOrStop: " + scanFlag);
             }
 
             @Override
@@ -116,7 +181,6 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void setPower(int power) {
-                Log.d("myDemo", "setPower: " + power);
                 SettingPowerBottomDialog dialog = new SettingPowerBottomDialog(instance, 25);
                 dialog.setGravity(Gravity.BOTTOM);
                 dialog.setBigByScreenWidth(1);

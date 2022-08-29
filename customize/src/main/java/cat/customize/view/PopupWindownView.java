@@ -75,7 +75,6 @@ public class PopupWindownView {
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-
                 if (updateListener == null) {
                     return;
                 }
@@ -124,6 +123,11 @@ public class PopupWindownView {
         void progress(float progress);
     }
 
+    private boolean windMatch = true;
+
+    public void setWidthMatch(boolean widthFlag){
+        this.windMatch = widthFlag;
+    }
 
     /**
      * 弹出窗口
@@ -137,7 +141,11 @@ public class PopupWindownView {
         // 设置布局文件
         mPopupWindow.setContentView(LayoutInflater.from(activity).inflate(layout, null));
         // 为了避免部分机型不显示，我们需要重新设置一下宽高
-        mPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        if(windMatch) {
+            mPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
+        }else {
+            mPopupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        }
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         // 设置pop透明效果
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0x0000));

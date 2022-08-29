@@ -10,6 +10,7 @@
         android:roundIcon="@mipmap/ct_ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
+        <activity android:name=".SecondActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,8 +18,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".list.RecyerActivity"></activity>
-        <activity android:name=".list.XListViewActivity"></activity>
+        <activity android:name=".list.RecyerActivity" />
+        <activity android:name=".list.XListViewActivity" />
     </application>
 
 </manifest>

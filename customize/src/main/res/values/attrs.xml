@@ -1,32 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="text" format="string"/>
-    <attr name="image" format="integer"/>
+    <attr name="text" format="string" />
+    <attr name="image" format="integer" />
 
     <declare-styleable name="ISelectBtnStyle">
-        <attr name="left_text" format="string"/>
-        <attr name="right_text" format="string"/>
+        <attr name="left_text" format="string" />
+        <attr name="right_text" format="string" />
     </declare-styleable>
 
     <declare-styleable name="ISpringStyle">
-        <attr name="spring_text" format="string"/>
-        <attr name="spring_image" format="integer"/>
+        <attr name="spring_text" format="string" />
+        <attr name="spring_image" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="IReadCleanPowerStyle">
-        <attr name="start_text" format="string"/>
-        <attr name="stop_text" format="string"/>
-        <attr name="reset_text" format="string"/>
-        <attr name="start_text_color" format="color"/>
-        <attr name="stop_text_color" format="color"/>
-        <attr name="reset_text_color" format="color"/>
-        <attr name="power_text_color" format="color"/>
-        <attr name="start_background" format="reference"/>
-        <attr name="stop_background" format="reference"/>
-        <attr name="reset_background" format="reference"/>
-        <attr name="power_background" format="reference"/>
-        <attr name="button_height" format="dimension"/>
+        <attr name="start_text" format="string" />
+        <attr name="stop_text" format="string" />
+        <attr name="reset_text" format="string" />
+        <attr name="start_text_color" format="color" />
+        <attr name="stop_text_color" format="color" />
+        <attr name="reset_text_color" format="color" />
+        <attr name="power_text_color" format="color" />
+        <attr name="start_background" format="reference" />
+        <attr name="stop_background" format="reference" />
+        <attr name="reset_background" format="reference" />
+        <attr name="power_background" format="reference" />
+        <attr name="button_height" format="dimension" />
     </declare-styleable>
 
+    <declare-styleable name="IScanResetReadStyle">
+        <attr name="scan_text" format="string" />
+        <attr name="read_text" format="string" />
+        <attr name="mid_image" format="integer" />
+        <attr name="left_background" format="reference" />
+        <attr name="right_background" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="IRadiosStyle">
+        <attr name="item_background" format="reference"></attr>
+        <attr name="item_text_un_color" format="color"/>
+        <attr name="item_text_click_color" format="color"/>
+        <attr name="item_text_size" format="dimension"/>
+        <attr name="item_height" format="dimension"/>
+        <attr name="radios_click_more" format="boolean"/>
+    </declare-styleable>
 
 </resources>

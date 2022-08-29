@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CtCustomize</string>
+
+    <string name="ct_stop_read">停止读取</string>
+    <string name="ct_start_read">开始读取</string>
+    <string name="ct_start_scan">开始扫描</string>
 </resources>
