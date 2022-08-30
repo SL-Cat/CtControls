@@ -149,14 +149,21 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
     }
 
     /**
-     * 取消某个按钮
+     * 取消/选中某个按钮
      *
      * @param position
      */
     public void unClickButton(int position) {
-        buttonLits.get(position).setSelected(false);
-        buttonLits.get(position).setTextColor(textUnColor);
+        if (buttonLits.size() >= position - 1) return;
 
+        TextView textView = buttonLits.get(position);
+        if (textView.isSelected()) {
+            textView.setSelected(false);
+            textView.setTextColor(textUnColor);
+        } else {
+            textView.setSelected(true);
+            textView.setTextColor(textClickColor);
+        }
     }
 
     /**
