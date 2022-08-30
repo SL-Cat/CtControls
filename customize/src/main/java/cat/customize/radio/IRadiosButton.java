@@ -39,7 +39,7 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
     private int textUnColor, textClickColor;
 
     public interface OnIRadiosListener {
-        void onRadiosItemClick(int position,boolean isClick);
+        void onRadiosItemClick(int position, boolean isClick);
     }
 
     public void setOnIRadiosItemClick(OnIRadiosListener onIRadiosListener) {
@@ -122,7 +122,7 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
                         button.setSelected(true);
                     }
                     if (onIRadiosListener != null) {
-                        onIRadiosListener.onRadiosItemClick(i,button.isSelected());
+                        onIRadiosListener.onRadiosItemClick(i, button.isSelected());
                     }
                 }
             } else {
@@ -135,7 +135,7 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
                         button.setSelected(true);
                     }
                     if (onIRadiosListener != null) {
-                        onIRadiosListener.onRadiosItemClick(i,button.isSelected());
+                        onIRadiosListener.onRadiosItemClick(i, button.isSelected());
                     }
                 } else {
                     unClickButton(i);
@@ -183,6 +183,14 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
             }
         }
         return clicks;
+    }
+
+    public void setButtonLits(List<String> list) {
+        buttonLits.clear();
+        strList.clear();
+        strList.addAll(list);
+        removeAllViews();
+        setRadiosBtn(strList);
     }
 
 }
