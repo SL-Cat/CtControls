@@ -17,8 +17,7 @@ import cat.customize.R;
  * on 2022/8/29.
  */
 
-public class IToolBarView extends LinearLayout {
-
+public class IToolBarView extends LinearLayout implements View.OnClickListener {
 
     private TextView title;
     private ImageView leftImage;
@@ -26,6 +25,17 @@ public class IToolBarView extends LinearLayout {
     private RelativeLayout relativeLayout;
     private Context context;
     private int toolBarBackground;
+
+    private OnToolBarListener onToolBarListener;
+
+    public interface OnToolBarListener{
+        void onClickLeft();
+        void onClickRight();
+    }
+
+    public void setOnToolBarListener(OnToolBarListener onToolBarListener){
+        this.onToolBarListener = onToolBarListener;
+    }
 
     public IToolBarView(Context context) {
         this(context,null);
@@ -43,8 +53,11 @@ public class IToolBarView extends LinearLayout {
         title = ((TextView) view.findViewById(R.id.ct_toolbar_center_title));
         leftImage = ((ImageView) view.findViewById(R.id.ct_toolbar_left_ig));
         rightImage = ((ImageView) view.findViewById(R.id.ct_toolbar_right_ig));
-        initStye(attrs);
 
+        leftImage.setOnClickListener(this);
+        rightImage.setOnClickListener(this);
+
+        initStye(attrs);
     }
 
     private void initStye(@Nullable AttributeSet attrs) {
@@ -53,15 +66,52 @@ public class IToolBarView extends LinearLayout {
         int rightImageBackground = typedArray.getResourceId(R.styleable.IRadiosStyle_radios_click_more, R.mipmap.ct_more);
         String titleStr = typedArray.getString(R.styleable.IToolBarStyle_title_text);
         int leftImageBackground = typedArray.getResourceId(R.styleable.IToolBarStyle_left_image, R.mipmap.ct_back_ig);
+        boolean hideRightImage = typedArray.getBoolean(R.styleable.IToolBarStyle_hide_right_image, false);
 
         if(titleStr!=null) {
             title.setText(titleStr);
+        }
+        if (hideRightImage) {
+            rightImage.setVisibility(VISIBLE);
+        } else {
+            rightImage.setVisibility(GONE);
         }
         relativeLayout.setBackgroundResource(toolBarBackground);
         leftImage.setImageResource(leftImageBackground);
         rightImage.setImageResource(rightImageBackground);
     }
 
+    public void setTitle(String str){
+        if(str!=null){
+            title.setText(str);
+        }else {
+            title.setText("");
+        }
+    }
+
+    public ImageView setLeftImage(int imageId){
+        leftImage.setImageResource(imageId);
+        return leftImage;
+    }
+
+    public ImageView setRightImage(int imageId){
+        rightImage.setVisibility(VISIBLE);
+        rightImage.setImageResource(imageId);
+        return rightImage;
+    }
 
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId()==R.id.ct_toolbar_left_ig){
+            if(onToolBarListener!=null){
+                onToolBarListener.onClickLeft();
+            }
+        }
+        if(v.getId()==R.id.ct_toolbar_right_ig){
+            if(onToolBarListener!=null){
+                onToolBarListener.onClickRight();
+            }
+        }
+    }
 }

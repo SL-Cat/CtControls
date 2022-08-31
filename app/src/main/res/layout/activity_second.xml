@@ -11,4 +11,13 @@
         android:id="@+id/ct_second_radios"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+    <cat.customize.radio.ISwitchbutton
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"/>
+
+    <cat.customize.radio.loop.ILoopView
+        android:id="@+id/ct_second_loop"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"/>
 </LinearLayout>

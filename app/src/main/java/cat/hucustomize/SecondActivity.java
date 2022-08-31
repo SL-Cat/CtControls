@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.customize.radio.IRadiosButton;
+import cat.customize.radio.loop.ILoopView;
 
 public class SecondActivity extends AppCompatActivity {
 
@@ -16,6 +17,16 @@ public class SecondActivity extends AppCompatActivity {
         setContentView(R.layout.activity_second);
 
         radios();
+        loopView();
+    }
+
+    private void loopView() {
+        ILoopView loopView = (ILoopView) findViewById(R.id.ct_second_loop);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            list.add("ITEM "+i);
+        }
+        loopView.setItems(list);
     }
 
     private void radios() {
@@ -25,7 +36,6 @@ public class SecondActivity extends AppCompatActivity {
         list.add("新的1");
         list.add("新的2");
         list.add("新的3");
-        list.add("新的4");
         radiosButton.setButtonLits(list);
         radiosButton.setOnIRadiosItemClick(new IRadiosButton.OnIRadiosListener() {
             @Override
