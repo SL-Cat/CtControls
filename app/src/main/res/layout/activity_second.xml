@@ -20,4 +20,15 @@
         android:id="@+id/ct_second_loop"
         android:layout_width="match_parent"
         android:layout_height="150dp"/>
+
+    <TextView
+        android:id="@+id/ct_second_time"
+        android:text="时间选择器"
+        android:textSize="16sp"
+        android:padding="5dp"
+        android:gravity="center"
+        android:background="@drawable/ct_radius_divider_white_bg"
+        android:layout_width="match_parent"
+        android:layout_margin="10dp"
+        android:layout_height="wrap_content"/>
 </LinearLayout>

@@ -113,13 +113,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private  boolean isShow = false;
     private void moreView() {
         ((TextView) findViewById(R.id.ct_main_wave_rfid_tv)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.ct_main_more_fg,new WaveRfidFragment());
-                fragmentTransaction.commit();
+                isShow = !isShow;
+                if(isShow) {
+                    findViewById(R.id.ct_main_more_fg).setVisibility(View.VISIBLE);
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.replace(R.id.ct_main_more_fg, new WaveRfidFragment());
+                    fragmentTransaction.commit();
+                }else {
+                    findViewById(R.id.ct_main_more_fg).setVisibility(View.GONE);
+                }
             }
         });
     }
@@ -168,7 +175,6 @@ public class MainActivity extends AppCompatActivity {
 
         ReadCleanPowerButton readbtn = (ReadCleanPowerButton) findViewById(R.id.ct_main_read_btn);
         readbtn.setPowerCode(10);
-        readbtn.getPowerLl().setOnClickListener(null);
         readbtn.setOnReadCleanPowerListener(new ReadCleanPowerButton.OnReadCleanPowerListener() {
             @Override
             public void readOrStop(boolean scanFlag) {

@@ -21,7 +21,7 @@ public class BaseDialog extends Dialog {
     protected Activity mActivity;
 
     public BaseDialog(@NonNull Context context) {
-        this(context, R.style.radiusDialog);
+        this(context, R.style.ct_RadiusDialog);
     }
 
     public BaseDialog(@NonNull Context context,int style){
