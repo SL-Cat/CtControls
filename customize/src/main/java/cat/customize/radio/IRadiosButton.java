@@ -33,10 +33,10 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
     private boolean selectType = false;
 
     private OnIRadiosListener onIRadiosListener;
-    private float buttonHeight;
     private float textSize;
     private int buttonBackground;
     private int textUnColor, textClickColor;
+
 
     public interface OnIRadiosListener {
         void onRadiosItemClick(int position, boolean isClick);
@@ -61,7 +61,6 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IRadiosStyle);
         textUnColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_un_color, context.getResources().getColor(R.color.color_000000));
         textClickColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_click_color, context.getResources().getColor(R.color.color_007BFF));
-        buttonHeight = typedArray.getDimension(R.styleable.IRadiosStyle_item_height, 30);
         textSize = typedArray.getDimension(R.styleable.IRadiosStyle_item_text_size, 16);
         buttonBackground = typedArray.getResourceId(R.styleable.IRadiosStyle_item_background, R.drawable.ct_radios_item_select_bg);
         selectType = typedArray.getBoolean(R.styleable.IRadiosStyle_radios_click_more, false);
@@ -69,7 +68,6 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         strList.add("按钮1");
         strList.add("按钮2");
         strList.add("按钮3");
-        strList.add("按钮4");
         setRadiosBtn(strList);
     }
 
@@ -127,13 +125,8 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
                 }
             } else {
                 if (v.getId() == button.getId()) {
-                    if (button.isSelected()) {
-                        button.setTextColor(textUnColor);
-                        button.setSelected(false);
-                    } else {
-                        button.setTextColor(textClickColor);
-                        button.setSelected(true);
-                    }
+                    button.setTextColor(textClickColor);
+                    button.setSelected(true);
                     if (onIRadiosListener != null) {
                         onIRadiosListener.onRadiosItemClick(i, button.isSelected());
                     }
@@ -148,13 +141,21 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         this.selectType = clickType;
     }
 
+
+    /**
+     * 是否允许全部取消
+     */
+    public void isNullClick() {
+
+    }
+
     /**
      * 取消某个按钮
      *
      * @param position
      */
     public void unClickButton(int position) {
-        if (buttonLits.size() >= position - 1){
+        if (buttonLits.size() >= position - 1) {
             TextView textView = buttonLits.get(position);
             textView.setSelected(false);
             textView.setTextColor(textUnColor);
@@ -163,10 +164,11 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
 
     /**
      * 选中某个按钮
+     *
      * @param position
      */
-    public void selectButton(int position){
-        if (buttonLits.size() >= position - 1){
+    public void selectButton(int position) {
+        if (buttonLits.size() >= position - 1) {
             TextView textView = buttonLits.get(position);
             textView.setSelected(true);
             textView.setTextColor(textClickColor);

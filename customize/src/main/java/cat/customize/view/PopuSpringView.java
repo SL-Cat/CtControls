@@ -93,7 +93,6 @@ public class PopuSpringView extends LinearLayout {
             @Override
             public void onClick(View v) {
                 showPop(springCard);
-
             }
         });
     }

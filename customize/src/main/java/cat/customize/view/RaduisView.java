@@ -9,11 +9,10 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import cat.customize.R;
-import cat.customize.ulite.DensityUtil;
+import cat.customize.ulite.system.AndroidUtils;
 
 /**
  * Created by HSL on 2022/4/29.
@@ -77,11 +76,11 @@ public class RaduisView extends View {
         int specSize = MeasureSpec.getSize(measureSpec);
         //wrap_content
         if (specMode == MeasureSpec.AT_MOST) {
-            specSize = DensityUtil.dpToPx(context, wearSize);
+            specSize = AndroidUtils.dp2px(context, wearSize);
         }
         //fill_parent或者精确值
         else if (specMode == MeasureSpec.EXACTLY) {
-            specSize = DensityUtil.dpToPx(context, wearSize);
+            specSize = AndroidUtils.dp2px(context, wearSize);
         }
         return specSize;
     }
@@ -92,11 +91,11 @@ public class RaduisView extends View {
         int specSize = MeasureSpec.getSize(measureSpec);
         //wrap_content
         if (specMode == MeasureSpec.AT_MOST) {
-            specSize = DensityUtil.dpToPx(context, wearSize);
+            specSize = AndroidUtils.dp2px(context, wearSize);
         }
         //fill_parent或者精确值
         else if (specMode == MeasureSpec.EXACTLY) {
-            specSize = DensityUtil.dpToPx(context, wearSize);
+            specSize = AndroidUtils.dp2px(context, wearSize);
         }
         return specSize;
 

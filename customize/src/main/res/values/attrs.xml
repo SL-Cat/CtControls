@@ -41,7 +41,6 @@
         <attr name="item_text_un_color" format="color" />
         <attr name="item_text_click_color" format="color" />
         <attr name="item_text_size" format="dimension" />
-        <attr name="item_height" format="dimension" />
         <attr name="radios_click_more" format="boolean" />
     </declare-styleable>
 

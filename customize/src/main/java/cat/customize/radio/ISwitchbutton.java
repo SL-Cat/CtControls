@@ -1,6 +1,5 @@
 package cat.customize.radio;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -13,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import cat.customize.R;
-import cat.customize.ulite.DensityUtil;
 
 /**
  * Created by HSL

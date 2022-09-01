@@ -211,26 +211,26 @@ public class MainActivity extends AppCompatActivity {
         final PopuSpringView springView = (PopuSpringView) findViewById(R.id.ct_main_popu_spring);
 
 //两种方法，这种直接设置数据用默认的adapter ，或者换自定义的adapter
-//        springView.setData(mList, new PopuSpringView.OnPopuSpringListener() {
-//            @Override
-//            public void OnClickItem(int id) {
-//                ToastUlit.Toast(instance, id + "");
-//            }
-//        });
-        final List<TestStrBean> list = new ArrayList<>();
-        list.add(new TestStrBean("a"));
-        list.add(new TestStrBean("b"));
-        list.add(new TestStrBean("c"));
-        list.add(new TestStrBean("d"));
-        list.add(new TestStrBean("e"));
-        springView.setAdapter(new TestAdapter(instance, list), new AdapterView.OnItemClickListener() {
+        springView.setData(mList, new PopuSpringView.OnPopuSpringListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TestStrBean testStrBean = list.get(position);
-                ToastUlit.Toast(instance, testStrBean.getName());
-                springView.dismiss();
+            public void OnClickItem(int id) {
+                ToastUlit.Toast(instance, id + "");
             }
         });
+//        final List<TestStrBean> list = new ArrayList<>();
+//        list.add(new TestStrBean("a"));
+//        list.add(new TestStrBean("b"));
+//        list.add(new TestStrBean("c"));
+//        list.add(new TestStrBean("d"));
+//        list.add(new TestStrBean("e"));
+//        springView.setAdapter(new TestAdapter(instance, list), new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                TestStrBean testStrBean = list.get(position);
+//                ToastUlit.Toast(instance, testStrBean.getName());
+//                springView.dismiss();
+//            }
+//        });
     }
 
     private class TestAdapter extends BaseListAdapter<TestStrBean> {
