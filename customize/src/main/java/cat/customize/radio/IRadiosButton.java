@@ -90,7 +90,7 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
             textButton.setLayoutParams(weight1);
             textButton.setGravity(Gravity.CENTER);
             textButton.setPadding(20, 10, 20, 10);
-            textButton.setId(buttonLits.size());
+            textButton.setTag(buttonLits.size());
             textButton.setText(data);
             textButton.setTextSize(textSize);
             textButton.setTextColor(textUnColor);
