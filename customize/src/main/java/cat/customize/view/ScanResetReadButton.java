@@ -1,14 +1,21 @@
 package cat.customize.view;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cat.customize.R;
+import cat.customize.ulite.system.AndroidUtils;
+import cat.customize.ulite.system.CtLog;
 
 /**
  * Created by HSL
@@ -20,6 +27,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
     private Context context;
     private TextView scanBtn, readBtn;
     private ImageView midIg;
+    private LinearLayout linearLl;
     private boolean readStatus; //true:false 读取中：停止中
 
     private OnScanResetReadListener onScanResetReadListener;
@@ -50,6 +58,8 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         super(context, attrs, defStyleAttr);
         this.context = context;
         View view = View.inflate(context, R.layout.ct_scan_reset_read_layout, this);
+
+        linearLl = ((LinearLayout) view.findViewById(R.id.ct_scan_read_leaner_ll));
         scanBtn = ((TextView) view.findViewById(R.id.ct_scan_read_leaner_scan));
         readBtn = ((TextView) view.findViewById(R.id.ct_scan_read_leaner_raed));
         midIg = ((ImageView) view.findViewById(R.id.ct_scan_read_leaner_mid_ig));
@@ -64,7 +74,9 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IScanResetReadStyle);
         int rigthBackground = typedArray.getResourceId(R.styleable.IScanResetReadStyle_right_background, R.drawable.ct_right_radius_blue_bg);
         int leftBackground = typedArray.getResourceId(R.styleable.IScanResetReadStyle_left_background, R.drawable.ct_left_radius_green_bg);
+        int migPadding = typedArray.getInteger(R.styleable.IScanResetReadStyle_mid_padding, 10);
         int midImage = typedArray.getResourceId(R.styleable.IScanResetReadStyle_mid_image, R.mipmap.ct_refesh_ig);
+        int height = typedArray.getInteger(R.styleable.IScanResetReadStyle_scan_read_height, 40);
 
         String leftTv = typedArray.getString(R.styleable.IScanResetReadStyle_scan_text);
         String rightTv = typedArray.getString(R.styleable.IScanResetReadStyle_read_text);
@@ -74,16 +86,22 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         if (rightTv != null) {
             readBtn.setText(rightTv);
         }
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.height = AndroidUtils.dp2px(context,height);
+        params.addRule(RelativeLayout.CENTER_VERTICAL);
 
+        linearLl.setLayoutParams(params);
         scanBtn.setBackgroundResource(leftBackground);
         readBtn.setBackgroundResource(rigthBackground);
         midIg.setImageResource(midImage);
+        midIg.setPadding(migPadding,migPadding,migPadding,migPadding);
     }
-
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.ct_scan_read_leaner_scan) {
+            CtLog.d("customize", "onClick: ct_scan_read_leaner_scan");
+            if (!isScanFalg) return;
             if (onScanResetReadListener != null) {
                 if (!readStatus) {
                     onScanResetReadListener.scanButton();
@@ -93,6 +111,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
             }
         }
         if (v.getId() == R.id.ct_scan_read_leaner_mid_ig) {
+            CtLog.d("customize", "onClick: ct_scan_read_leaner_mid_ig");
             if (onScanResetReadListener != null) {
                 if (!readStatus) {
                     onScanResetReadListener.midImage();
@@ -102,6 +121,8 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
             }
         }
         if (v.getId() == R.id.ct_scan_read_leaner_raed) {
+            CtLog.d("customize", "onClick: ct_scan_read_leaner_raed");
+            if (!isReadFalg) return;
             if (readStatus) {
                 stopRead();
             } else {
@@ -114,13 +135,15 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
      * 停止读取
      */
     public void stopRead() {
-        if (isScanFalg) {
-            readStatus = false;
-            readBtn.setText(getResources().getString(R.string.ct_start_read));
+        readStatus = false;
+        readBtn.setText(getResources().getString(R.string.ct_start_read));
+        if (isVisibiScan) {
             readBtn.setBackgroundResource(R.drawable.ct_right_radius_blue_bg);
-            if (onScanResetReadListener != null) {
-                onScanResetReadListener.readOrStop(false);
-            }
+        } else {
+            readBtn.setBackgroundResource(R.drawable.ct_radius_blue_bg);
+        }
+        if (onScanResetReadListener != null) {
+            onScanResetReadListener.readOrStop(false);
         }
     }
 
@@ -128,18 +151,25 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
      * 开始读取
      */
     public void startRead() {
-        if (isReadFalg) {
-            readStatus = true;
-            readBtn.setText(getResources().getString(R.string.ct_stop_read));
+        readStatus = true;
+        readBtn.setText(getResources().getString(R.string.ct_stop_read));
+        if (isVisibiScan) {
             readBtn.setBackgroundResource(R.drawable.ct_right_radius_red_bg);
-            if (onScanResetReadListener != null) {
-                onScanResetReadListener.readOrStop(true);
-            }
+        } else {
+            readBtn.setBackgroundResource(R.drawable.ct_radius_red_bg);
+        }
+        if (onScanResetReadListener != null) {
+            onScanResetReadListener.readOrStop(true);
         }
     }
 
-    private boolean isScanFalg = true;
-    private int unClickScanDrawable = -1;
+    private boolean isScanFalg = true;//是否可以点击
+    private boolean isReadFalg = true;
+
+    private boolean isVisibiScan = true; //是否隐藏了条码 ; 隐藏后读取按钮动态背景要变换
+
+    private int unClickScanDrawable = -1; //不可点击时的背景
+    private int unClickReadDrawable = -1;
 
     /**
      * 关闭或者开启扫描按钮
@@ -164,8 +194,6 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         unClickScanDrawable = drawableId;
     }
 
-    private boolean isReadFalg = true;
-    private int unClickReadDrawable = -1;
 
     /**
      * 关闭或者开启读取按钮
@@ -188,4 +216,69 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
     public void setUnClickReadDrawable(int drawableId) {
         unClickReadDrawable = drawableId;
     }
+
+    @SuppressLint("WrongConstant")
+    public void visibilityLeft(boolean isShow) {
+        isVisibiScan = isShow;
+        if (!isShow) {
+            scanBtn.setVisibility(GONE);
+            LinearLayout.LayoutParams readLl = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
+            readBtn.setBackgroundResource(R.drawable.ct_radius_blue_bg);
+            readBtn.setLayoutParams(readLl);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.LEFT_OF);
+            midIg.setLayoutParams(layoutParams);
+        } else {
+            scanBtn.setVisibility(VISIBLE);
+            readBtn.setBackgroundResource(R.drawable.ct_right_radius_blue_bg);
+            if (readBtn.getVisibility() == 0) {
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+                midIg.setLayoutParams(layoutParams);
+            }
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    public void visibilityRgiht(boolean isShow) {
+        if (!isShow) {
+            readBtn.setVisibility(GONE);
+            LinearLayout.LayoutParams readLl = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
+            scanBtn.setLayoutParams(readLl);
+            scanBtn.setBackgroundResource(R.drawable.ct_radius_green_bg);
+            RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+            layoutParams.addRule(RelativeLayout.LEFT_OF);
+            midIg.setLayoutParams(layoutParams);
+        } else {
+            readBtn.setVisibility(VISIBLE);
+            scanBtn.setBackgroundResource(R.drawable.ct_left_radius_green_bg);
+            if (scanBtn.getVisibility() == 0) {
+                RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+                layoutParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+                midIg.setLayoutParams(layoutParams);
+            }
+        }
+    }
+
+    @SuppressLint("WrongConstant")
+    public void visibilityConter(boolean isShow) {
+        if (!isShow) {
+            midIg.setVisibility(GONE);
+        } else {
+            midIg.setVisibility(VISIBLE);
+        }
+    }
+
+    public TextView getLeftBtn() {
+        return scanBtn;
+    }
+
+    public TextView getRightBtn() {
+        return readBtn;
+    }
+
+    public ImageView getConterIg() {
+        return midIg;
+    }
+
 }

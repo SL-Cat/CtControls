@@ -34,8 +34,10 @@
         <attr name="scan_text" format="string" />
         <attr name="read_text" format="string" />
         <attr name="mid_image" format="integer" />
+        <attr name="mid_padding" format="integer" />
         <attr name="left_background" format="reference" />
         <attr name="right_background" format="reference" />
+        <attr name="scan_read_height" format="dimension" />
     </declare-styleable>
 
     <declare-styleable name="IRadiosStyle">

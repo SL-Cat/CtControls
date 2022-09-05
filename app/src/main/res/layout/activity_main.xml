@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="灰掉扫描" />
+            android:text="隐藏扫描" />
 
         <TextView
             android:id="@+id/ct_hide_read"
@@ -74,7 +74,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="灰掉读取" />
+            android:text="显示读取" />
 
         <TextView
             android:id="@+id/ct_hide_all"

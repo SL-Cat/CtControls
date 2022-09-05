@@ -1,15 +1,15 @@
 <resources>
     <string name="app_name">CtCustomize</string>
 
-    <string name="ct_stop_read">Stop reading</string>
-    <string name="ct_start_read">Start reading</string>
-    <string name="ct_start_scan">Scan</string>
-    <string name="ct_clean">Cancel</string>
-    <string name="ct_confirm">confirm</string>
-    <string name="ct_select">select</string>
-    <string name="ct_year">Y</string>
-    <string name="ct_month">M</string>
-    <string name="ct_day">D</string>
-    <string name="ct_hour">H</string>
-    <string name="ct_minute">M</string>
+    <string name="ct_stop_read">停止读取</string>
+    <string name="ct_start_read">开始读取</string>
+    <string name="ct_start_scan">开始扫描</string>
+    <string name="ct_clean">取消</string>
+    <string name="ct_confirm">确定</string>
+    <string name="ct_select">选择</string>
+    <string name="ct_year">年</string>
+    <string name="ct_month">月</string>
+    <string name="ct_day">日</string>
+    <string name="ct_hour">时</string>
+    <string name="ct_minute">分</string>
 </resources>

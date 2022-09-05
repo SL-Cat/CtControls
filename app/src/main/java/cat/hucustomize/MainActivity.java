@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ct_to_last_frg).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
             }
         });
@@ -64,35 +64,41 @@ public class MainActivity extends AppCompatActivity {
         readButton.setOnScanResetReadListener(new ScanResetReadButton.OnScanResetReadListener() {
             @Override
             public void scanButton() {
-
+                Log.d("myDemo", "scanButton: ");
             }
 
             @Override
             public void readOrStop(boolean isFalg) {
-
+                Log.d("myDemo", "readOrStop: " + isFalg);
             }
 
             @Override
             public void midImage() {
-
+                Log.d("myDemo", "midImage: ");
             }
 
             @Override
             public void readIng() {
-
+                Log.d("myDemo", "readIng: ");
             }
         });
         findViewById(R.id.ct_hide_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readButton.hideOrOpenReadBtn(true);
-                readButton.hideOrOpenScanBtn(true);
+                readButton.hideOrOpenReadBtn(false);
+                readButton.hideOrOpenScanBtn(false);
             }
         });
         findViewById(R.id.ct_hide_read).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 readButton.hideOrOpenReadBtn(true);
+            }
+        });
+        findViewById(R.id.ct_hide_scan).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readButton.visibilityLeft(false);
             }
         });
     }
@@ -113,18 +119,19 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private  boolean isShow = false;
+    private boolean isShow = false;
+
     private void moreView() {
         ((TextView) findViewById(R.id.ct_main_wave_rfid_tv)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 isShow = !isShow;
-                if(isShow) {
+                if (isShow) {
                     findViewById(R.id.ct_main_more_fg).setVisibility(View.VISIBLE);
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.replace(R.id.ct_main_more_fg, new WaveRfidFragment());
                     fragmentTransaction.commit();
-                }else {
+                } else {
                     findViewById(R.id.ct_main_more_fg).setVisibility(View.GONE);
                 }
             }
@@ -164,12 +171,12 @@ public class MainActivity extends AppCompatActivity {
         ((RfidCleanButton) findViewById(R.id.ct_main_read_clean_btn)).setOnRfidBtnListener(new RfidCleanButton.OnRfidBtnListener() {
             @Override
             public void startRead(boolean isRead) {
-                ToastUlit.Toast(instance,String.valueOf(isRead));
+                ToastUlit.Toast(instance, String.valueOf(isRead));
             }
 
             @Override
             public void clean() {
-                ToastUlit.Toast(instance,"清除");
+                ToastUlit.Toast(instance, "清除");
             }
         });
 
