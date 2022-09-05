@@ -44,10 +44,16 @@ public class ISelectButton extends RelativeLayout implements View.OnClickListene
         leftTv = (TextView) view.findViewById(R.id.ct_select_left_btn);
         rightTv = (TextView) view.findViewById(R.id.ct_select_right_btn);
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ISelectBtnStyle);
+        int leftBackground = typedArray.getResourceId(R.styleable.ISelectBtnStyle_left_text_background, R.drawable.ct_left_radius_btns);
+        int rightBackground = typedArray.getResourceId(R.styleable.ISelectBtnStyle_right_text_background, R.drawable.ct_right_radius_btns);
         String leftStr = typedArray.getString(R.styleable.ISelectBtnStyle_left_text);
         String rightStr = typedArray.getString(R.styleable.ISelectBtnStyle_right_text);
         leftTv.setText(leftStr);
+        leftTv.setBackgroundResource(leftBackground);
+
         rightTv.setText(rightStr);
+        rightTv.setBackgroundResource(rightBackground);
+
         selectItem(0);
         leftTv.setOnClickListener(this);
         rightTv.setOnClickListener(this);

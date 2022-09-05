@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true">
         <shape>
-            <solid android:color="#014099"/>
+            <solid android:color="#1B82D2"/>
             <corners android:topLeftRadius="30dp"
                 android:bottomRightRadius="30dp"
                 android:bottomLeftRadius="30dp"
@@ -21,7 +21,7 @@
     </item>
     <item android:state_pressed="true">
         <shape>
-            <solid android:color="#014099"/>
+            <solid android:color="#1B82D2"/>
             <corners android:topLeftRadius="0dp"
                 android:bottomRightRadius="30dp"
                 android:bottomLeftRadius="0dp"
@@ -30,7 +30,7 @@
     </item>
     <item android:state_pressed="false">
         <shape>
-            <solid android:color="#014099"/>
+            <solid android:color="#1B82D2"/>
             <corners android:topLeftRadius="0dp"
                 android:bottomRightRadius="30dp"
                 android:bottomLeftRadius="0dp"

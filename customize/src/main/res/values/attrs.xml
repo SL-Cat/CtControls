@@ -5,6 +5,8 @@
 
     <declare-styleable name="ISelectBtnStyle">
         <attr name="left_text" format="string" />
+        <attr name="left_text_background" format="reference"/>
+        <attr name="right_text_background" format="reference"/>
         <attr name="right_text" format="string" />
     </declare-styleable>
 

@@ -39,7 +39,6 @@ public class SecondActivity extends AppCompatActivity {
 
     private void radios() {
         IRadiosButton radiosButton = (IRadiosButton) findViewById(R.id.ct_second_radios);
-        radiosButton.setClickType(true);
         List<String> list = new ArrayList<>();
         list.add("新的1");
         list.add("新的2");
