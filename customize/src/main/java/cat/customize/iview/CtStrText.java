@@ -35,10 +35,10 @@ public class CtStrText extends TextView {
             if (text.toString().trim() != null && !"NULL".equals(text.toString().trim().toUpperCase())) {
                 super.setText(text, type);
             } else {
-                super.setText("", type);
+                super.setText("-", type);
             }
         }else {
-            super.setText("", type);
+            super.setText("-", type);
         }
     }
 

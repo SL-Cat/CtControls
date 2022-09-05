@@ -223,7 +223,11 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         if (!isShow) {
             scanBtn.setVisibility(GONE);
             LinearLayout.LayoutParams readLl = new LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1);
-            readBtn.setBackgroundResource(R.drawable.ct_radius_blue_bg);
+            if(readStatus){
+                readBtn.setBackgroundResource(R.drawable.ct_radius_red_bg);
+            }else {
+                readBtn.setBackgroundResource(R.drawable.ct_radius_blue_bg);
+            }
             readBtn.setLayoutParams(readLl);
             RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
             layoutParams.addRule(RelativeLayout.LEFT_OF);
