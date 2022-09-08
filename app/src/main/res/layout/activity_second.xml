@@ -10,25 +10,59 @@
     <cat.customize.radio.IRadiosButton
         android:id="@+id/ct_second_radios"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <cat.customize.radio.ISwitchbutton
         android:layout_width="60dp"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <cat.customize.radio.loop.ILoopView
         android:id="@+id/ct_second_loop"
         android:layout_width="match_parent"
-        android:layout_height="150dp"/>
+        android:layout_height="120dp" />
 
     <TextView
         android:id="@+id/ct_second_time"
-        android:text="时间选择器"
-        android:textSize="16sp"
-        android:padding="5dp"
-        android:gravity="center"
-        android:background="@drawable/ct_radius_divider_white_bg"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="10dp"
-        android:layout_height="wrap_content"/>
+        android:background="@drawable/ct_radius_divider_white_bg"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="日历选择器"
+        android:textSize="16sp" />
+
+
+    <FrameLayout
+        android:id="@+id/fl_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/ct_second_toast_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/ct_radius_divider_white_bg"
+        android:padding="5dp"
+        android:text="一个中间显示的提示框" />
+
+    <ImageView
+        android:id="@+id/ct_an_ig"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_margin="10dp"
+        android:src="@mipmap/logn" />
+
+    <TextView
+        android:id="@+id/ct_second_load_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/ct_radius_divider_white_bg"
+        android:text="一个中间显示的提示框" />
+
 </LinearLayout>

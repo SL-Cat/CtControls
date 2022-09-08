@@ -8,7 +8,7 @@ import cat.customize.DateUtils;
  * Created by HSL on 2020/12/23.
  */
 
-public class BasicConfig {
+public class CtBasicConfig {
 
     public static Context ApplicationContext;
     private static boolean DebugMode = true; //日志是否打印

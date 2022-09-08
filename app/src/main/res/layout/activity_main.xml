@@ -117,6 +117,9 @@
         android:text="popuwindonw"
         android:visibility="gone" />
 
+    <cat.customize.ui.CtToolBarView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/ct_to_last_frg"

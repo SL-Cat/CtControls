@@ -20,10 +20,14 @@ public class ItemLongClickMaskHelper {
     private FrameLayout mRootFrameLayout; //列表Item根布局FrameLayout
     private ItemMaskLayout mMaskItemLayout;
     private ItemMaskClickListener mItemMaskClickListener;
-    private final TextView fristBtn;
-    private final TextView secondBtn;
-    private final TextView threeBtn;
+    private  TextView fristBtn = null;
+    private  TextView secondBtn = null;
+    private  TextView threeBtn = null;
     private int position = 0;
+
+    public ItemLongClickMaskHelper(Context context,View view){
+
+    }
 
     public ItemLongClickMaskHelper(Context context) {
         mMaskItemLayout = new ItemMaskLayout(context);

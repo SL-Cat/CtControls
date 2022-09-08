@@ -16,7 +16,7 @@ import cat.hucustomize.R;
 public class RecyerLoadAdapter extends CommonRecycleAdapter<String> {
 
     public RecyerLoadAdapter(Context context, List<String> dataList) {
-        super(context, dataList, R.layout.test_item);
+        super(context, dataList, R.layout.ct_tuch_recy_item);
     }
 
     @Override

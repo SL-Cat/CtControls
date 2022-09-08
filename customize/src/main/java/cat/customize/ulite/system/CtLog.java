@@ -33,12 +33,12 @@ public class CtLog {
                     FileOutputStream fout = null;
                     try {
                         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            String path = BasicConfig.getPath();
+                            String path = CtBasicConfig.getPath();
                             File dir = new File(path);
                             if (!dir.exists()) {
                                 dir.mkdirs();
                             }
-                            fout = new FileOutputStream(path + BasicConfig.getFileName(), true);
+                            fout = new FileOutputStream(path + CtBasicConfig.getFileName(), true);
                             fout.write(finalData.toString().getBytes());
                             fout.write("\r\n".getBytes());
                             fout.close();
@@ -79,70 +79,70 @@ public class CtLog {
     }
 
     public static void i(String tag, String msg) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.i(tag, msg == null ? "" : msg);
             logToFile(Log.INFO, tag, msg);
         }
     }
 
     public static void i(String tag, String msg, Throwable tr) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.i(tag, msg == null ? "" : msg, tr);
             logToFile(Log.INFO, tag, msg, tr);
         }
     }
 
     public static void d(String tag, String msg) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.d(tag, msg == null ? "" : msg);
             logToFile(Log.DEBUG, tag, DateUtils.getStringDate() + ":" + msg);
         }
     }
 
     public static void d(String tag, String msg, Throwable tr) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.d(tag, msg == null ? "" : msg, tr);
             logToFile(Log.DEBUG, tag, msg, tr);
         }
     }
 
     public static void e(String tag, String msg) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.e(tag, msg == null ? "" : msg);
             logToFile(Log.ERROR, tag, msg);
         }
     }
 
     public static void e(String tag, String msg, Throwable tr) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.e(tag, msg == null ? "" : msg, tr);
             logToFile(Log.ERROR, tag, msg, tr);
         }
     }
 
     public static void v(String tag, String msg) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.v(tag, msg == null ? "" : msg);
             logToFile(Log.VERBOSE, tag, msg);
         }
     }
 
     public static void v(String tag, String msg, Throwable tr) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.v(tag, msg == null ? "" : msg, tr);
             logToFile(Log.VERBOSE, tag, msg, tr);
         }
     }
 
     public static void w(String tag, String msg) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.w(tag, msg == null ? "" : msg);
             logToFile(Log.WARN, tag, msg);
         }
     }
 
     public static void w(String tag, String msg, Throwable tr) {
-        if (BasicConfig.isDebugMode()) {
+        if (CtBasicConfig.isDebugMode()) {
             Log.w(tag, msg == null ? "" : msg, tr);
             logToFile(Log.WARN, tag, msg, tr);
         }
@@ -154,7 +154,7 @@ public class CtLog {
      * @param logFileName 文件的位置
      */
     public static void logToFile(String logFileName, int level, String tag, String message, Throwable throwable) {
-        if (BasicConfig.isLogToFile()) {
+        if (CtBasicConfig.isLogToFile()) {
             LogFileInfo info = new LogFileInfo();
             info.logFileName = logFileName;
             info.level = level;
@@ -175,14 +175,14 @@ public class CtLog {
     }
 
     public static void logToFile(int level, String tag, String message, Throwable throwable) {
-        logToFile(BasicConfig.getFileName(), level, tag, message, throwable);
+        logToFile(CtBasicConfig.getFileName(), level, tag, message, throwable);
     }
 
     public static void logToFile(int level, String tag, String message) {
-        logToFile(BasicConfig.getFileName(), level, tag, message);
+        logToFile(CtBasicConfig.getFileName(), level, tag, message);
     }
 
     public static void logToFile(String tag, String message) {
-        logToFile(BasicConfig.getFileName(), tag, message);
+        logToFile(CtBasicConfig.getFileName(), tag, message);
     }
 }

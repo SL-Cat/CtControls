@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">CtCustomize</string>
 
+    <string name="ct_loading_text">loading...</string>
     <string name="ct_stop_read">Stop reading</string>
     <string name="ct_start_read">Start reading</string>
     <string name="ct_start_scan">Scan</string>

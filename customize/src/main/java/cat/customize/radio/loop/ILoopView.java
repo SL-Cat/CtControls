@@ -37,7 +37,7 @@ public class ILoopView  extends View {
 
     private static final float DEFAULT_LINE_SPACE = 1f;
 
-    private static final int DEFAULT_VISIBLE_ITEMS = 5;
+    private static final int DEFAULT_VISIBLE_ITEMS = 3;
 
     private static boolean ENABLE_CURVE = true;
 

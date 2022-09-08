@@ -50,7 +50,7 @@
 
     <declare-styleable name="IToolBarStyle">
         <attr name="title_text" format="string"/>
-        <attr name="toolbar_background" format="color"/>
+        <attr name="toolbar_background" format="reference"/>
         <attr name="left_image" format="reference"/>
         <attr name="right_image" format="reference"/>
         <attr name="hide_right_image" format="boolean"/>

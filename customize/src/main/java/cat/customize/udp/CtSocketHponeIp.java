@@ -8,7 +8,7 @@ import android.net.wifi.WifiManager;
  * Created by HSL on 2021/11/1.
  */
 
-public class SocketHponeIp {
+public class CtSocketHponeIp {
 
     /**
      * 获取当前WIFI下,当前设备IP

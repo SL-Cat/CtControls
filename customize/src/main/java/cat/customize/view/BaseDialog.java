@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
@@ -21,7 +22,7 @@ public class BaseDialog extends Dialog {
     protected Activity mActivity;
 
     public BaseDialog(@NonNull Context context) {
-        this(context, R.style.ct_RadiusDialog);
+        this(context, R.style.ct_basedialog_stype);
     }
 
     public BaseDialog(@NonNull Context context,int style){
@@ -70,7 +71,7 @@ public class BaseDialog extends Dialog {
             paramsWidth = (int) (screenWidth * width);
         }
 
-        window.setLayout(paramsWidth, LinearLayout.LayoutParams.WRAP_CONTENT);
+        window.setLayout(paramsWidth, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     public void setBigByScreenWidthHeight(float width,float height){

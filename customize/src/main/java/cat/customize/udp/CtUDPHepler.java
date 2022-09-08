@@ -15,14 +15,14 @@ import java.net.InetSocketAddress;
  * Created by HSL on 2021/10/29.
  */
 
-public class UDPHepler {
+public class CtUDPHepler {
 
-    private String TAG = UDPHepler.class.getName();
+    private String TAG = CtUDPHepler.class.getName();
 
     public OnUdpSocketLinstener onUDPSocketServiceLinstener;
     public OnUdpSocketLinstener onUDPSocketClinentLinstener;
 
-    private static UDPHepler udpHepler;
+    private static CtUDPHepler ctUdpHepler;
 
     private Context context;
 
@@ -61,14 +61,14 @@ public class UDPHepler {
     private DatagramSocket clinentSocket;
 
 
-    public static UDPHepler getInstance(Context context) {
-        if (udpHepler == null) {
-            synchronized (UDPHepler.class) {
-                udpHepler = new UDPHepler(context);
-                return udpHepler;
+    public static CtUDPHepler getInstance(Context context) {
+        if (ctUdpHepler == null) {
+            synchronized (CtUDPHepler.class) {
+                ctUdpHepler = new CtUDPHepler(context);
+                return ctUdpHepler;
             }
         }
-        return udpHepler;
+        return ctUdpHepler;
     }
 
     /**
@@ -76,7 +76,7 @@ public class UDPHepler {
      *
      * @param context
      */
-    private UDPHepler(Context context) {
+    private CtUDPHepler(Context context) {
         this.context = context;
     }
 
