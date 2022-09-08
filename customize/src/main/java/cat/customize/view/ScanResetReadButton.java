@@ -74,7 +74,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IScanResetReadStyle);
         int rigthBackground = typedArray.getResourceId(R.styleable.IScanResetReadStyle_right_background, R.drawable.ct_right_radius_blue_bg);
         int leftBackground = typedArray.getResourceId(R.styleable.IScanResetReadStyle_left_background, R.drawable.ct_left_radius_green_bg);
-        int migPadding = typedArray.getInteger(R.styleable.IScanResetReadStyle_mid_padding, 10);
+        int migPadding = typedArray.getInteger(R.styleable.IScanResetReadStyle_mid_padding, 15);
         int midImage = typedArray.getResourceId(R.styleable.IScanResetReadStyle_mid_image, R.mipmap.ct_refesh_ig);
         int height = typedArray.getInteger(R.styleable.IScanResetReadStyle_scan_read_height, 40);
 

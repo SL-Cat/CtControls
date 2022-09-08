@@ -20,7 +20,7 @@ import cat.customize.R;
 
 public class ReadCleanPowerButton extends LinearLayout implements View.OnClickListener {
 
-    private LinearLayout resetLl, powerLl;
+    private LinearLayout  powerLl;
     private RelativeLayout readRl, resetRl;
     private TextView powerTv, resetTv, startTv, stopTv;
     private OnReadCleanPowerListener onReadCleanPowerListener;
@@ -54,15 +54,14 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         readRl = ((RelativeLayout) view.findViewById(R.id.ct_read_button_fra));
         resetRl = ((RelativeLayout) view.findViewById(R.id.ct_read_reset_rl));
         powerLl = ((LinearLayout) view.findViewById(R.id.ct_read_power_btn));
-        resetLl = ((LinearLayout) view.findViewById(R.id.ct_read_reset_btn));
         startTv = ((TextView) view.findViewById(R.id.ct_read_start_btn));
         resetTv = ((TextView) view.findViewById(R.id.ct_read_reset_tv));
         stopTv = ((TextView) view.findViewById(R.id.ct_read_stop_btn));
         initStyle(attrs);
 
 
-        resetLl.setOnClickListener(this);
         startTv.setOnClickListener(this);
+        resetTv.setOnClickListener(this);
         stopTv.setOnClickListener(this);
         powerLl.setOnClickListener(this);
     }
@@ -121,7 +120,7 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
                     }
                 }
             }
-        } else if (i == R.id.ct_read_reset_btn) {
+        } else if (i == R.id.ct_read_reset_tv) {
             if (!scanFlag) {
                 if (onReadCleanPowerListener != null) {
                     onReadCleanPowerListener.resetData();
@@ -221,9 +220,6 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
 
     public LinearLayout getPowerLl() {
         return powerLl != null ? powerLl : null;
-    }
-    public LinearLayout getResetLl() {
-        return resetLl != null ? resetLl : null;
     }
 
 }
