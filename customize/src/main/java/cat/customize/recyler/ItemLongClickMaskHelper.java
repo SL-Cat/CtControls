@@ -25,9 +25,6 @@ public class ItemLongClickMaskHelper {
     private  TextView threeBtn = null;
     private int position = 0;
 
-    public ItemLongClickMaskHelper(Context context,View view){
-
-    }
 
     public ItemLongClickMaskHelper(Context context) {
         mMaskItemLayout = new ItemMaskLayout(context);

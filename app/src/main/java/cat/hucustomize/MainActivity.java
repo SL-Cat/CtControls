@@ -1,5 +1,6 @@
 package cat.hucustomize;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
@@ -14,10 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
+import cat.customize.DateUtils;
 import cat.customize.bean.PopuStrBean;
+import cat.customize.datepicker.CustomDatePicker;
 import cat.customize.view.ISelectButton;
 import cat.customize.view.PopuSpringView;
 import cat.customize.view.PopupWindownView;
@@ -43,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         instance = this;
         frags = ((LinearLayout) findViewById(R.id.ct_main_more_fg));
 
+        selectDay();
         initView();
         popuSring();
         readBtn();
@@ -55,6 +62,27 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void selectDay() {
+        findViewById(R.id.ct_select_day).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                long timeGetTime = new Date().getTime();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                String nowTime = sdf.format(timeGetTime);
+                final CustomDatePicker customDatePicker = new CustomDatePicker(MainActivity.this, new CustomDatePicker.ResultHandler() {
+                    @Override
+                    public void handle(String time) {// 回调接口，获得选中的时间
+                    }
+                }, "2020-01-01 00:00:00", nowTime);// 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
+
+                customDatePicker.showSpecificTime(true); // 显示时和分
+                customDatePicker.setIsLoop(false); // 不允许循环滚动
+                customDatePicker.show(DateUtils.getPreTime(DateUtils.getStringDate(), "-4320"));
+
             }
         });
     }

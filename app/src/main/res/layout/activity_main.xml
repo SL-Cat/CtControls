@@ -122,11 +122,20 @@
         android:layout_height="wrap_content"/>
 
     <TextView
+        android:id="@+id/ct_select_day"
+        android:layout_width="wrap_content"
+        android:text="年月日时间选择器"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:background="@drawable/ct_radius_divider_white_bg"
+        android:layout_height="wrap_content"/>
+
+    <TextView
         android:id="@+id/ct_to_last_frg"
         android:background="@drawable/ct_radius_divider_white_bg"
         android:layout_margin="5dp"
         android:layout_width="match_parent"
-        android:text="前往第二页"
+        android:text="下一页"
         android:padding="10dp"
         android:gravity="center"
         android:layout_height="wrap_content"/>

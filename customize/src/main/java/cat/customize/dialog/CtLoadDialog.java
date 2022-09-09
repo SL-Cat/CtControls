@@ -5,14 +5,18 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.os.Handler;
+
 
 import cat.customize.R;
 import cat.customize.animation.Ratate3DAnimation;
+import cat.customize.ulite.system.AndroidUtils;
 import cat.customize.view.BaseDialog;
 
 /**
@@ -44,6 +48,14 @@ public class CtLoadDialog extends BaseDialog {
         infoTv = ((TextView) dialogView.findViewById(R.id.ct_load_dialog_info));
         setBigByScreenWidth(0.8f);
         initAnimation();
+        //设置显示弹窗背景不变暗
+        WindowManager.LayoutParams lp = getWindow().getAttributes();
+        //调整明暗度，float值，完全透明不变暗是0.0f，完全变暗不透明是1.0f
+        lp.dimAmount = 0.1f;
+        //必须要设置回去
+        getWindow().setAttributes(lp);
+        //根据谷歌文档，给对应的Window添加FLAG_DIM_BEHIND标志位，dimAmount值才有效。
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
 
     /**
@@ -85,6 +97,26 @@ public class CtLoadDialog extends BaseDialog {
 
             }
         });
+        rotate3dAnimation.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+            }
+            //翻转结束时
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                AndroidUtils.MainHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        leftImage.startAnimation(openAnimation);
+                    }
+                },200);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+
+            }
+        });
     }
 
     @Override
@@ -98,4 +130,5 @@ public class CtLoadDialog extends BaseDialog {
         leftImage.clearAnimation();
         super.dismiss();
     }
+
 }

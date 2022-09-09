@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:padding="10dp"
     android:id="@+id/ct_load_rl"
-    android:background="@drawable/ct_radius_divider_white_bg"
+    android:background="@drawable/ct_shape_radius_white_bg"
     android:orientation="vertical">
 
     <ImageView
@@ -22,9 +22,9 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:text="@string/ct_loading_text"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="10dp"
         android:layout_toRightOf="@id/ct_load_dialog_ig"
-        android:textColor="@color/color_000000"
+        android:textColor="@color/color_9e9e9e"
         android:textSize="20sp" />
 
 </RelativeLayout>

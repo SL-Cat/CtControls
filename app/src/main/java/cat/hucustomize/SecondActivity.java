@@ -1,10 +1,12 @@
 package cat.hucustomize;
 
+import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
@@ -14,14 +16,18 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import cat.customize.animation.Ratate3DAnimation;
 import cat.customize.datepicker.calendar.CtCalendarFragment;
 import cat.customize.datepicker.calendar.CtCalendarPagerFragment;
 import cat.customize.datepicker.calendar.data.CalendarDate;
+import cat.customize.dialog.CtLoadDialog;
 import cat.customize.dialog.CtToastDialog;
 import cat.customize.radio.IRadiosButton;
 import cat.customize.radio.loop.ILoopView;
+import cat.customize.ulite.system.AndroidUtils;
 
 public class SecondActivity extends AppCompatActivity implements CtCalendarPagerFragment.OnPageChangeListener, CtCalendarFragment.OnDateClickListener, CtCalendarFragment.OnDateCancelListener {
 
@@ -44,8 +50,29 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         calendarView();
     }
 
+    private int count = 0;
+
     private void load() {
         TextView loadTv = (TextView) findViewById(R.id.ct_second_load_dialog);
+        loadTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CtLoadDialog loadDialog = new CtLoadDialog(SecondActivity.this);
+                loadDialog.show();
+                new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        while (count<10){
+                            count++;
+                            SystemClock.sleep(1000);
+                            Log.d("myDemo", "run: ");
+                        }
+                        loadDialog.dismiss();
+                    }
+                }).start();
+            }
+        });
     }
 
     private void animation() {
