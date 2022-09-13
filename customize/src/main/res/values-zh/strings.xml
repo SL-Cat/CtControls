@@ -13,4 +13,14 @@
     <string name="ct_day">日</string>
     <string name="ct_hour">时</string>
     <string name="ct_minute">分</string>
+
+    <!-- 加载控件  -->
+    <string name="ct_load_all">已加载全部</string>
+    <string name="ct_load_after_letting_go">松手后加载</string>
+    <string name="ct_pull_up_loading">上拉加载</string>
+    <string name="ct_is_loading">正在加载</string>
+    <string name="ct_pull_down_to_refresh">下拉刷新</string>
+    <string name="ct_refresh_after_letting_go">松手后刷新</string>
+    <string name="ct_refreshing">正在刷新</string>
+    <string name="ct_loadMore">加载更多</string>
 </resources>

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">CtCustomize</string>
 
     <string name="ct_loading_text">loading...</string>
@@ -14,4 +14,13 @@
     <string name="ct_hour">H</string>
     <string name="ct_minute">M</string>
 
+    <!-- Loading Control  -->
+    <string name="ct_load_all" >Loading all controls</string>
+    <string name="ct_load_after_letting_go" >Loose to load</string>
+    <string name="ct_pull_up_loading" >Pull up to load</string>
+    <string name="ct_is_loading" >Loading</string>
+    <string name="ct_pull_down_to_refresh" >Pull down to load</string>
+    <string name="ct_refresh_after_letting_go" >Loose to refresh</string>
+    <string name="ct_refreshing" >Refresing</string>
+    <string name="ct_loadMore" >Loading more</string>
 </resources>

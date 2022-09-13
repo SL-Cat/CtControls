@@ -44,6 +44,7 @@ public class ISwitchbutton extends View {
         typedArray.recycle();
     }
 
+
     /**
      * @param widthMeasureSpec
      * @param heightMeasureSpec 高度是是宽度的0.55倍
