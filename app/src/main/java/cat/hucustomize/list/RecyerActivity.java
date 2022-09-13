@@ -2,6 +2,7 @@ package cat.hucustomize.list;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +34,7 @@ public class RecyerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recyer);
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 30; i++) {
             mList.add("" + i);
         }
         ry();
@@ -59,7 +60,7 @@ public class RecyerActivity extends AppCompatActivity {
                 clickMaskHelper.setRootFrameLayout((FrameLayout) view, position);
             }
         });
-        ry.setLayoutManager(new LinearLayoutManager(this));
+        ry.setLayoutManager(new GridLayoutManager(this,2));
         ry.setAdapter(adapter);
         ry.setIsCanLoadMore(true);
         ry.setIsCanRefresh(true);

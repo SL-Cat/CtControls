@@ -14,6 +14,7 @@ import cat.customize.R;
  * Created by HSL
  * on 2022/7/16.
  * 长按条目添加遮罩操作帮助类
+ * 长按主要是需要recyclerView 的item根布局是Fragment
  */
 public class ItemLongClickMaskHelper {
 
