@@ -16,22 +16,22 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.SortedMap;
-import java.util.TreeMap;
 
 import cat.customize.animation.Ratate3DAnimation;
 import cat.customize.datepicker.calendar.CtCalendarFragment;
 import cat.customize.datepicker.calendar.CtCalendarPagerFragment;
 import cat.customize.datepicker.calendar.data.CalendarDate;
+import cat.customize.dialog.CtPromtDialog;
 import cat.customize.dialog.CtLoadDialog;
 import cat.customize.dialog.CtToastDialog;
 import cat.customize.radio.IRadiosButton;
 import cat.customize.radio.loop.ILoopView;
 import cat.customize.ulite.system.AndroidUtils;
 
-public class SecondActivity extends AppCompatActivity implements CtCalendarPagerFragment.OnPageChangeListener, CtCalendarFragment.OnDateClickListener, CtCalendarFragment.OnDateCancelListener {
+public class SecondActivity extends AppCompatActivity implements CtCalendarPagerFragment.OnPageChangeListener,
+        CtCalendarFragment.OnDateClickListener, CtCalendarFragment.OnDateCancelListener {
 
-    private boolean isChoiceModelSingle = false;
+    private boolean isChoiceModelSingle = true;
     boolean isShow = false;
     private Ratate3DAnimation openAnimation;
     private long duration = 1000;
@@ -42,12 +42,85 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        hintDialog();
         load();
         animation();
         toastDialog();
         radios();
         loopView();
         calendarView();
+    }
+
+    private void hintDialog() {
+        findViewById(R.id.ct_second_hint_dialog_first).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CtPromtDialog hintDialog  = new CtPromtDialog(SecondActivity.this);
+                hintDialog.setButtonLeftText("确认",-1);
+                hintDialog.setButtonRightText("leftBtn", -1);
+                hintDialog.setCancelable(false);
+                //右侧
+                hintDialog.setOnRightListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //如果对话框处于显示状态
+                        if (hintDialog.isShowing()) {
+                            hintDialog.dismiss();//关闭对话框
+                        }
+                    }
+                });
+                //左侧
+                hintDialog.setOnLeftlListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AndroidUtils.MainHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (hintDialog != null && hintDialog.isShowing()) {
+                                    hintDialog.dismiss();
+                                }
+                            }
+                        }, 500);
+                    }
+                });
+                hintDialog.show();
+            }
+        });
+
+        findViewById(R.id.ct_second_hint_dialog_second).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final CtPromtDialog hintDialog  = new CtPromtDialog(SecondActivity.this);
+                hintDialog.setButtonLeftText("确认",-1);
+                hintDialog.setButtonRightText(null, -1);
+                hintDialog.setCancelable(false);
+                //右侧
+                hintDialog.setOnRightListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //如果对话框处于显示状态
+                        if (hintDialog.isShowing()) {
+                            hintDialog.dismiss();//关闭对话框
+                        }
+                    }
+                });
+                //左侧
+                hintDialog.setOnLeftlListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        AndroidUtils.MainHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if (hintDialog != null && hintDialog.isShowing()) {
+                                    hintDialog.dismiss();
+                                }
+                            }
+                        }, 500);
+                    }
+                });
+                hintDialog.show();
+            }
+        });
     }
 
     private int count = 0;
@@ -184,16 +257,16 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
 
     @Override
     public void onDateClick(CalendarDate calendarDate) {
-        ToastUlit.Toast(SecondActivity.this, calendarDate.getSolar() + "-" + calendarDate.getLunar());
+        Log.d("myDemo", "onDateClick: "+calendarDate.getSolar() + "-" + calendarDate.getLunar());
     }
 
     @Override
     public void onDateCancel(CalendarDate calendarDate) {
-        ToastUlit.Toast(SecondActivity.this, calendarDate.getSolar() + "-" + calendarDate.getLunar());
+        Log.d("myDemo", "onDateCancel: "+calendarDate.getSolar() + "-" + calendarDate.getLunar());
     }
 
     @Override
     public void onPageChange(int year, int month) {
-        ToastUlit.Toast(SecondActivity.this, year + "-" + month);
+        Log.d("myDemo", "onPageChange: "+year + "-" + month);
     }
 }

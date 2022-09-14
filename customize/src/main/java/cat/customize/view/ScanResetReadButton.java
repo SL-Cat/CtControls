@@ -187,7 +187,6 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
                 scanBtn.setBackgroundResource(R.drawable.ct_left_radius_unclick_bg);
             }
         }
-
     }
 
     public void setUnClickScanDrawable(int drawableId) {

@@ -1,5 +1,7 @@
 package cat.customize.datepicker.calendar;
 
+import android.util.Log;
+
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,6 @@ public class CalendarDateController {
             Lunar lunar = LunarSolarConverter.SolarToLunar(solar);
             mListDate.add(new CalendarDate(month == list.get(i).getMonth(), false, solar, lunar));
         }
-
         return mListDate;
     }
 }

@@ -7,6 +7,7 @@
     <string name="ct_start_scan">Scan</string>
     <string name="ct_clean">Cancel</string>
     <string name="ct_confirm">confirm</string>
+    <string name="ct_promt">promt</string>
     <string name="ct_select">select</string>
     <string name="ct_year">Y</string>
     <string name="ct_month">M</string>

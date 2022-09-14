@@ -30,6 +30,7 @@ public class CtCalendarFragment extends Fragment {
     private GridView mGridView;
     private OnDateClickListener onDateClickListener;
     private OnDateCancelListener onDateCancelListener;
+    private CtCalendarGridViewAdapter adapter;
 
     public static CtCalendarFragment newInstance(int year, int month) {
         CtCalendarFragment fragment = new CtCalendarFragment();
@@ -86,7 +87,8 @@ public class CtCalendarFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         List<CalendarDate> mListDataCalendar;//日历数据
         mListDataCalendar = CalendarDateController.getCalendarDate(mYear, mMonth);
-        mGridView.setAdapter(new CtCalendarGridViewAdapter(getActivity(),mListDataCalendar));
+        adapter = new CtCalendarGridViewAdapter(getActivity(), mListDataCalendar);
+        mGridView.setAdapter(adapter);
         final List<CalendarDate> finalMListDataCalendar = mListDataCalendar;
         if (isChoiceModelSingle) {
             mGridView.setChoiceMode(GridView.CHOICE_MODE_SINGLE);
@@ -96,29 +98,49 @@ public class CtCalendarFragment extends Fragment {
         mGridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                CalendarDate calendarDate = ((CtCalendarGridViewAdapter) mGridView.getAdapter()).getListData().get(position);
-                if (isChoiceModelSingle) {
-                    //单选
-                    if (finalMListDataCalendar.get(position).isInThisMonth()) {
-                        onDateClickListener.onDateClick(calendarDate);
-                    } else {
-                        mGridView.setItemChecked(position, false);
+                List<CalendarDate> listData = ((CtCalendarGridViewAdapter) mGridView.getAdapter()).getListData();
+                CalendarDate calendarDate = listData.get(position);
+                if (finalMListDataCalendar.get(position).isInThisMonth()) {
+                    for (int i = 0; i < listData.size(); i++) {
+                        if(i==position){
+                            calendarDate.setIsSelect(!calendarDate.isSelect());
+                            mGridView.setItemChecked(position, true);
+                            onDateClickListener.onDateClick(calendarDate);
+                        }else {
+                            calendarDate.setIsSelect(false);
+                        }
                     }
                 } else {
-                    //多选
-                    if (finalMListDataCalendar.get(position).isInThisMonth()) {
-                        // mGridView.getCheckedItemIds()
-                        if(!mGridView.isItemChecked(position)){
-                            onDateCancelListener.onDateCancel(calendarDate);
-                        } else {
-                            onDateClickListener.onDateClick(calendarDate);
-                        }
-
-                    } else {
-                        mGridView.setItemChecked(position, false);
-                    }
-
+                    mGridView.setItemChecked(position, false);
+                    onDateCancelListener.onDateCancel(calendarDate);
                 }
+
+//                if (isChoiceModelSingle) {
+//                    //单选
+//                    if (finalMListDataCalendar.get(position).isInThisMonth()) {
+//                        calendarDate.setIsSelect(!calendarDate.isSelect());
+//                        mGridView.setItemChecked(position, true);
+//                        onDateClickListener.onDateClick(calendarDate);
+//                    } else {
+//                        mGridView.setItemChecked(position, false);
+//                        onDateCancelListener.onDateCancel(calendarDate);
+//                    }
+//                } else {
+//                    //多选
+//                    if (finalMListDataCalendar.get(position).isInThisMonth()) {
+//                        // mGridView.getCheckedItemIds()
+//                        if(!mGridView.isItemChecked(position)){
+//                            calendarDate.setIsSelect(false);
+//                            onDateCancelListener.onDateCancel(calendarDate);
+//                        } else {
+//                            calendarDate.setIsSelect(true);
+//                            onDateClickListener.onDateClick(calendarDate);
+//                        }
+//                    } else {
+//                        mGridView.setItemChecked(position, false);
+//                    }
+//                }
+                ((CtCalendarGridViewAdapter) mGridView.getAdapter()).notifyDataSetChanged();
             }
         });
         mGridView.post(new Runnable() {
@@ -132,7 +154,7 @@ public class CtCalendarFragment extends Fragment {
                             && mListData.get(i).getSolar().solarMonth == cat.customize.ulite.DateUtils.getMonth()
                             && mListData.get(i).getSolar().solarYear == DateUtils.getYear()) {
                         if (null != mGridView.getChildAt(i) && mListData.get(i).isInThisMonth()) {
-                            // mListData.get(i).setIsSelect(true);
+//                             mListData.get(i).setIsSelect(true);
                             onDateClickListener.onDateClick(mListData.get(i));
                             mGridView.setItemChecked(i, true);
                         }

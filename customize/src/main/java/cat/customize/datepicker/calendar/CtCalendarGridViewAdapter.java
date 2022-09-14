@@ -45,16 +45,18 @@ public class CtCalendarGridViewAdapter extends BaseListAdapter<CalendarDate> {
         }
         tv_lunar_day.setText(str);
         if(calendarDate.isInThisMonth()){
-            tv_day.setTextColor(Color.parseColor("#000000"));
+            tv_day.setTextColor(mContext.getResources().getColor(R.color.color_000000));
+            tv_lunar_day.setTextColor(mContext.getResources().getColor(R.color.color_000000));
+            if(calendarDate.isSelect()){
+                tv_day.setTextColor(mContext.getResources().getColor(R.color.color_ffffff));
+                tv_day.setBackgroundResource(R.drawable.ct_radius_yellow_bg);
+            }else {
+                tv_day.setTextColor(mContext.getResources().getColor(R.color.color_000000));
+                tv_day.setBackgroundResource(R.drawable.ct_radius_white_bg);
+            }
         }else{
-            tv_day.setTextColor(Color.parseColor("#D7D7D7"));
-            tv_lunar_day.setTextColor(Color.parseColor("#D7D7D7"));
-        }
-        if(calendarDate.isSelect()){
-            tv_day.setTextColor(Color.parseColor("#FFFFFF"));
-            tv_day.setBackgroundResource(R.drawable.ct_radius_blue_bg);
-        }else {
-            tv_day.setTextColor(Color.parseColor("#000000"));
+            tv_day.setTextColor(mContext.getResources().getColor(R.color.color_9e9e9e));
+            tv_lunar_day.setTextColor(mContext.getResources().getColor(R.color.color_9e9e9e));
             tv_day.setBackgroundResource(R.drawable.ct_radius_white_bg);
         }
         return convertView;
