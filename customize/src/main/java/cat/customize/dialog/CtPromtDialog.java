@@ -4,11 +4,16 @@ import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import cat.customize.R;
+import cat.customize.ulite.system.AndroidUtils;
 
 
 /**
@@ -23,6 +28,13 @@ public class CtPromtDialog extends Dialog {
     private TextView dialogLeft;
     private TextView dialogRight;
     private Context context;
+    private int dismissTime = -1;
+    private Timer timer;
+    private OnTimerDismissListener onTimerDismissListener;
+
+    public interface OnTimerDismissListener {
+        void onTimerDismiss();
+    }
 
     //构造方法
     public CtPromtDialog(Context context) {
@@ -40,20 +52,57 @@ public class CtPromtDialog extends Dialog {
 
     //设置标题
     public void setTitleText(String title) {
-        dialogTitle.setText(title);
+        if (title != null) {
+            this.timerTitle = title;
+            if (dismissTime >= 0 && type == 1) {
+                dialogTitle.setText(dismissTime + title);
+            } else {
+                dialogTitle.setText(title);
+            }
+        } else {
+            dialogMessage.setPadding(10, 50, 10, 50);
+            dialogTitle.setVisibility(View.GONE);
+        }
     }  //设置标题
 
     public void setMessageText(String message) {
-        if (message!=null) {
-            dialogMessage.setText(message);
+        if (message != null) {
+            this.timerMsg = message;
+            if (dismissTime >= 0 && type == 2) {
+                dialogMessage.setText(dismissTime + message);
+            } else {
+                dialogMessage.setText(message);
+            }
         } else {
             dialogTitle.setPadding(10, 50, 10, 50);
             dialogMessage.setVisibility(View.GONE);
         }
     }
 
+    public void setTitleGravity(int gravity){
+        dialogTitle.setGravity(gravity);
+    }
+
+    private String timerTitle = null;
+    private String timerMsg = null;
+    private int type = 0;
+
+    /**
+     * 设置一个定时关闭
+     *
+     * @param time                   时间
+     * @param type                   1:2  时间显示位置;
+     *                              1：标题；2：内容
+     * @param onTimerDismissListener 到时后关闭触发
+     */
+    public void setDismissTime(int time, int type, OnTimerDismissListener onTimerDismissListener) {
+        this.dismissTime = time;
+        this.type = type;
+        this.onTimerDismissListener = onTimerDismissListener;
+    }
+
     public void setButtonLeftText(String confirm, int confirmColor) {
-        if (confirm!=null) {
+        if (confirm != null) {
             dialogLeft.setText(confirm);
             if (confirmColor != -1) {
                 dialogLeft.setTextColor(confirmColor);
@@ -66,7 +115,7 @@ public class CtPromtDialog extends Dialog {
 
     @SuppressLint("NewApi")
     public void setButtonRightText(String cancel, int cancelColor) {
-        if (cancel!=null) {
+        if (cancel != null) {
             dialogRight.setText(cancel);
             if (cancelColor != -1) {
                 dialogRight.setTextColor(cancelColor);
@@ -85,5 +134,57 @@ public class CtPromtDialog extends Dialog {
     //右侧按钮
     public void setOnRightListener(View.OnClickListener listener) {
         dialogRight.setOnClickListener(listener);
+    }
+
+    @Override
+    public void show() {
+        super.show();
+        timerCount();
+    }
+
+    /**
+     * 开启了定时关闭
+     */
+    private void timerCount() {
+        if (dismissTime > 0) {
+            if (timer == null) {
+                timer = new Timer();
+                timer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (dismissTime > 0) {
+                            dismissTime--;
+                            AndroidUtils.MainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    setTitleText(timerTitle);
+                                    setMessageText(timerMsg);
+                                }
+                            });
+                        } else {
+                            AndroidUtils.MainHandler.post(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if (isShowing()) {
+                                        onTimerDismissListener.onTimerDismiss();
+                                        dismiss();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }, 0, 1000);
+            }
+        }
+    }
+
+    @Override
+    public void dismiss() {
+        dismissTime = 0;
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        super.dismiss();
     }
 }
