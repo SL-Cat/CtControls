@@ -323,7 +323,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
 
                 float dy = Math.abs((ev.getY() - mDownY));
                 float dx = Math.abs((ev.getX() - mDownX));
-                if (deltaX < -100) {
+//                if (deltaX < -100) {
                     if (mTouchState == TOUCH_STATE_X) {
                         if (mTouchView != null) {
                             mTouchView.onSwipe(ev);
@@ -337,7 +337,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
                             mTouchState = TOUCH_STATE_X;
                         }
                     }
-                } else {
+//                } else {
                     mLastY = ev.getRawY();
                     if (getFirstVisiblePosition() == 0 && (mHeaderView.getVisiableHeight() > 0 || deltaY > 0)) {
                         // the first item is showing, header has shown or pull down.
@@ -348,7 +348,7 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
                         // last item, already pulled up or want to pull up.
                         updateFooterHeight(-deltaY / OFFSET_RADIO);
                     }
-                }
+//                }
                 break;
             case MotionEvent.ACTION_UP:
                 if (mTouchState == TOUCH_STATE_X) {
