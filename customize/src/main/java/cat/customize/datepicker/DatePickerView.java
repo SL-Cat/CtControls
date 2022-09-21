@@ -1,6 +1,7 @@
 package cat.customize.datepicker;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Paint.Align;
@@ -78,10 +79,13 @@ public class DatePickerView extends View {
             invalidate();
         }
     };
+    private final int selectColor;
 
     public DatePickerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
+        TypedArray typedArray = getContext().obtainStyledAttributes(R.styleable.IDatePickerStyle);
+        selectColor = typedArray.getColor(R.styleable.IDatePickerStyle_select_text_color, context.getResources().getColor(R.color.color_000000));
         init();
     }
 
@@ -170,7 +174,7 @@ public class DatePickerView extends View {
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Style.FILL);
         mPaint.setTextAlign(Align.CENTER);
-        mPaint.setColor(ContextCompat.getColor(context, R.color.color_000000));
+        mPaint.setColor(selectColor);
         //第二个paint
         nPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         nPaint.setStyle(Style.FILL);

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ct_radio_edit_bg"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/ct_radius_white_select_bg"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/ct_radio_edit_left_ig"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ct_tag_ig" />
+
+    <EditText
+        android:id="@+id/ct_radio_edit_input"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:background="@null"
+        android:maxLines="1"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/ct_radio_edit_right_ig"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        android:src="@mipmap/ct_delete_ig" />
+
+    <LinearLayout
+        android:id="@+id/ct_radio_edit_confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@color/color_9e9e9e" />
+
+        <TextView
+            android:id="@+id/ct_radio_edit_confirm_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:text="@string/ct_confirm"
+            android:textColor="@color/color_007BFF" />
+    </LinearLayout>
+
+</LinearLayout>

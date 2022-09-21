@@ -21,14 +21,15 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import cat.customize.animation.Ratate3DAnimation;
+import cat.customize.datepicker.DatePickerView;
 import cat.customize.datepicker.calendar.CtCalendarFragment;
 import cat.customize.datepicker.calendar.CtCalendarPagerFragment;
 import cat.customize.datepicker.calendar.data.CalendarDate;
 import cat.customize.dialog.CtPromtDialog;
 import cat.customize.dialog.CtLoadDialog;
 import cat.customize.dialog.CtToastDialog;
+import cat.customize.iview.CtRadioEdit;
 import cat.customize.radio.IRadiosButton;
-import cat.customize.radio.loop.ILoopView;
 import cat.customize.ulite.system.AndroidUtils;
 
 public class SecondActivity extends AppCompatActivity implements CtCalendarPagerFragment.OnPageChangeListener,
@@ -46,6 +47,7 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        radioEd();
         hintDialog();
         load();
         animation();
@@ -53,6 +55,31 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         radios();
         loopView();
         calendarView();
+    }
+
+    private void radioEd() {
+        CtRadioEdit radioEdit = (CtRadioEdit) findViewById(R.id.ct_radio_ed);
+        radioEdit.setOnCtRadioEditListener(new CtRadioEdit.CtOnRadioEditListener() {
+            @Override
+            public void onLeftIgClickListener() {
+                Log.d("myDemo", "onLeftIgClickListener: ");
+            }
+
+            @Override
+            public void onRightIgClickListener() {
+                Log.d("myDemo", "onRightIgClickListener: ");
+            }
+
+            @Override
+            public void onConfirmClickListener(String edMsg) {
+                Log.d("myDemo", "onConfirmClickListener: "+edMsg);
+            }
+
+            @Override
+            public void onEditTextChanged(String str) {
+                Log.d("myDemo", "onEditTextChanged: "+str);
+            }
+        });
     }
 
     private void hintDialog() {
@@ -286,12 +313,12 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
 
 
     private void loopView() {
-        ILoopView loopView = (ILoopView) findViewById(R.id.ct_second_loop);
+        DatePickerView loopView = (DatePickerView) findViewById(R.id.ct_second_loop);
         List<String> list = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
             list.add("ITEM " + i);
         }
-        loopView.setItems(list);
+        loopView.setData(list);
     }
 
     private void radios() {
