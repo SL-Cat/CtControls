@@ -385,27 +385,27 @@ public class XListView extends ListView implements AbsListView.OnScrollListener 
                 }
 //				}
             default:
-                mLastY = -1; // reset
-                if (getFirstVisiblePosition() == 0) {
-                    // invoke refresh
-                    if (mEnablePullRefresh
-                            && mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
-                        mPullRefreshing = true;
-                        mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
-                        if (mListViewListener != null) {
-                            mListViewListener.onRefresh();
-                        }
-                    }
-                    resetHeaderHeight();
-                } else if (getLastVisiblePosition() == mTotalItemCount - 1) {
-                    // invoke load more.
-                    if (mEnablePullLoad) {
-                        if (mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
-                            startLoadMore();
-                        }
-                        resetFooterHeight();
-                    }
-                }
+//                mLastY = -1; // reset
+//                if (getFirstVisiblePosition() == 0) {
+//                    // invoke refresh
+//                    if (mEnablePullRefresh
+//                            && mHeaderView.getVisiableHeight() > mHeaderViewHeight) {
+//                        mPullRefreshing = true;
+//                        mHeaderView.setState(XListViewHeader.STATE_REFRESHING);
+//                        if (mListViewListener != null) {
+//                            mListViewListener.onRefresh();
+//                        }
+//                    }
+//                    resetHeaderHeight();
+//                } else if (getLastVisiblePosition() == mTotalItemCount - 1) {
+//                    // invoke load more.
+//                    if (mEnablePullLoad) {
+//                        if (mFooterView.getBottomMargin() > PULL_LOAD_MORE_DELTA) {
+//                            startLoadMore();
+//                        }
+//                        resetFooterHeight();
+//                    }
+//                }
                 break;
         }
         return super.onTouchEvent(ev);

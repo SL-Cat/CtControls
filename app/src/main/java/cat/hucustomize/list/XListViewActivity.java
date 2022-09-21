@@ -3,6 +3,7 @@ package cat.hucustomize.list;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 
@@ -57,6 +58,7 @@ public class XListViewActivity extends AppCompatActivity implements XListView.IX
 
     @Override
     public void onRefresh() {
+        Log.d("myDemo", "onRefresh: ");
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
