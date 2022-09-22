@@ -90,6 +90,8 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
                 hintDialog.setButtonLeftText("确认", -1);
                 hintDialog.setButtonRightText("leftBtn", -1);
                 hintDialog.setCancelable(false);
+                hintDialog.setMsgTextSize(50);
+                hintDialog.setTitleTextSize(50);
                 //右侧
                 hintDialog.setOnRightListener(new View.OnClickListener() {
                     @Override

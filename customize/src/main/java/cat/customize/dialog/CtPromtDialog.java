@@ -126,6 +126,22 @@ public class CtPromtDialog extends Dialog {
         }
     }
 
+    public void setMsgTextSize(float size){
+        dialogMessage.setTextSize(size);
+    }
+
+    public void setTitleTextSize(float size){
+        dialogTitle.setTextSize(size);
+    }
+
+    public void setLeftTextSize(float size){
+        dialogLeft.setTextSize(size);
+    }
+
+    public void setRightTextSize(float size){
+        dialogRight.setTextSize(size);
+    }
+
     //左侧按钮
     public void setOnLeftlListener(View.OnClickListener listener) {
         dialogLeft.setOnClickListener(listener);

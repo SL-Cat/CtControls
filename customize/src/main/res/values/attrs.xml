@@ -7,12 +7,14 @@
     <attr name="ct_padding_top" format="integer"></attr>
     <attr name="ct_padding_Bottom" format="integer"></attr>
     <attr name="ct_padding_right" format="integer"></attr>
+    <attr name="right_text" format="string" />
+    <attr name="left_text" format="string" />
 
     <declare-styleable name="ISelectBtnStyle">
-        <attr name="left_text" format="string" />
+        <attr name="left_text"/>
         <attr name="left_text_background" format="reference"/>
         <attr name="right_text_background" format="reference"/>
-        <attr name="right_text" format="string" />
+        <attr name="right_text"/>
     </declare-styleable>
 
     <declare-styleable name="ISpringStyle">
@@ -58,6 +60,7 @@
         <attr name="toolbar_background" format="reference"/>
         <attr name="left_image" format="reference"/>
         <attr name="right_image" format="reference"/>
+        <attr name="right_text" />
         <attr name="hide_right_image" format="boolean"/>
     </declare-styleable>
 

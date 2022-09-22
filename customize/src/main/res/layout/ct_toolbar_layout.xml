@@ -34,6 +34,16 @@
             android:layout_alignParentRight="true"
             android:padding="10dp"
             android:src="@mipmap/ct_more" />
+
+        <TextView
+            android:id="@+id/ct_toolbar_right_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:padding="15dp"
+            android:gravity="center"
+            android:text="文本"
+            android:textColor="@color/color_ffffff" />
     </RelativeLayout>
 
 </RelativeLayout>
