@@ -94,5 +94,6 @@
     <cat.customize.iview.CtRadioEdit
         android:id="@+id/ct_radio_ed"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_margin="5dp"
+        android:layout_height="50dp"/>
 </LinearLayout>

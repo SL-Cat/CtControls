@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cat.customize.R;
+import cat.customize.ulite.system.AndroidUtils;
 
 /**
  * Created by HSL
@@ -31,7 +33,8 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
     private ImageView rightIg;
     private EditText editEd;
     private CtOnRadioEditListener onCtRadioEditListener;
-    private int mViewHeight;
+    private int mViewHeight = 40;
+    private Context context;
 
 
     public interface CtOnRadioEditListener {
@@ -49,15 +52,16 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
     }
 
     public CtRadioEdit(Context context) {
-        this(context,null);
+        this(context, null);
     }
 
     public CtRadioEdit(Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs,0);
+        this(context, attrs, 0);
     }
 
     public CtRadioEdit(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        this.context = context;
         View view = View.inflate(context, R.layout.ct_radio_edit_layout, this);
         editBgLl = ((LinearLayout) view.findViewById(R.id.ct_radio_edit_bg));
         confirmLl = ((LinearLayout) view.findViewById(R.id.ct_radio_edit_confirm));
@@ -79,7 +83,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
                 if (actionId == EditorInfo.IME_ACTION_SEND || actionId == 0) {
                     if (!editEd.getText().toString().toUpperCase().trim().equals("")) {
                         String str = editEd.getText().toString().toUpperCase().trim();
-                        if(onCtRadioEditListener!=null){
+                        if (onCtRadioEditListener != null) {
                             onCtRadioEditListener.onConfirmClickListener(str);
                         }
                     }
@@ -94,12 +98,21 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        mViewHeight = getMeasuredHeight();
+        int specMode = MeasureSpec.getMode(heightMeasureSpec);
+        int specSize = MeasureSpec.getSize(heightMeasureSpec);
+        //wrap_content
+        if (specMode == MeasureSpec.AT_MOST) {
+            specSize = AndroidUtils.dp2px(context, mViewHeight);
+        } else if (specMode == MeasureSpec.EXACTLY) {
+            specSize = getMeasuredHeight();
+        }else if(specMode== MeasureSpec.UNSPECIFIED){
+            specSize = AndroidUtils.dp2px(context, mViewHeight);
+        }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.height = mViewHeight;
+        layoutParams.height = specSize;
         editBgLl.setLayoutParams(layoutParams);
-//        editEd.setLayoutParams(layoutParams);
 
+        invalidate();
     }
 
     private void initStype(AttributeSet attrs) {
@@ -108,10 +121,10 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         int bgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_background, R.drawable.ct_radius_white_select_bg);
         boolean btnStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_edit_button, true);
         String hitStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_input);
-        int leftPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_left, 15);
-        int topPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_top, 15);
-        int bottomPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_Bottom, 15);
-        int rightPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_right, 15);
+        int leftPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_left, 10);
+        int topPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_top, 10);
+        int bottomPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_Bottom, 10);
+        int rightPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_right, 10);
         int leftIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_left_image, R.mipmap.ct_tag_ig);
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
 

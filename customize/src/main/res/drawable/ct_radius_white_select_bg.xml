@@ -3,8 +3,8 @@
 
     <!-- 第一层 上部和左部偏移一定距离-->
     <item
-        android:left="2.66dp"
-        android:top="2.66dp">
+        android:left="1.5dp"
+        android:top="1.5dp">
         <shape>
             <corners android:radius="10dp"/>
             <solid android:color="#d7dce2" />
@@ -16,13 +16,12 @@
     </item>
     <!-- 第二层 下部和底部偏移一定距离-->
     <item
-        android:bottom="2.66dp"
-        android:right="2.66dp">
+        android:bottom="1.5dp"
+        android:right="1.5dp">
         <shape>
             <corners android:radius="10dp"/>
             <solid android:color="#FFFFFF" />
             <!-- 描边 -->
-
             <stroke android:width="0.33dp" android:color="#dedede" />
         </shape>
     </item>
