@@ -12,7 +12,7 @@
         android:id="@+id/ct_radio_ed"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
-        android:layout_height="80dp"/>
+        android:layout_height="wrap_content"/>
 
     <cat.customize.radio.IRadiosButton
         android:id="@+id/ct_second_radios"

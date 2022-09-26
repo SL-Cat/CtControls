@@ -105,13 +105,10 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
             specSize = AndroidUtils.dp2px(context, mViewHeight);
         } else if (specMode == MeasureSpec.EXACTLY) {
             specSize = getMeasuredHeight();
-
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.height = specSize;
         editBgLl.setLayoutParams(layoutParams);
-
-        invalidate();
     }
 
     private void initStype(AttributeSet attrs) {
@@ -181,5 +178,17 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
 
     public EditText getEditText() {
         return editEd != null ? editEd : null;
+    }
+
+    public void setText(String str) {
+        if (editEd != null && str != null) {
+            editEd.setText(str);
+        }
+    }
+
+    public String getText() {
+        if (editEd != null) {
+            return editEd.getText().toString().trim();
+        }else return "";
     }
 }
