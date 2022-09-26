@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="text" format="string" />
+    <attr name="text_size" format="dimension" />
     <attr name="image" format="integer" />
     <attr name="background" format="reference"/>
     <attr name="ct_padding_left" format="integer"></attr>
@@ -80,10 +81,7 @@
         <attr name="radio_edit_button" format="boolean"/>
         <attr name="radio_edit_left_image" format="reference"/>
         <attr name="radio_edit_right_image" format="reference"/>
-        <attr name="ct_padding_left"/>
-        <attr name="ct_padding_top"/>
-        <attr name="ct_padding_Bottom"/>
-        <attr name="ct_padding_right"/>
+        <attr name="text_size"/>
         <attr name="background"/>
     </declare-styleable>
 

@@ -105,8 +105,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
             specSize = AndroidUtils.dp2px(context, mViewHeight);
         } else if (specMode == MeasureSpec.EXACTLY) {
             specSize = getMeasuredHeight();
-        }else if(specMode== MeasureSpec.UNSPECIFIED){
-            specSize = AndroidUtils.dp2px(context, mViewHeight);
+
         }
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutParams.height = specSize;
@@ -119,18 +118,14 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IRadioEditStyle);
         String btnStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_text);
         int bgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_background, R.drawable.ct_radius_white_select_bg);
+        float testSize = typedArray.getDimension(R.styleable.IRadioEditStyle_text_size, 14);
         boolean btnStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_edit_button, true);
         String hitStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_input);
-        int leftPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_left, 10);
-        int topPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_top, 10);
-        int bottomPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_Bottom, 10);
-        int rightPad = typedArray.getInt(R.styleable.IRadioEditStyle_ct_padding_right, 10);
         int leftIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_left_image, R.mipmap.ct_tag_ig);
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
 
         editBgLl.setBackgroundResource(bgRs);
-
-        editEd.setPadding(leftPad, topPad, bottomPad, rightPad);
+        editEd.setTextSize(testSize);
         if (btnStatus) {
             confirmLl.setVisibility(VISIBLE);
             if (btnStr != null) {
