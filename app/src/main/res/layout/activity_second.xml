@@ -12,7 +12,8 @@
         android:id="@+id/ct_radio_ed"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
-        android:layout_height="wrap_content"/>
+        app:text_size = "10sp"
+        android:layout_height="60dp"/>
 
     <cat.customize.radio.IRadiosButton
         android:id="@+id/ct_second_radios"

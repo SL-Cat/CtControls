@@ -7,6 +7,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -33,7 +34,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
     private ImageView rightIg;
     private EditText editEd;
     private CtOnRadioEditListener onCtRadioEditListener;
-    private int mViewHeight = 40;
+    private float mViewHeight = 50;
     private Context context;
 
 
@@ -115,14 +116,14 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IRadioEditStyle);
         String btnStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_text);
         int bgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_background, R.drawable.ct_radius_white_select_bg);
-        float testSize = typedArray.getDimension(R.styleable.IRadioEditStyle_text_size, 14);
+        float testSize = typedArray.getDimension(R.styleable.IRadioEditStyle_text_size, 28);
         boolean btnStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_edit_button, true);
         String hitStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_input);
         int leftIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_left_image, R.mipmap.ct_tag_ig);
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
 
         editBgLl.setBackgroundResource(bgRs);
-        editEd.setTextSize(testSize);
+        editEd.setTextSize(TypedValue.COMPLEX_UNIT_PX,testSize);
         if (btnStatus) {
             confirmLl.setVisibility(VISIBLE);
             if (btnStr != null) {
