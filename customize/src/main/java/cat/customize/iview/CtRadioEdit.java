@@ -6,12 +6,12 @@ import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.KeyEvent;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -123,7 +123,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
 
         editBgLl.setBackgroundResource(bgRs);
-        editEd.setTextSize(TypedValue.COMPLEX_UNIT_PX,testSize);
+        editEd.setTextSize(TypedValue.COMPLEX_UNIT_PX, testSize);
         if (btnStatus) {
             confirmLl.setVisibility(VISIBLE);
             if (btnStr != null) {
@@ -157,20 +157,38 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
 
     @Override
     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
     }
 
     @Override
     public void onTextChanged(CharSequence s, int start, int before, int count) {
-
     }
 
     @Override
     public void afterTextChanged(Editable s) {
+        String str = s.toString();
         if (onCtRadioEditListener != null) {
-            String str = s.toString();
             onCtRadioEditListener.onEditTextChanged(str);
         }
+        if (str != null && !"".equals(str)) {
+            visibleOrGoneRightIg(true);
+        } else {
+            visibleOrGoneRightIg(false);
+        }
+    }
+
+    private void visibleOrGoneRightIg(boolean status) {
+        if (status) {
+            int visibility = rightIg.getVisibility();
+            if (visibility == 0) return;
+            Animation animBottomIn = AnimationUtils.loadAnimation(context, R.anim.right_to_left);
+            rightIg.setVisibility(VISIBLE);
+            rightIg.startAnimation(animBottomIn);
+        } else {
+            int visibility = rightIg.getVisibility();
+            if (visibility == 8 || visibility == 4) return;
+            rightIg.setVisibility(GONE);
+        }
+
     }
 
     public void clean() {
@@ -190,6 +208,6 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
     public String getText() {
         if (editEd != null) {
             return editEd.getText().toString().trim();
-        }else return "";
+        } else return "";
     }
 }
