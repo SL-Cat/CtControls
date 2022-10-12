@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cat.customize.R;
@@ -19,11 +20,14 @@ public class CtTipsDialog extends BaseDialog {
     private final TextView title;
     private final TextView msgTv;
     private final TextView comfirmTv;
+    private final LinearLayout bgLl;
+    private final View logView;
 
     public CtTipsDialog(@NonNull Context context) {
         super(context);
         this.context = context;
-        View logView = LayoutInflater.from(context).inflate(R.layout.ct_tips_dialog, null);
+        logView = LayoutInflater.from(context).inflate(R.layout.ct_tips_dialog, null);
+        bgLl = (LinearLayout) logView.findViewById(R.id.ct_tips_dialog_Ll);
         title = (TextView) logView.findViewById(R.id.ct_tips_dialog_title);
         msgTv = (TextView) logView.findViewById(R.id.ct_tips_dialog_msg);
         comfirmTv = (TextView) logView.findViewById(R.id.ct_tips_dialog_comfrim);
@@ -62,5 +66,9 @@ public class CtTipsDialog extends BaseDialog {
 
     public TextView getComfirmTv(){
         return comfirmTv;
+    }
+
+    public LinearLayout getBgLl(){
+        return bgLl;
     }
 }
