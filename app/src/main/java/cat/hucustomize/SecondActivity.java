@@ -27,6 +27,7 @@ import cat.customize.datepicker.calendar.CtCalendarPagerFragment;
 import cat.customize.datepicker.calendar.data.CalendarDate;
 import cat.customize.dialog.CtPromtDialog;
 import cat.customize.dialog.CtLoadDialog;
+import cat.customize.dialog.CtTipsDialog;
 import cat.customize.dialog.CtToastDialog;
 import cat.customize.iview.CtRadioEdit;
 import cat.customize.radio.IRadiosButton;
@@ -117,14 +118,14 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         findViewById(R.id.ct_second_hint_dialog_second).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                showDialog(5,new OnLister() {
+                final CtTipsDialog dateDialog = new CtTipsDialog(SecondActivity.this);
+                dateDialog.setTitle("标题");
+                dateDialog.setMsgTv("内容");
+                dateDialog.show();
+                dateDialog.setOnComfrimListener(new View.OnClickListener() {
                     @Override
-                    public void ok() {
-                    }
-
-                    @Override
-                    public void canle() {
-                        ToastUlit.Toast(SecondActivity.this, "取消成功");
+                    public void onClick(View v) {
+                        dateDialog.dismiss();
                     }
                 });
             }
