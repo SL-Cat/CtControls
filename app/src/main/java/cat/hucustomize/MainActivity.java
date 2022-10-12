@@ -1,8 +1,13 @@
 package cat.hucustomize;
 
-import android.app.AlertDialog;
+import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.hardware.usb.UsbDevice;
+import android.hardware.usb.UsbInterface;
+import android.hardware.usb.UsbManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -10,14 +15,16 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
@@ -48,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         instance = this;
         frags = ((LinearLayout) findViewById(R.id.ct_main_more_fg));
-
         selectDay();
         initView();
         popuSring();

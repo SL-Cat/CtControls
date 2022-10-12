@@ -42,7 +42,7 @@ public class XListViewActivity extends AppCompatActivity implements XListView.IX
         ls.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                ToastUlit.Toast(XListViewActivity.this, position + "");
+
             }
         });
 

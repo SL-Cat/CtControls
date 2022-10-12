@@ -34,4 +34,17 @@
         <item name="android:windowExitAnimation">@anim/pop_add_hide</item>
     </style>
 
+    <dimen name="pickerview_textsize_default">26sp</dimen>
+    <declare-styleable name="CtLoopView">
+        <attr format="integer" name="awv_textsize"/>
+        <attr format="float" name="awv_lineSpace"/>
+        <attr format="integer" name="awv_centerTextColor"/>
+        <attr format="integer" name="awv_outerTextColor"/>
+        <attr format="integer" name="awv_dividerTextColor"/>
+        <attr format="integer" name="awv_itemsVisibleCount"/>
+        <attr format="boolean" name="awv_isLoop"/>
+        <attr format="integer" name="awv_initialPosition"/>
+        <attr format="float" name="awv_scaleX"/>
+    </declare-styleable>
+
 </resources>

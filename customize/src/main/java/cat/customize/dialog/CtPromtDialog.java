@@ -14,6 +14,7 @@ import java.util.TimerTask;
 
 import cat.customize.R;
 import cat.customize.ulite.system.AndroidUtils;
+import cat.customize.view.BaseDialog;
 
 
 /**
@@ -21,7 +22,7 @@ import cat.customize.ulite.system.AndroidUtils;
  * 圆脚弹框
  */
 
-public class CtPromtDialog extends Dialog {
+public class CtPromtDialog extends BaseDialog {
 
     private TextView dialogTitle;
     private TextView dialogMessage;
@@ -48,6 +49,7 @@ public class CtPromtDialog extends Dialog {
         dialogLeft = view.findViewById(R.id.dialog_left_button);
         dialogRight = view.findViewById(R.id.dialog_right_button);
         setContentView(view);  //设置显示的视图
+        setBigByScreenWidth(0.8f);
     }
 
     //设置标题
