@@ -28,6 +28,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/ct_confirm"
         android:padding="10dp"
+        android:textSize="16sp"
         android:layout_marginRight="5dp"
         android:gravity="right"
         android:textColor="@color/color_007BFF"
