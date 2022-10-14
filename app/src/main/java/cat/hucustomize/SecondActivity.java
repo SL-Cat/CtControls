@@ -60,7 +60,6 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
 
     private void radioEd() {
         CtRadioEdit radioEdit = (CtRadioEdit) findViewById(R.id.ct_radio_ed);
-        radioEdit.getEditText().setText("456789");
         radioEdit.setOnCtRadioEditListener(new CtRadioEdit.CtOnRadioEditListener() {
             @Override
             public void onLeftIgClickListener() {

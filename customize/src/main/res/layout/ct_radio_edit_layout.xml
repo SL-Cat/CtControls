@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/ct_radio_edit_bg"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="50dp"
     android:background="@drawable/ct_radius_white_select_bg"
     android:gravity="center"
     android:orientation="horizontal">

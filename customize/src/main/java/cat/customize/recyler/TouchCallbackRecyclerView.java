@@ -138,7 +138,9 @@ public class TouchCallbackRecyclerView extends FrameLayout {
         recyclerView.setScrollCallback(new BaseRecyclerView.ScrollCallback() {
             @Override
             public void onTouchUp(float diffY) {
-                mScrollCallback.onTouchUp(diffY);
+                if(mScrollCallback!=null) {
+                    mScrollCallback.onTouchUp(diffY);
+                }
             }
         });
         swipeLayout.setLayoutParams(layoutParams);

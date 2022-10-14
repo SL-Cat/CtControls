@@ -51,7 +51,7 @@ public class CtLoadDialog extends BaseDialog {
         //设置显示弹窗背景不变暗
         WindowManager.LayoutParams lp = getWindow().getAttributes();
         //调整明暗度，float值，完全透明不变暗是0.0f，完全变暗不透明是1.0f
-        lp.dimAmount = 0.1f;
+        lp.dimAmount = 0.2f;
         //必须要设置回去
         getWindow().setAttributes(lp);
         //根据谷歌文档，给对应的Window添加FLAG_DIM_BEHIND标志位，dimAmount值才有效。
