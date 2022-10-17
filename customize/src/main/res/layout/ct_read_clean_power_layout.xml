@@ -84,7 +84,7 @@
         android:background="@color/color_506FAF"
         android:gravity="center"
         android:textStyle="bold"
-        android:text="停止读取(RFID)"
+        android:text="@string/ct_stop_read_rfid"
         android:textColor="@color/color_ffffff"
         android:textSize="18sp"
         android:visibility="gone" />
@@ -141,7 +141,7 @@
                 android:paddingLeft="10dp"
                 android:paddingRight="20dp"
                 android:textStyle="bold"
-                android:text="重置"
+                android:text="@string/ct_reset"
                 android:textColor="@color/color_ffffff"
                 android:textSize="18sp" />
 
@@ -155,7 +155,7 @@
             android:textStyle="bold"
             android:layout_toRightOf="@+id/ct_read_reset_rl"
             android:gravity="center"
-            android:text="开始读取(RFID)"
+            android:text="@string/ct_start_read_rfid"
             android:textColor="@color/color_ffffff"
             android:textSize="18sp" />
 

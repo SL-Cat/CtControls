@@ -3,10 +3,13 @@
 
     <string name="ct_loading_text">loading...</string>
     <string name="ct_stop_read">Stop reading</string>
+    <string name="ct_start_read_rfid">Start reading(RFID)</string>
+    <string name="ct_stop_read_rfid">Stop reading(RFID)</string>
     <string name="ct_start_read">Start reading</string>
     <string name="ct_start_scan">Scan</string>
     <string name="ct_clean">Cancel</string>
     <string name="ct_confirm">confirm</string>
+    <string name="ct_reset">reset</string>
     <string name="ct_promt">promt</string>
     <string name="ct_select">select</string>
     <string name="ct_year">Y</string>
