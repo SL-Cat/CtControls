@@ -25,6 +25,7 @@
                 android:id="@+id/ct_popu_spring_tv"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:textColor="@color/color_000000"
                 android:layout_height="wrap_content"
                 android:text="这是一个spring" />
 
@@ -34,7 +35,7 @@
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="20dp"
-                android:src="@mipmap/load_more_ig" />
+                android:background="@drawable/ct_select_up_down_ig" />
         </LinearLayout>
 
 
