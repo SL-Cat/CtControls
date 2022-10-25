@@ -150,4 +150,22 @@ public class ItemLongClickMaskHelper {
             }
         }
     }
+
+    public TextView getFristBtn(){
+        if(fristBtn!=null){
+            return fristBtn;
+        }else return null;
+    }
+
+    public TextView getSecondBtn(){
+        if(secondBtn!=null){
+            return secondBtn;
+        }else return null;
+    }
+
+    public TextView getThreeBtn(){
+        if(threeBtn!=null){
+            return threeBtn;
+        }else return null;
+    }
 }

@@ -1,5 +1,6 @@
 package cat.hucustomize;
 
+
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -17,8 +18,6 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import cat.customize.animation.Ratate3DAnimation;
 import cat.customize.datepicker.DatePickerView;
@@ -64,12 +63,15 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
             @Override
             public void onLeftIgClickListener() {
             }
+
             @Override
             public void onRightIgClickListener() {
             }
+
             @Override
             public void onConfirmClickListener(String edMsg) {
             }
+
             @Override
             public void onEditTextChanged(String str) {
             }
@@ -86,6 +88,8 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
                 hintDialog.setCancelable(false);
                 hintDialog.setMsgTextSize(50);
                 hintDialog.setTitleTextSize(50);
+                hintDialog.setBigByScreenWidth(0.6f);
+                hintDialog.setDialogAttributes(0.5f);
                 //右侧
                 hintDialog.setOnRightListener(new View.OnClickListener() {
                     @Override
@@ -142,7 +146,7 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         showDialog(null, "确认", "提示", -1, null, onLister);
     }
 
-    private void showDialog(String title,String msg, OnLister onLister) {
+    private void showDialog(String title, String msg, OnLister onLister) {
         showDialog(msg, "确认", title, -1, null, onLister);
     }
 
@@ -164,7 +168,7 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         hintDialog.setTitleGravity(Gravity.LEFT);
         hintDialog.setTitleText(title);
         hintDialog.setCancelable(false);
-        hintDialog.setDismissTime(timeDismiss, 1,new CtPromtDialog.OnTimerDismissListener() {
+        hintDialog.setDismissTime(timeDismiss, 1, new CtPromtDialog.OnTimerDismissListener() {
             @Override
             public void onTimerDismiss() {
                 if (onLister != null) {

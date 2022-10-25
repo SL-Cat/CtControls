@@ -24,10 +24,25 @@
         android:layout_width="60dp"
         android:layout_height="wrap_content" />
 
-    <cat.customize.datepicker.DatePickerView
-        android:id="@+id/ct_second_loop"
-        android:layout_width="120dp"
-        android:layout_height="160dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_height="wrap_content">
+        <cat.customize.datepicker.DatePickerView
+            android:id="@+id/ct_second_loop"
+            android:layout_width="120dp"
+            android:layout_height="160dp" />
+
+        <TextView
+            android:id="@+id/set_alarm_tv"
+            android:layout_width="wrap_content"
+            android:text="设置一个1分钟后的闹钟"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+
 
     <TextView
         android:id="@+id/ct_second_time"
