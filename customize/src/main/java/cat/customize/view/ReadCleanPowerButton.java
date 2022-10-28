@@ -13,6 +13,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cat.customize.R;
+import cat.customize.SecondClickUtils;
 
 /**
  * Created by HSL on 2022/7/28.
@@ -109,27 +110,29 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
 
     @Override
     public void onClick(View v) {
-        int i = v.getId();
-        if (i == R.id.ct_read_power_btn) {
-            if (!scanFlag) {
-                if (defaultPower) {
-                    showPowerDialog();
-                } else {
-                    if (onReadCleanPowerListener != null) {
-                        onReadCleanPowerListener.setPower(btnPower);
+        if(!SecondClickUtils.isFastClick(300)) {
+            int i = v.getId();
+            if (i == R.id.ct_read_power_btn) {
+                if (!scanFlag) {
+                    if (defaultPower) {
+                        showPowerDialog();
+                    } else {
+                        if (onReadCleanPowerListener != null) {
+                            onReadCleanPowerListener.setPower(btnPower);
+                        }
                     }
                 }
-            }
-        } else if (i == R.id.ct_read_reset_tv) {
-            if (!scanFlag) {
-                if (onReadCleanPowerListener != null) {
-                    onReadCleanPowerListener.resetData();
+            } else if (i == R.id.ct_read_reset_tv) {
+                if (!scanFlag) {
+                    if (onReadCleanPowerListener != null) {
+                        onReadCleanPowerListener.resetData();
+                    }
                 }
+            } else if (i == R.id.ct_read_start_btn) {
+                startReadStatus();
+            } else if (i == R.id.ct_read_stop_btn) {
+                stopReadStatus();
             }
-        } else if (i == R.id.ct_read_start_btn) {
-            startReadStatus();
-        } else if (i == R.id.ct_read_stop_btn) {
-            stopReadStatus();
         }
     }
 
