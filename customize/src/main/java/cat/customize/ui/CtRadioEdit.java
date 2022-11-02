@@ -96,21 +96,21 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         initStype(attrs);
     }
 
-    @Override
-    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int specMode = MeasureSpec.getMode(heightMeasureSpec);
-        int specSize = MeasureSpec.getSize(heightMeasureSpec);
-        //wrap_content
-        if (specMode == MeasureSpec.AT_MOST) {
-            specSize = AndroidUtils.dp2px(context, mViewHeight);
-        } else if (specMode == MeasureSpec.EXACTLY) {
-            specSize = getMeasuredHeight();
-        }
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutParams.height = specSize;
-        editBgLl.setLayoutParams(layoutParams);
-    }
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+//        int specMode = MeasureSpec.getMode(heightMeasureSpec);
+//        int specSize = MeasureSpec.getSize(heightMeasureSpec);
+//        //wrap_content
+//        if (specMode == MeasureSpec.AT_MOST) {
+//            specSize = AndroidUtils.dp2px(context, mViewHeight);
+//        } else if (specMode == MeasureSpec.EXACTLY) {
+//            specSize = getMeasuredHeight();
+//        }
+//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+//        layoutParams.height = specSize;
+//        editBgLl.setLayoutParams(layoutParams);
+//    }
 
     private void initStype(AttributeSet attrs) {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IRadioEditStyle);

@@ -90,14 +90,16 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         findViewById(R.id.ct_second_hint_dialog_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String str = "123444444444444444444444444444444";
                 final CtPromtDialog hintDialog = new CtPromtDialog(SecondActivity.this);
                 hintDialog.setButtonLeftText("确认", -1);
                 hintDialog.setButtonRightText("leftBtn", -1);
                 hintDialog.setCancelable(false);
-                hintDialog.setMsgTextSize(50);
-                hintDialog.setTitleTextSize(50);
-                hintDialog.setBigByScreenWidth(0.6f);
+                hintDialog.setMsgTextSize(35);
+                hintDialog.setTitleTextSize(35);
+                hintDialog.setBigByScreenWidthHeight(0.6f,0.4f);
                 hintDialog.setDialogAttributes(0.5f);
+                hintDialog.setMessageText(str+str+str+str+str+str);
                 //右侧
                 hintDialog.setOnRightListener(new View.OnClickListener() {
                     @Override
