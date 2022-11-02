@@ -18,7 +18,7 @@ import cat.customize.ulite.system.AndroidUtils;
  * Created by HSL on 2022/4/29.
  */
 
-public class RaduisView extends View {
+public class CtRadioView extends View {
 
     private Paint paint;
 
@@ -26,15 +26,15 @@ public class RaduisView extends View {
     private Context context;
 
 
-    public RaduisView(Context context) {
+    public CtRadioView(Context context) {
         this(context, null);
     }
 
-    public RaduisView(Context context, @Nullable AttributeSet attrs) {
+    public CtRadioView(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public RaduisView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+    public CtRadioView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IReadCleanPowerStyle);

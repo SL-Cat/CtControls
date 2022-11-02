@@ -1,4 +1,4 @@
-package cat.customize.view;
+package cat.customize.ui;
 
 import android.content.Context;
 import android.text.Editable;

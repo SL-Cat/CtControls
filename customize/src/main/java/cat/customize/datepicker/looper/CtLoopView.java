@@ -158,7 +158,7 @@ public class CtLoopView extends View {
             textColorOut = a.getColor(R.styleable.CtLoopView_awv_outerTextColor, 0xFFa8a8a8);
             textColorCenter = a.getColor(R.styleable.CtLoopView_awv_centerTextColor, 0xFF2a2a2a);
             dividerColor = a.getColor(R.styleable.CtLoopView_awv_dividerTextColor, 0xFFd5d5d5);
-            textSize = a.getDimensionPixelOffset(R.styleable.CtLoopView_awv_textsize, textSize);
+            textSize = a.getDimensionPixelOffset(R.styleable.CtLoopView_awv_textSize, textSize);
             lineSpacingMultiplier = a.getFloat(R.styleable.CtLoopView_awv_lineSpace, DEFAULT_LINE_SPACE);
 
             isLoop = a.getBoolean(R.styleable.CtLoopView_awv_isLoop, true);

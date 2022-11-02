@@ -11,13 +11,11 @@ import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.os.Handler;
 
 
 import cat.customize.R;
 import cat.customize.animation.Ratate3DAnimation;
 import cat.customize.ulite.system.AndroidUtils;
-import cat.customize.view.BaseDialog;
 
 /**
  * Created by HSL

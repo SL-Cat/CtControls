@@ -1,4 +1,4 @@
-package cat.customize.view;
+package cat.customize.dialog;
 
 import android.app.Activity;
 import android.app.Dialog;

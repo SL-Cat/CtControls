@@ -10,7 +10,7 @@ import android.util.Log;
 import java.io.File;
 import java.io.FileOutputStream;
 
-import cat.customize.DateUtils;
+import cat.customize.ulite.DateUtils;
 
 /**
  * Created by HSL on 2020/12/23.
@@ -89,6 +89,12 @@ public class CtLog {
         if (CtBasicConfig.isDebugMode()) {
             Log.i(tag, msg == null ? "" : msg, tr);
             logToFile(Log.INFO, tag, msg, tr);
+        }
+    }
+    public static void d(String msg) {
+        if (CtBasicConfig.isDebugMode()) {
+            Log.d("cat_d", msg == null ? "" : msg);
+            logToFile(Log.DEBUG, "cat_d", DateUtils.getStringDate() + ":" + msg);
         }
     }
 

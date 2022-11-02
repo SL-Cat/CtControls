@@ -1,4 +1,4 @@
-package cat.customize.iview;
+package cat.customize.ui;
 
 import android.content.Context;
 import android.content.res.TypedArray;

@@ -8,7 +8,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import cat.customize.R;
-import cat.customize.view.BaseDialog;
 
 /**
  * Created by HSL

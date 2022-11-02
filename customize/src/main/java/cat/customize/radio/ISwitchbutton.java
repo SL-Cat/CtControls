@@ -27,6 +27,8 @@ public class ISwitchbutton extends View {
     private float mAnimate = 0L;
     //此处命名不规范，目的和Android自带的switch有相同的用法
     private boolean checked = false;
+    //是否开启点击后自动切换状态的操作,默认开启
+    private boolean openChecked = true;
     private float mScale;
     private int mSelectColor;
     private OnCheckedChangeListener mOnCheckedChangeListener;
@@ -131,18 +133,44 @@ public class ISwitchbutton extends View {
             case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
-                mAnimate = 1;
-                checked = !checked;
+                if(openChecked) {
+                    mAnimate = 1;
+                    checked = !checked;
 
-                if (mOnCheckedChangeListener != null) {
+                    if (mOnCheckedChangeListener != null) {
 
-                    mOnCheckedChangeListener.OnCheckedChanged(checked);
+                        mOnCheckedChangeListener.OnCheckedChanged(checked);
 
+                    }
+                    invalidate();
                 }
-                invalidate();
                 break;
         }
         return super.onTouchEvent(event);
+    }
+
+    /**
+     * 有些情况需要判断后才可开关;设置不自动切花状态
+     * @param open
+     */
+    public void openCheckedListerner(boolean open){
+        this.openChecked = open;
+    }
+
+    /**
+     * 设置当前按钮状态
+     * @param status
+     */
+    public void setCheckStatus(boolean status){
+        mAnimate = 1;
+        checked = status;
+
+        if (mOnCheckedChangeListener != null) {
+
+            mOnCheckedChangeListener.OnCheckedChanged(checked);
+
+        }
+        invalidate();
     }
 
     /**

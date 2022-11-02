@@ -18,7 +18,7 @@ import android.view.View;
  * Created by HSL on 2022/8/1.
  */
 
-public class WaveRfidView extends View {
+public class CtWaveRfidView extends View {
     private int widthSize;
     private int heightSize;
     private float[] mContentOneYs = null;
@@ -38,12 +38,12 @@ public class WaveRfidView extends View {
     private float endValue;
 
 
-    public WaveRfidView(Context context) {
+    public CtWaveRfidView(Context context) {
         super(context);
         init();
     }
 
-    public WaveRfidView(Context context, AttributeSet attributeSet) {
+    public CtWaveRfidView(Context context, AttributeSet attributeSet) {
         super(context, attributeSet);
         init();
     }

@@ -1,6 +1,7 @@
 package cat.hucustomize;
 
 
+import android.content.Intent;
 import android.os.SystemClock;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -28,7 +29,7 @@ import cat.customize.dialog.CtPromtDialog;
 import cat.customize.dialog.CtLoadDialog;
 import cat.customize.dialog.CtTipsDialog;
 import cat.customize.dialog.CtToastDialog;
-import cat.customize.iview.CtRadioEdit;
+import cat.customize.ui.CtRadioEdit;
 import cat.customize.radio.IRadiosButton;
 import cat.customize.ulite.system.AndroidUtils;
 
@@ -55,6 +56,13 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         radios();
         loopView();
         calendarView();
+        findViewById(R.id.next_activity).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SecondActivity.this, ThreeActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void radioEd() {

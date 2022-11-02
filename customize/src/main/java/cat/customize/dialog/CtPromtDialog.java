@@ -1,10 +1,8 @@
 package cat.customize.dialog;
 
 import android.annotation.SuppressLint;
-import android.app.Dialog;
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -15,7 +13,6 @@ import java.util.TimerTask;
 
 import cat.customize.R;
 import cat.customize.ulite.system.AndroidUtils;
-import cat.customize.view.BaseDialog;
 
 
 /**
@@ -82,8 +79,9 @@ public class CtPromtDialog extends BaseDialog {
             dialogMessage.setPadding(10, 50, 10, 50);
             dialogTitle.setVisibility(View.GONE);
         }
-    }  //设置标题
+    }
 
+    //设置内容
     public void setMessageText(String message) {
         if (message != null) {
             this.timerMsg = message;

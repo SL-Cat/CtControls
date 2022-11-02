@@ -1,47 +1,32 @@
 package cat.hucustomize;
 
-import android.Manifest;
-import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.pm.PackageManager;
-import android.hardware.usb.UsbDevice;
-import android.hardware.usb.UsbInterface;
-import android.hardware.usb.UsbManager;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import cat.customize.DateUtils;
 import cat.customize.bean.PopuStrBean;
 import cat.customize.datepicker.CustomDatePicker;
-import cat.customize.view.ISelectButton;
+import cat.customize.ulite.DateUtils;
+import cat.customize.ui.ISelectButton;
 import cat.customize.view.PopuSpringView;
 import cat.customize.view.PopupWindownView;
-import cat.customize.view.ReadCleanPowerButton;
-import cat.customize.view.RfidCleanButton;
-import cat.customize.view.ScanResetReadButton;
-import cat.customize.view.SettingPowerBottomDialog;
+import cat.customize.ui.ReadCleanPowerButton;
+import cat.customize.ui.RfidCleanButton;
+import cat.customize.ui.ScanResetReadButton;
 import cat.customize.xlist.BaseListAdapter;
 import cat.hucustomize.frg.WaveRfidFragment;
 import cat.hucustomize.list.RecyerActivity;
@@ -218,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ReadCleanPowerButton readbtn = (ReadCleanPowerButton) findViewById(R.id.ct_main_read_btn);
+        final ReadCleanPowerButton readbtn = (ReadCleanPowerButton) findViewById(R.id.ct_main_read_btn);
         readbtn.setPowerCode(10);
         readbtn.setOnReadCleanPowerListener(new ReadCleanPowerButton.OnReadCleanPowerListener() {
             @Override
@@ -232,17 +217,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void setPower(int power) {
-                SettingPowerBottomDialog dialog = new SettingPowerBottomDialog(instance, 25);
-                dialog.setGravity(Gravity.BOTTOM);
-                dialog.setBigByScreenWidth(1);
-                dialog.setPowerSettingListener(new SettingPowerBottomDialog.OnPowerSettingListener() {
-                    @Override
-                    public void powerResult(int power) {
-                        ToastUlit.Toast(instance, power + "");
-                    }
-                });
-                dialog.show();
-
+                ToastUlit.Toast(instance, power + "");
             }
         });
     }

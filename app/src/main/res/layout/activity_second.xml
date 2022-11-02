@@ -8,7 +8,7 @@
     tools:context=".SecondActivity">
 
 
-    <cat.customize.iview.CtRadioEdit
+    <cat.customize.ui.CtRadioEdit
         android:id="@+id/ct_radio_ed"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
@@ -114,4 +114,15 @@
             android:text="确认的提示框" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/next_activity"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/ct_radius_divider_white_bg"
+        android:padding="10dp"
+        android:text="下一页" />
 </LinearLayout>

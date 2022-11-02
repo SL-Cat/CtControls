@@ -1,6 +1,5 @@
-package cat.customize.view;
+package cat.customize.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
@@ -21,7 +20,7 @@ import cat.customize.SecondClickUtils;
 
 public class ReadCleanPowerButton extends LinearLayout implements View.OnClickListener {
 
-    private LinearLayout  powerLl;
+    private LinearLayout powerLl;
     private RelativeLayout readRl, resetRl;
     private TextView powerTv, resetTv, startTv, stopTv;
     private OnReadCleanPowerListener onReadCleanPowerListener;
@@ -30,6 +29,8 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
     private int btnPower = 1;
     private Context context;
     private SettingPowerBottomDialog sd;
+    private float height = 60;
+    private RelativeLayout viewRl;
 
     public interface OnReadCleanPowerListener {
         void readOrStop(boolean scanFlag);
@@ -51,6 +52,7 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         super(context, attrs, defStyleAttr);
         this.context = context;
         View view = View.inflate(context, R.layout.ct_read_clean_power_layout, this);
+        viewRl = ((RelativeLayout) view.findViewById(R.id.ct_read_clean_power_Rl));
         powerTv = ((TextView) view.findViewById(R.id.ct_read_power_text));
         readRl = ((RelativeLayout) view.findViewById(R.id.ct_read_button_fra));
         resetRl = ((RelativeLayout) view.findViewById(R.id.ct_read_reset_rl));
@@ -104,13 +106,33 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         powerLl.setBackgroundResource(powerBackground);
     }
 
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        int specMode = MeasureSpec.getMode(heightMeasureSpec);
+//        int width = MeasureSpec.getSize(widthMeasureSpec);
+//        int mHeight = 0;
+//        //wrap_content
+//        if (specMode == MeasureSpec.AT_MOST) {
+//            mHeight = (int) height;
+//        }
+//        //fill_parent或者精确值
+//        else if (specMode == MeasureSpec.EXACTLY) {
+//            mHeight = MeasureSpec.getSize(heightMeasureSpec);
+//        } else {
+//            mHeight = MeasureSpec.getSize(heightMeasureSpec);
+//        }
+//        Log.d("myDemo", "onMeasure: " + mHeight);
+//        setMeasuredDimension(width, mHeight);
+//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, mHeight);
+//        viewRl.setLayoutParams(params);
+//    }
+
     public void setOnReadCleanPowerListener(OnReadCleanPowerListener onReadCleanPowerListener) {
         this.onReadCleanPowerListener = onReadCleanPowerListener;
     }
 
     @Override
     public void onClick(View v) {
-        if(!SecondClickUtils.isFastClick(300)) {
+        if (!SecondClickUtils.isFastClick(300)) {
             int i = v.getId();
             if (i == R.id.ct_read_power_btn) {
                 if (!scanFlag) {

@@ -1,4 +1,4 @@
-package cat.customize.view;
+package cat.customize.ui;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

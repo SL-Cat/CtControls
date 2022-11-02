@@ -7,6 +7,7 @@
     <string name="ct_stop_read_rfid">Stop reading(RFID)</string>
     <string name="ct_start_read">Start reading</string>
     <string name="ct_start_scan">Scan</string>
+    <string name="ct_power_setting">Power Setting</string>
     <string name="ct_clean">Cancel</string>
     <string name="ct_confirm">confirm</string>
     <string name="ct_reset">reset</string>

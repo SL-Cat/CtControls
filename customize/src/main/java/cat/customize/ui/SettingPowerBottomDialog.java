@@ -1,4 +1,4 @@
-package cat.customize.view;
+package cat.customize.ui;
 
 import android.content.Context;
 import android.os.Build;
@@ -8,10 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
-import android.widget.SeekBar;
 import android.widget.TextView;
 
 import cat.customize.R;
+import cat.customize.dialog.BaseDialog;
+import cat.customize.view.CtSeekBar;
+import cat.customize.listener.OnCtSeekBarListener;
 
 /**
  * Created by HSL on 2022/7/5.
@@ -22,6 +24,8 @@ public class SettingPowerBottomDialog extends BaseDialog {
 
     private OnPowerSettingListener mOnPowerSettingListener;
     private int progressResult;
+    private CtSeekBar seekTv;
+    private TextView maxCodeTv;
 
     public SettingPowerBottomDialog(@NonNull Context context, int progress) {
         super(context);
@@ -35,15 +39,17 @@ public class SettingPowerBottomDialog extends BaseDialog {
         setContentView(dialogView);
         TextView cancelTv = (TextView) dialogView.findViewById(R.id.setting_power_dialog_cancel);
         TextView sureTv = (TextView) dialogView.findViewById(R.id.setting_power_dialog_sure);
+        maxCodeTv = (TextView) dialogView.findViewById(R.id.setting_power_dialog_max_code);
         final TextView codeTv = (TextView) dialogView.findViewById(R.id.setting_power_dialog_code);
-        SeekBar seekTv = (SeekBar) dialogView.findViewById(R.id.setting_power_dialog_seek);
+        seekTv = (CtSeekBar) dialogView.findViewById(R.id.setting_power_dialog_seek);
 
-        seekTv.setProgress(progress);
+        seekTv.setProgressDefault(progress);
         codeTv.setText(progress + "");
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            seekTv.setMin(1);
+            seekTv.setProgressMin(1);
         }
-        seekTv.setMax(30);
+        seekTv.setProgressMax(30);
+        maxCodeTv.setText(seekTv.getProgressMax() + "dBM");
 
         sureTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,21 +66,27 @@ public class SettingPowerBottomDialog extends BaseDialog {
                 dismiss();
             }
         });
-        seekTv.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekTv.setOnCtSeekBarListener(new OnCtSeekBarListener() {
             @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                progressResult = progress;
+            public void onProgressChanged(float progress) {
+                progressResult = (int) progress;
                 codeTv.setText(progressResult + "");
             }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
-            }
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
-            }
         });
+    }
+
+
+    /**
+     * 设置最大值
+     * @param progressMax
+     */
+    public void setProgressMax(int progressMax) {
+        if (seekTv != null) {
+            seekTv.setProgressMax(progressMax);
+            if(maxCodeTv!=null) {
+                maxCodeTv.setText(seekTv.getProgressMax() + "dBM");
+            }
+        }
     }
 
     public interface OnPowerSettingListener {
@@ -86,13 +98,13 @@ public class SettingPowerBottomDialog extends BaseDialog {
     }
 
 
-    public void setBigByScreenWidth(float width){
+    public void setBigByScreenWidth(float width) {
         int paramsWidth = 0;
         Window window = getWindow();
         assert window != null;
         DisplayMetrics dm = getContext().getResources().getDisplayMetrics();
         int screenWidth = dm.widthPixels;
-        if (width > 0 && screenWidth > 0){
+        if (width > 0 && screenWidth > 0) {
             paramsWidth = (int) (screenWidth * width);
         }
         window.setLayout(paramsWidth, LinearLayout.LayoutParams.WRAP_CONTENT);

@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="取消"
+            android:text="@string/ct_clean"
             android:textColor="@color/color_000000"
             android:textSize="16sp" />
 
@@ -27,7 +27,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="10dp"
-            android:text="功率设置"
+            android:text="@string/ct_power_setting"
             android:textColor="@color/color_000000"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -38,7 +38,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="确认"
+            android:text="@string/ct_confirm"
             android:textColor="@color/color_000000"
             android:textSize="16sp" />
     </LinearLayout>
@@ -47,17 +47,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
 
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawablePadding="8dp"
             android:drawableTop="@mipmap/ic_power_s"
+            android:drawablePadding="8dp"
             android:gravity="center"
             android:text="1dBM"
             android:textColor="@color/color_000000"
@@ -79,20 +78,22 @@
                 android:textColor="@color/color_000000"
                 android:textSize="16sp" />
 
-            <SeekBar
+            <cat.customize.view.CtSeekBar
                 android:id="@+id/setting_power_dialog_seek"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center" />
+                android:layout_gravity="center"
+                app:progress_max="30" />
         </LinearLayout>
 
 
         <TextView
+            android:id="@+id/setting_power_dialog_max_code"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:drawablePadding="8dp"
             android:drawableTop="@mipmap/ic_power_l"
+            android:drawablePadding="8dp"
             android:gravity="center"
             android:text="30dBM"
             android:textColor="@color/color_000000"

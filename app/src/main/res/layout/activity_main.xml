@@ -30,28 +30,28 @@
         android:padding="10dp"
         android:text="一个可以下拉刷新,上拉加载，横滑Item的XListview" />
 
-    <cat.customize.view.ReadCleanPowerButton
+    <cat.customize.ui.ReadCleanPowerButton
         android:id="@+id/ct_main_read_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"></cat.customize.view.ReadCleanPowerButton>
+        android:layout_marginTop="10dp"></cat.customize.ui.ReadCleanPowerButton>
 
 
-    <cat.customize.view.ISelectButton
+    <cat.customize.ui.ISelectButton
         android:id="@+id/ct_main_select_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginTop="10dp"
         app:left_text="左侧按钮"
-        app:right_text="右侧按钮"></cat.customize.view.ISelectButton>
+        app:right_text="右侧按钮"></cat.customize.ui.ISelectButton>
 
 
-    <cat.customize.view.RfidCleanButton
+    <cat.customize.ui.RfidCleanButton
         android:id="@+id/ct_main_read_clean_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"></cat.customize.view.RfidCleanButton>
+        android:layout_marginTop="10dp"></cat.customize.ui.RfidCleanButton>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -86,7 +86,7 @@
             android:text="都灰掉" />
     </LinearLayout>
 
-    <cat.customize.view.ScanResetReadButton
+    <cat.customize.ui.ScanResetReadButton
         android:id="@+id/ct_scan_reset_read_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
