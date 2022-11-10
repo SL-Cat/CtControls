@@ -39,7 +39,7 @@ public class PopuSpringView extends LinearLayout {
     private View inflate;
 
     public interface OnPopuSpringListener {
-        void OnClickItem(int id);
+        void OnClickItem(PopuStrBean bean);
     }
 
     private OnPopuSpringListener onPopuSpringListener;
@@ -208,7 +208,7 @@ public class PopuSpringView extends LinearLayout {
                     adapter.notifyDataSetChanged();
                     mPopupWindow.dismiss();
                     if (onPopuSpringListener != null) {
-                        onPopuSpringListener.OnClickItem(popuStrBean.getId());
+                        onPopuSpringListener.OnClickItem(popuStrBean);
                     }
                 }
             });
