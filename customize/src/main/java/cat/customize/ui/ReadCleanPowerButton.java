@@ -5,14 +5,17 @@ import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cat.customize.R;
 import cat.customize.SecondClickUtils;
+import cat.customize.ulite.system.AndroidUtils;
 
 /**
  * Created by HSL on 2022/7/28.
@@ -29,8 +32,9 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
     private int btnPower = 1;
     private Context context;
     private SettingPowerBottomDialog sd;
-    private float height = 60;
+    private float height = 50;
     private RelativeLayout viewRl;
+    private View view;
 
     public interface OnReadCleanPowerListener {
         void readOrStop(boolean scanFlag);
@@ -51,7 +55,7 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
     public ReadCleanPowerButton(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        View view = View.inflate(context, R.layout.ct_read_clean_power_layout, this);
+        view = View.inflate(context, R.layout.ct_read_clean_power_layout, this);
         viewRl = ((RelativeLayout) view.findViewById(R.id.ct_read_clean_power_Rl));
         powerTv = ((TextView) view.findViewById(R.id.ct_read_power_text));
         readRl = ((RelativeLayout) view.findViewById(R.id.ct_read_button_fra));
@@ -120,11 +124,19 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
 //        } else {
 //            mHeight = MeasureSpec.getSize(heightMeasureSpec);
 //        }
-//        Log.d("myDemo", "onMeasure: " + mHeight);
 //        setMeasuredDimension(width, mHeight);
-//        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, mHeight);
-//        viewRl.setLayoutParams(params);
+//        LinearLayout.LayoutParams rl = new LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.MATCH_PARENT);
+//        rl.height = mHeight;
+//        stopTv.setLayoutParams(rl);
+//        view.setLayoutParams(rl);
+//        invalidate();
+//        Log.d("myDemo", "onMeasure: " +rl.height+"--"+view.getHeight());
 //    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+    }
 
     public void setOnReadCleanPowerListener(OnReadCleanPowerListener onReadCleanPowerListener) {
         this.onReadCleanPowerListener = onReadCleanPowerListener;

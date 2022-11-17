@@ -6,6 +6,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import cat.customize.SecondClickUtils;
+
 /**
  * Created by HSL on 2020/4/2.
  */
@@ -75,7 +77,9 @@ public class CommonViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View v) {
         if (commonClickListener != null) {
-            commonClickListener.onItemClickListener(getAdapterPosition());
+            if(!SecondClickUtils.isFastClick()) {
+                commonClickListener.onItemClickListener(getAdapterPosition());
+            }
         }
     }
 

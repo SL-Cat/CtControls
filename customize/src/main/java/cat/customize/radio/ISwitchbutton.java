@@ -8,10 +8,12 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
 import cat.customize.R;
+import cat.customize.ulite.system.AndroidUtils;
 
 /**
  * Created by HSL
@@ -24,6 +26,7 @@ public class ISwitchbutton extends View {
     private static float MBTNHEIGHT;
     private static final int OFFSET = 3;
     private int mHeight;
+    private int mWidth = 60;
     private float mAnimate = 0L;
     //此处命名不规范，目的和Android自带的switch有相同的用法
     private boolean checked = false;
@@ -32,6 +35,11 @@ public class ISwitchbutton extends View {
     private float mScale;
     private int mSelectColor;
     private OnCheckedChangeListener mOnCheckedChangeListener;
+    private Paint.FontMetrics fontMetrics;
+    private Context context;
+    private float textWidth;
+    private int textPadding = 10;
+    private String textStr;
 
     public ISwitchbutton(Context context) {
         this(context, null);
@@ -39,13 +47,21 @@ public class ISwitchbutton extends View {
 
     public ISwitchbutton(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ISwitchStyle);
         mSelectColor = typedArray.getColor(R.styleable.ISwitchStyle_switch_button_color, context.getResources().getColor(R.color.color_007BFF));
         MBTNHEIGHT = typedArray.getFloat(R.styleable.ISwitchStyle_switch_button_height, 0.5f);
         checked = typedArray.getBoolean(R.styleable.ISwitchStyle_switch_button_click, false);
+        textStr = typedArray.getString(R.styleable.ISwitchStyle_text);
+
+        textPaint = new Paint();
+        textPaint.setColor(getResources().getColor(R.color.color_000000));
+        textPaint.setAntiAlias(true);
+
         typedArray.recycle();
     }
 
+    private Paint textPaint;
 
     /**
      * @param widthMeasureSpec
@@ -54,22 +70,23 @@ public class ISwitchbutton extends View {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         int specMode = MeasureSpec.getMode(widthMeasureSpec);
-        int width=0;
+        int width = 0;
         //wrap_content
         if (specMode == MeasureSpec.AT_MOST) {
-            width = 60;
-            mHeight = (int) (MBTNHEIGHT * width);
+            textPaint.setTextSize(AndroidUtils.dp2px(context, 10));
         }
         //fill_parent或者精确值
-        else if (specMode == MeasureSpec.EXACTLY) {
-            width = MeasureSpec.getSize(widthMeasureSpec);
-            mHeight = (int) (MBTNHEIGHT * width);
-        } else {
-            width = MeasureSpec.getSize(widthMeasureSpec);
-            mHeight = (int) (MBTNHEIGHT * width);
+        else  {
+            mWidth = MeasureSpec.getSize(widthMeasureSpec);
+            textPaint.setTextSize(AndroidUtils.dp2px(context, (float) (mWidth * 0.26)));
         }
-
-        setMeasuredDimension(width, mHeight);
+        if (textStr != null) {
+            textWidth = textPaint.measureText(textStr);
+            fontMetrics = textPaint.getFontMetrics();
+        }
+        width = (int) (textWidth + textPadding);
+        mHeight = (int) (MBTNHEIGHT * mWidth);
+        setMeasuredDimension((int) (mWidth + width), mHeight);
     }
 
     @Override
@@ -78,30 +95,36 @@ public class ISwitchbutton extends View {
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setAntiAlias(true);
         mPaint.setColor(mSelectColor);
-        Rect rect = new Rect(0, 0, getWidth(), getHeight());
+        Rect rect = new Rect(0, 0, mWidth, getHeight());
         RectF rectf = new RectF(rect);
         //绘制圆角矩形
         canvas.drawRoundRect(rectf, mHeight / 2, mHeight / 2, mPaint);
 
-        //以下save和restore很重要，确保动画在中间一层 ，如果大家不明白，可以去搜下用法
+        if (null != textStr && !"".equals(textStr)) {
+            canvas.drawText(textStr, mWidth + textPadding, rect.centerY() - fontMetrics.bottom / 2 - fontMetrics.top / 2, textPaint);
+        }
 
+        //以下save和restore很重要，确保动画在中间一层 ，如果大家不明白，可以去搜下用法
         canvas.save();
         mPaint.setColor(Color.parseColor("#CFCFCF"));
         mAnimate = mAnimate - 0.1f > 0 ? mAnimate - 0.1f : 0; // 动画标示 ，重绘10次，借鉴别人的动画
         mScale = (!checked ? 1 - mAnimate : mAnimate);
-        canvas.scale(mScale, mScale, getWidth() - getHeight() / 2, rect.centerY());
+//        canvas.scale(mScale, mScale, getWidth() - getHeight() / 2, rect.centerY());
+        canvas.scale(mScale, mScale, mWidth - getHeight() / 2, rect.centerY());
         //绘制缩放的灰色圆角矩形
         canvas.drawRoundRect(rectf, mHeight / 2, mHeight / 2, mPaint);
 
         mPaint.setColor(Color.WHITE);
-        Rect rect_inner = new Rect(OFFSET, OFFSET, getWidth() - OFFSET, getHeight() - OFFSET);
+        Rect rect_inner = new Rect(OFFSET, OFFSET, mWidth - OFFSET, getHeight() - OFFSET);
+//        Rect rect_inner = new Rect(OFFSET, OFFSET, getWidth() - OFFSET, getHeight() - OFFSET);
         RectF rect_f_inner = new RectF(rect_inner);
         //绘制缩放的白色圆角矩形，和上边的重叠实现灰色边框效果
         canvas.drawRoundRect(rect_f_inner, (mHeight - 8) / 2, (mHeight - 8) / 2, mPaint);
         canvas.restore();
 
         //中间圆形平移
-        int sWidth = getWidth();
+//        int sWidth = getWidth();
+        int sWidth = mWidth;
         int bTranslateX = sWidth - getHeight();
         final float translate = bTranslateX * (!checked ? mAnimate : 1 - mAnimate);
         canvas.translate(translate, 0);
@@ -133,7 +156,7 @@ public class ISwitchbutton extends View {
             case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
-                if(openChecked) {
+                if (openChecked) {
                     mAnimate = 1;
                     checked = !checked;
 
@@ -151,17 +174,19 @@ public class ISwitchbutton extends View {
 
     /**
      * 有些情况需要判断后才可开关;设置不自动切花状态
+     *
      * @param open
      */
-    public void openCheckedListerner(boolean open){
+    public void openCheckedListerner(boolean open) {
         this.openChecked = open;
     }
 
     /**
      * 设置当前按钮状态
+     *
      * @param status
      */
-    public void setCheckStatus(boolean status){
+    public void setCheckStatus(boolean status) {
         mAnimate = 1;
         checked = status;
 
@@ -171,6 +196,15 @@ public class ISwitchbutton extends View {
 
         }
         invalidate();
+    }
+
+
+    public void setText(String str) {
+        textStr = str;
+        textWidth = textPaint.measureText(textStr);
+        fontMetrics = textPaint.getFontMetrics();
+        Log.d("myDemo", "setText: ");
+        requestLayout();
     }
 
     /**
@@ -210,5 +244,4 @@ public class ISwitchbutton extends View {
     public interface OnCheckedChangeListener {
         void OnCheckedChanged(boolean isChecked);
     }
-
 }

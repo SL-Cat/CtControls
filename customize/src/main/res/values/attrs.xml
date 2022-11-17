@@ -69,6 +69,7 @@
         <attr name="switch_button_color" format="color"/>
         <attr name="switch_button_height" format="float"/>
         <attr name="switch_button_click" format="boolean"/>
+        <attr name="text"/>
     </declare-styleable>
 
     <declare-styleable name="IDatePickerStyle">

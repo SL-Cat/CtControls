@@ -34,6 +34,7 @@
         android:id="@+id/ct_main_read_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/color_ff0000"
         android:layout_marginTop="10dp"></cat.customize.ui.ReadCleanPowerButton>
 
 
@@ -115,7 +116,7 @@
         android:background="@drawable/ct_radius_divider_white_bg"
         android:padding="10dp"
         android:text="popuwindonw"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <cat.customize.ui.CtToolBarView
         android:layout_width="match_parent"

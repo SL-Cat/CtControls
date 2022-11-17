@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/ct_main_touchcallbackrecycler"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="一个长按起遮挡幕的TouchCallbackRecyclerView" />
+
+        <TextView
+            android:id="@+id/ct_main_xlistview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="一个可以下拉刷新,上拉加载，横滑Item的XListview" />
+
+        <TextView
+            android:id="@+id/ct_main_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="按钮相关" />
+
+        <TextView
+            android:id="@+id/ct_main_select_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="选择器相关" />
+
+        <TextView
+            android:id="@+id/ct_main_dialog_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="弹窗相关" />
+
+        <TextView
+            android:id="@+id/ct_main_lead_read"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="组合控件( 读取扫描相关 )" />
+
+        <TextView
+            android:id="@+id/ct_main_lead_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="组合控件( 常用功能控件 )" />
+
+        <TextView
+            android:id="@+id/ct_main_bluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="蓝牙相关" />
+
+        <TextView
+            android:id="@+id/ct_main_socket"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="socket 传输" />
+
+        <TextView
+            android:id="@+id/ct_main_other"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="各种杂七杂八的" />
+    </LinearLayout>
+</ScrollView>

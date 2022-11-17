@@ -21,7 +21,10 @@
         android:layout_height="wrap_content" />
 
     <cat.customize.radio.ISwitchbutton
+        android:id="@+id/switch_btn"
         android:layout_width="60dp"
+        android:layout_margin="10dp"
+        app:text = "测试"
         android:layout_height="wrap_content" />
 
     <LinearLayout

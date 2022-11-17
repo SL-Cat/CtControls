@@ -20,8 +20,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".list.RecyerActivity" />
-        <activity android:name=".list.XListViewActivity" />
     </application>
 
 </manifest>

@@ -20,6 +20,7 @@ import java.util.Locale;
 
 import cat.customize.bean.PopuStrBean;
 import cat.customize.datepicker.CustomDatePicker;
+import cat.customize.fragment.CreateFragUlite;
 import cat.customize.ulite.DateUtils;
 import cat.customize.ui.ISelectButton;
 import cat.customize.view.PopuSpringView;
@@ -29,8 +30,6 @@ import cat.customize.ui.RfidCleanButton;
 import cat.customize.ui.ScanResetReadButton;
 import cat.customize.xlist.BaseListAdapter;
 import cat.hucustomize.frg.WaveRfidFragment;
-import cat.hucustomize.list.RecyerActivity;
-import cat.hucustomize.list.XListViewActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -132,7 +131,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PopupWindownView popupWindownView = new PopupWindownView(MainActivity.this);
-                popupWindownView.showPop(popuTv, R.layout.ct_popu_layout, 0, 0, new PopupWindownView.PopupCallBack() {
+                popupWindownView.setWidthMatch(false);
+                popupWindownView.showPop(popuTv, 0, 0,  R.layout.ct_popu_layout,new PopupWindownView.PopupCallBack() {
                     @Override
                     public void onCallBack(PopupWindow mPopupWindow) {
                     }
@@ -175,17 +175,12 @@ public class MainActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.ct_main_touchcallbackrecycler)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(instance, RecyerActivity.class);
-                startActivity(intent);
             }
         });
         findViewById(R.id.ct_main_xlistview).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(instance, XListViewActivity.class);
-                startActivity(intent);
+
             }
         });
     }
@@ -233,8 +228,8 @@ public class MainActivity extends AppCompatActivity {
 //两种方法，这种直接设置数据用默认的adapter ，或者换自定义的adapter
         springView.setData(mList, new PopuSpringView.OnPopuSpringListener() {
             @Override
-            public void OnClickItem(int id) {
-                ToastUlit.Toast(instance, id + "");
+            public void OnClickItem(PopuStrBean bean) {
+
             }
         });
 //        final List<TestStrBean> list = new ArrayList<>();

@@ -29,6 +29,7 @@ import cat.customize.dialog.CtPromtDialog;
 import cat.customize.dialog.CtLoadDialog;
 import cat.customize.dialog.CtTipsDialog;
 import cat.customize.dialog.CtToastDialog;
+import cat.customize.radio.ISwitchbutton;
 import cat.customize.ui.CtRadioEdit;
 import cat.customize.radio.IRadiosButton;
 import cat.customize.ulite.system.AndroidUtils;
@@ -48,6 +49,7 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
+        switchBtn();
         radioEd();
         hintDialog();
         load();
@@ -61,6 +63,20 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
             public void onClick(View v) {
                 Intent intent = new Intent(SecondActivity.this, ThreeActivity.class);
                 startActivity(intent);
+            }
+        });
+    }
+
+    private void switchBtn() {
+        final ISwitchbutton switchbutton = (ISwitchbutton) findViewById(R.id.switch_btn);
+        switchbutton.setmOnCheckedChangeListener(new ISwitchbutton.OnCheckedChangeListener() {
+            @Override
+            public void OnCheckedChanged(boolean isChecked) {
+                if(isChecked) {
+                    switchbutton.setText("2132132132131疯狂测试长度3333");
+                }else {
+                    switchbutton.setText(isChecked + "");
+                }
             }
         });
     }
@@ -97,9 +113,9 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
                 hintDialog.setCancelable(false);
                 hintDialog.setMsgTextSize(35);
                 hintDialog.setTitleTextSize(35);
-                hintDialog.setBigByScreenWidthHeight(0.6f,0.4f);
+                hintDialog.setBigByScreenWidthHeight(0.6f, 0.4f);
                 hintDialog.setDialogAttributes(0.5f);
-                hintDialog.setMessageText(str+str+str+str+str+str);
+                hintDialog.setMessageText(str + str + str + str + str + str);
                 //右侧
                 hintDialog.setOnRightListener(new View.OnClickListener() {
                     @Override

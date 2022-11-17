@@ -310,7 +310,6 @@ public class TouchCallbackRecyclerView extends FrameLayout {
         switch (style) {
             case HEAD:
                 headImg.startAnimation(animation);
-                ;
                 break;
             case FOOT:
                 footImg.startAnimation(animation);

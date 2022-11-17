@@ -24,6 +24,7 @@ public class PopupWindownView {
     public interface PopupCallBack {
         void onCallBack(PopupWindow mPopupWindow);
     }
+
     private ValueAnimator valueAnimator;
     private UpdateListener updateListener;
     private EndListener endListener;
@@ -124,9 +125,14 @@ public class PopupWindownView {
     }
 
     private boolean windMatch = true;
+    private int popuWidth = -1;
 
-    public void setWidthMatch(boolean widthFlag){
+    public void setWidthMatch(boolean widthFlag) {
         this.windMatch = widthFlag;
+    }
+
+    public void setWindowWidth(int popuWidth) {
+        this.popuWidth = popuWidth;
     }
 
     /**
@@ -141,11 +147,16 @@ public class PopupWindownView {
         // 设置布局文件
         mPopupWindow.setContentView(LayoutInflater.from(activity).inflate(layout, null));
         // 为了避免部分机型不显示，我们需要重新设置一下宽高
-        if(windMatch) {
+        if (windMatch) {
             mPopupWindow.setWidth(LinearLayout.LayoutParams.MATCH_PARENT);
-        }else {
-            mPopupWindow.setWidth(ViewGroup.LayoutParams.WRAP_CONTENT);
+        } else {
+            if(popuWidth!=-1) {
+                mPopupWindow.setWidth(popuWidth);
+            }else {
+                mPopupWindow.setWidth(view.getWidth());
+            }
         }
+
         mPopupWindow.setHeight(LinearLayout.LayoutParams.WRAP_CONTENT);
         // 设置pop透明效果
         mPopupWindow.setBackgroundDrawable(new ColorDrawable(0x0000));
@@ -177,10 +188,10 @@ public class PopupWindownView {
         popupCallBack.onCallBack(mPopupWindow);
     }
 
-    public PopupWindow getPopupWindow(){
-        if(mPopupWindow!=null) {
+    public PopupWindow getPopupWindow() {
+        if (mPopupWindow != null) {
             return mPopupWindow;
-        }else {
+        } else {
             return null;
         }
     }

@@ -59,10 +59,10 @@ public class PopuSpringView extends LinearLayout {
     private CardView springCard;
     private ImageView springIg;
 
-   private int  clickBaColor = R.color.color_ffffff;
-   private int  unClickBaColor = R.color.color_ffffff;
-   private int  clickTextColor = R.color.color_000000;
-   private int  unClickTextColor = R.color.color_474646;
+    private int clickBaColor = R.color.color_ffffff;
+    private int unClickBaColor = R.color.color_ffffff;
+    private int clickTextColor = R.color.color_000000;
+    private int unClickTextColor = R.color.color_474646;
 
     public PopuSpringView(Context context) {
         this(context, null);
@@ -85,7 +85,6 @@ public class PopuSpringView extends LinearLayout {
         Integer loadIg = typedArray.getInteger(R.styleable.ISpringStyle_spring_image, R.drawable.ct_select_up_down_ig);
         springTv.setText(tvStr);
         springIg.setImageResource(loadIg);
-
 
 
         // 设置布局文件
@@ -199,9 +198,9 @@ public class PopuSpringView extends LinearLayout {
                     PopuStrBean popuStrBean = mList.get(position);
                     springTv.setText(popuStrBean.getName());
                     for (int i = 0; i < mList.size(); i++) {
-                        if(position==i){
+                        if (position == i) {
                             mList.get(i).setSelect(true);
-                        }else {
+                        } else {
                             mList.get(i).setSelect(false);
                         }
                     }
@@ -285,18 +284,22 @@ public class PopuSpringView extends LinearLayout {
 
 
     public void setSelectTextColor(int clickBaColor, int unClickBaColor, int clickTextColor, int unClickTextColor) {
-        if(clickBaColor!=-1) {
+        if (clickBaColor != -1) {
             this.clickBaColor = clickBaColor;
         }
-        if(unClickBaColor!=-1) {
+        if (unClickBaColor != -1) {
             this.unClickBaColor = unClickBaColor;
         }
-        if(clickTextColor!=-1) {
+        if (clickTextColor != -1) {
             this.clickTextColor = clickTextColor;
         }
-        if(unClickTextColor!=-1) {
+        if (unClickTextColor != -1) {
             this.unClickTextColor = unClickTextColor;
         }
+    }
+
+    public TextView getSpringText() {
+        return springTv;
     }
 
 
@@ -315,11 +318,11 @@ public class PopuSpringView extends LinearLayout {
             LinearLayout Ll = (LinearLayout) convertView.findViewById(R.id.ct_popu_spring_list_item_ll);
             PopuStrBean popuStrBean = list.get(position);
             tv.setText(popuStrBean.getName());
-            if(popuStrBean.isSelect()){
+            if (popuStrBean.isSelect()) {
                 tv.setTextColor(context.getResources().getColor(clickTextColor));
                 Ll.setBackgroundResource(clickBaColor);
                 tv.setTypeface(Typeface.DEFAULT_BOLD);
-            }else {
+            } else {
                 tv.setTextColor(context.getResources().getColor(unClickTextColor));
                 Ll.setBackgroundResource(unClickBaColor);
                 tv.setTypeface(null);
