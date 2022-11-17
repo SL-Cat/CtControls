@@ -99,13 +99,13 @@
         android:layout_margin="10dp"
         android:background="@drawable/ct_radius_divider_white_bg"
         android:padding="10dp"
+        android:visibility="gone"
         android:text="一个水波纹的圆" />
 
     <LinearLayout
         android:id="@+id/ct_main_more_fg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
         android:orientation="vertical"></LinearLayout>
 
     <TextView

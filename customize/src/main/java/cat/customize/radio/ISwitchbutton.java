@@ -50,7 +50,7 @@ public class ISwitchbutton extends View {
         this.context = context;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ISwitchStyle);
         mSelectColor = typedArray.getColor(R.styleable.ISwitchStyle_switch_button_color, context.getResources().getColor(R.color.color_007BFF));
-        MBTNHEIGHT = typedArray.getFloat(R.styleable.ISwitchStyle_switch_button_height, 0.5f);
+        MBTNHEIGHT = typedArray.getFloat(R.styleable.ISwitchStyle_switch_button_height, 0.45f);
         checked = typedArray.getBoolean(R.styleable.ISwitchStyle_switch_button_click, false);
         textStr = typedArray.getString(R.styleable.ISwitchStyle_text);
 
@@ -76,16 +76,16 @@ public class ISwitchbutton extends View {
             textPaint.setTextSize(AndroidUtils.dp2px(context, 10));
         }
         //fill_parent或者精确值
-        else  {
+        else {
             mWidth = MeasureSpec.getSize(widthMeasureSpec);
-            textPaint.setTextSize(AndroidUtils.dp2px(context, (float) (mWidth * 0.26)));
+            textPaint.setTextSize(AndroidUtils.dp2px(context, (float) (mWidth * 0.18)));
         }
         if (textStr != null) {
             textWidth = textPaint.measureText(textStr);
             fontMetrics = textPaint.getFontMetrics();
         }
         width = (int) (textWidth + textPadding);
-        mHeight = (int) (MBTNHEIGHT * mWidth);
+        mHeight = (int) (MBTNHEIGHT * (mWidth + textPadding));
         setMeasuredDimension((int) (mWidth + width), mHeight);
     }
 
@@ -98,7 +98,7 @@ public class ISwitchbutton extends View {
         Rect rect = new Rect(0, 0, mWidth, getHeight());
         RectF rectf = new RectF(rect);
         //绘制圆角矩形
-        canvas.drawRoundRect(rectf, mHeight / 2, mHeight / 2, mPaint);
+        canvas.drawRoundRect(rectf, getHeight() / 2, getHeight() / 2, mPaint);
 
         if (null != textStr && !"".equals(textStr)) {
             canvas.drawText(textStr, mWidth + textPadding, rect.centerY() - fontMetrics.bottom / 2 - fontMetrics.top / 2, textPaint);
@@ -112,14 +112,14 @@ public class ISwitchbutton extends View {
 //        canvas.scale(mScale, mScale, getWidth() - getHeight() / 2, rect.centerY());
         canvas.scale(mScale, mScale, mWidth - getHeight() / 2, rect.centerY());
         //绘制缩放的灰色圆角矩形
-        canvas.drawRoundRect(rectf, mHeight / 2, mHeight / 2, mPaint);
+        canvas.drawRoundRect(rectf, getHeight() / 2, getHeight() / 2, mPaint);
 
         mPaint.setColor(Color.WHITE);
         Rect rect_inner = new Rect(OFFSET, OFFSET, mWidth - OFFSET, getHeight() - OFFSET);
 //        Rect rect_inner = new Rect(OFFSET, OFFSET, getWidth() - OFFSET, getHeight() - OFFSET);
         RectF rect_f_inner = new RectF(rect_inner);
         //绘制缩放的白色圆角矩形，和上边的重叠实现灰色边框效果
-        canvas.drawRoundRect(rect_f_inner, (mHeight - 8) / 2, (mHeight - 8) / 2, mPaint);
+        canvas.drawRoundRect(rect_f_inner, (getHeight() - 8) / 2, (getHeight() - 8) / 2, mPaint);
         canvas.restore();
 
         //中间圆形平移
