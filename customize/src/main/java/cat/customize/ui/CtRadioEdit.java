@@ -118,6 +118,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         int bgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_background, R.drawable.ct_radius_white_select_bg);
         float testSize = typedArray.getDimension(R.styleable.IRadioEditStyle_text_size, 28);
         boolean btnStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_edit_button, true);
+        boolean leftImageStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_left_image_status, true);
         String hitStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_input);
         int leftIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_left_image, R.mipmap.ct_tag_ig);
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
@@ -134,6 +135,11 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         }
         if (hitStr != null) {
             editEd.setHint(hitStr);
+        }
+        if(leftImageStatus){
+            leftIg.setVisibility(VISIBLE);
+        }else {
+            leftIg.setVisibility(GONE);
         }
         leftIg.setImageResource(leftIgRs);
         rightIg.setImageResource(rightIgRs);
@@ -209,5 +215,13 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         if (editEd != null) {
             return editEd.getText().toString().trim();
         } else return "";
+    }
+
+    public ImageView getLeftIg(){
+        return leftIg;
+    }
+
+    public TextView getConfirmTv(){
+        return confirmTv;
     }
 }

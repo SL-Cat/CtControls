@@ -82,6 +82,7 @@
         <attr name="radio_edit_text" format="string"/>
         <attr name="radio_edit_button" format="boolean"/>
         <attr name="radio_edit_left_image" format="reference"/>
+        <attr name="radio_left_image_status" format="boolean"/>
         <attr name="radio_edit_right_image" format="reference"/>
         <attr name="text_size"/>
         <attr name="background"/>
