@@ -31,19 +31,6 @@ public class ItemLongClickMaskHelper {
     public ItemLongClickMaskHelper(Context context, View view) {
         this.context = context;
         this.view = view;
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismissMaskLayout();
-            }
-        });
-        view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                dismissMaskLayout();
-                return true;
-            }
-        });
     }
 
     public ItemLongClickMaskHelper(Context context) {
@@ -110,6 +97,11 @@ public class ItemLongClickMaskHelper {
         scaleAnimation.start();
         this.position = position;
 //        mAnimSet.start();
+    }
+
+
+    public int getPosition(){
+        return position;
     }
 
     public void dismissMaskLayout() {
