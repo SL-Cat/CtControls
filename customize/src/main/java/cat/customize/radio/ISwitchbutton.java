@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -73,12 +74,12 @@ public class ISwitchbutton extends View {
         int width = 0;
         //wrap_content
         if (specMode == MeasureSpec.AT_MOST) {
-            textPaint.setTextSize(AndroidUtils.dp2px(context, 10));
+            textPaint.setTextSize(AndroidUtils.px2dp(context, 32));
         }
         //fill_parent或者精确值
         else {
             mWidth = MeasureSpec.getSize(widthMeasureSpec);
-            textPaint.setTextSize(AndroidUtils.dp2px(context, (float) (mWidth * 0.16)));
+            textPaint.setTextSize(AndroidUtils.px2dp(context, (float) (mWidth * 0.6)));
         }
         if (textStr != null) {
             textWidth = textPaint.measureText(textStr);

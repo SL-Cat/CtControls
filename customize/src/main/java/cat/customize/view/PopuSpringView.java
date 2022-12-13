@@ -302,6 +302,10 @@ public class PopuSpringView extends LinearLayout {
         return springTv;
     }
 
+    public CardView getSpringCard(){
+        return springCard;
+    }
+
 
     private class PopuSpringAdapter extends BaseListAdapter<PopuStrBean> {
 

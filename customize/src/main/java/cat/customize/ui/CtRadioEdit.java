@@ -116,7 +116,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IRadioEditStyle);
         String btnStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_text);
         int bgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_background, R.drawable.ct_radius_white_select_bg);
-        float testSize = typedArray.getDimension(R.styleable.IRadioEditStyle_text_size, 28);
+        float testSize = typedArray.getDimension(R.styleable.IRadioEditStyle_text_size, 14);
         boolean btnStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_edit_button, true);
         boolean leftImageStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_left_image_status, true);
         String hitStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_input);
@@ -124,7 +124,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
 
         editBgLl.setBackgroundResource(bgRs);
-        editEd.setTextSize(TypedValue.COMPLEX_UNIT_PX, testSize);
+        editEd.setTextSize(TypedValue.COMPLEX_UNIT_SP, testSize);
         if (btnStatus) {
             confirmLl.setVisibility(VISIBLE);
             if (btnStr != null) {
