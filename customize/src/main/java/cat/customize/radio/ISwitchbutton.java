@@ -78,7 +78,7 @@ public class ISwitchbutton extends View {
         //fill_parent或者精确值
         else {
             mWidth = MeasureSpec.getSize(widthMeasureSpec);
-            textPaint.setTextSize(AndroidUtils.dp2px(context, (float) (mWidth * 0.18)));
+            textPaint.setTextSize(AndroidUtils.dp2px(context, (float) (mWidth * 0.16)));
         }
         if (textStr != null) {
             textWidth = textPaint.measureText(textStr);

@@ -54,6 +54,7 @@
         <attr name="item_text_click_color" format="color" />
         <attr name="item_text_size" format="dimension" />
         <attr name="radios_click_more" format="boolean" />
+        <attr name="max_num" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="IToolBarStyle">

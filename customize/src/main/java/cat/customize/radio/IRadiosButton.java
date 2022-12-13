@@ -62,6 +62,7 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         textUnColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_un_color, context.getResources().getColor(R.color.color_000000));
         textClickColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_click_color, context.getResources().getColor(R.color.color_007BFF));
         textSize = typedArray.getDimension(R.styleable.IRadiosStyle_item_text_size, 16);
+        maxLines = typedArray.getInteger(R.styleable.IRadiosStyle_max_num, 3);
         buttonBackground = typedArray.getResourceId(R.styleable.IRadiosStyle_item_background, R.drawable.ct_radios_item_select_bg);
         selectType = typedArray.getBoolean(R.styleable.IRadiosStyle_radios_click_more, false);
 
