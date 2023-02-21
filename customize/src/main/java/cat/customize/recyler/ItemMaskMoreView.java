@@ -43,7 +43,7 @@ public class ItemMaskMoreView extends FrameLayout{
     private int topMargin = 4;
     private int bottomMargin = 4;
 
-    private int backgroundColor = R.color.color_ffffff;
+    private int backgroundColor = R.drawable.ct_mask_radius_bg;
 
     public ItemMaskMoreView(Context context) {
         this(context, null);
@@ -59,6 +59,9 @@ public class ItemMaskMoreView extends FrameLayout{
         horizontalScrollView = new HorizontalScrollView(context);
         mainLinear = new LinearLayout(context);
         setBackgroundResource(backgroundColor);
+        itemLs.add(new MaskItemBean(context.getString(R.string.ct_delete), R.color.color_ff0000, 1));
+        itemLs.add(new MaskItemBean(context.getString(R.string.ct_reset), R.color.color_FFC107, 2));
+        itemLs.add(new MaskItemBean(context.getString(R.string.ct_review), R.color.color_00FF05, 3));
     }
 
     @Override
@@ -120,11 +123,17 @@ public class ItemMaskMoreView extends FrameLayout{
             width = Math.max(childWidth, width);
         }
         // 设置当前View的宽高
-        Log.d("myDemo", "onMeasure: " + width + "--" + height);
         setMeasuredDimension(getMeasuredWidth(), height);
         invalidate();
     }
 
+    /**
+     * 设置按钮间距
+     * @param left
+     * @param right
+     * @param top
+     * @param bottom
+     */
     public void setMargin(int left,int right,int top,int bottom){
         this.leftMargin = left;
         this.rightMargin = right;
@@ -132,6 +141,10 @@ public class ItemMaskMoreView extends FrameLayout{
         this.bottomMargin = bottom;
     }
 
+    /**
+     * 添加数据
+     * @param beanList
+     */
     public void addItem(List<MaskItemBean> beanList) {
         itemLs.clear();
         itemLs.addAll(beanList);
@@ -142,6 +155,10 @@ public class ItemMaskMoreView extends FrameLayout{
         this.onCtRadioTvItemListener = onCtRadioTvItemListener;
     }
 
+    /**
+     * 修改背景色
+     * @param backgroundRes
+     */
     public void setMaskBackgroundRes(int backgroundRes){
         setBackgroundResource(backgroundRes);
     }

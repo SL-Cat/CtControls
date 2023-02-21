@@ -9,8 +9,9 @@
     <string name="ct_start_scan">开始扫描</string>
     <string name="ct_power_setting">功率设置</string>
     <string name="ct_clean">取消</string>
-    <string name="ct_confirm">确定</string>
+    <string name="ct_delete">删除</string>
     <string name="ct_reset">重置</string>
+    <string name="ct_review">审核</string>
     <string name="ct_promt">提示</string>
     <string name="ct_select">选择</string>
     <string name="ct_year">年</string>

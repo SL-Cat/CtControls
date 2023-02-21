@@ -52,7 +52,7 @@ public class ItemMaskRadioHelper {
         this.position = position;
     }
 
-    public synchronized void setRootFrameLayout(FrameLayout frameLayout, int position,ScaleAnimation animation) {
+    public synchronized void setRootFrameLayout(FrameLayout frameLayout, int position, ScaleAnimation animation) {
         if (mRootFrameLayout != null) {
             mRootFrameLayout.removeView(maskMoreView);
         }
@@ -69,17 +69,36 @@ public class ItemMaskRadioHelper {
         }
     }
 
+    /**
+     * 设置按钮间距
+     *
+     * @param left
+     * @param right
+     * @param top
+     * @param bottom
+     */
+    public void setMargin(int left, int right, int top, int bottom) {
+        if (maskMoreView != null) {
+            maskMoreView.setMargin(left, right, top, bottom);
+        }
+    }
 
+    /**
+     * 添加数据源
+     *
+     * @param list
+     */
     public void setItems(List<MaskItemBean> list) {
-        maskMoreView.addItem(list);
+        if (maskMoreView != null)
+            maskMoreView.addItem(list);
     }
 
     public void setOnCtItemMaskHelperClickListener(OnCtItemMaskHelperClickListener onCtItemMaskHelperClickListener) {
         this.onCtItemMaskHelperClickListener = onCtItemMaskHelperClickListener;
     }
 
-    public void setMaskBackgroundRes(int backgroundRes){
-        if(maskMoreView!=null) {
+    public void setMaskBackgroundRes(int backgroundRes) {
+        if (maskMoreView != null) {
             maskMoreView.setMaskBackgroundRes(backgroundRes);
         }
     }

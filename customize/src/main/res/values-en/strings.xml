@@ -9,8 +9,9 @@
     <string name="ct_start_scan">Scan</string>
     <string name="ct_power_setting">Power Setting</string>
     <string name="ct_clean">Cancel</string>
-    <string name="ct_confirm">confirm</string>
-    <string name="ct_reset">reset</string>
+    <string name="ct_delete">Delete</string>
+    <string name="ct_reset">Reset</string>
+    <string name="ct_review">Review</string>
     <string name="ct_promt">promt</string>
     <string name="ct_select">select</string>
     <string name="ct_year">Y</string>
