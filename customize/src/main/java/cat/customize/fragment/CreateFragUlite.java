@@ -42,8 +42,7 @@ public class CreateFragUlite {
         if (layoutId == -1) return;
         FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.add(layoutId, fragment);
+        fragmentTransaction.replace(layoutId, fragment);
         fragmentTransaction.commit();
     }
 
