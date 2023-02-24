@@ -33,7 +33,7 @@ public class ItemMaskRadioHelper {
             @Override
             public void itemClick(int index) {
                 if (onCtItemMaskHelperClickListener != null) {
-                    onCtItemMaskHelperClickListener.onItemClick(index);
+                    onCtItemMaskHelperClickListener.onItemClick(position,index);
                 }
             }
         });

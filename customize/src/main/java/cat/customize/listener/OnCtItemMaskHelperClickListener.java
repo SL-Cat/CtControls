@@ -6,5 +6,5 @@ package cat.customize.listener;
  */
 
 public interface OnCtItemMaskHelperClickListener {
-    void onItemClick(int position);
+    void onItemClick(int position, int index);
 }
