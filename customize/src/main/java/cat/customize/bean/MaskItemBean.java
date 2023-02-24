@@ -26,6 +26,14 @@ public class MaskItemBean {
         this.textSize = textSize;
     }
 
+    public MaskItemBean(String msg, int drawableColor, float textSize,int textColor, int index) {
+        this.msg = msg;
+        this.drawableColor = drawableColor;
+        this.index = index;
+        this.textSize = textSize;
+        this.textColor = textColor;
+    }
+
     public MaskItemBean(String msg, int drawableColor, int index) {
         this.msg = msg;
         this.drawableColor = drawableColor;

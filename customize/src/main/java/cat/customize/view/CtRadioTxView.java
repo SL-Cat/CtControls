@@ -1,6 +1,7 @@
 package cat.customize.view;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -23,17 +24,17 @@ public class CtRadioTxView extends View {
 
     private Context context;
 
-    private float textSize = 32f;
+    private float textSize;
 
     private Paint paint;
 
     private Paint rectPaint;
 
-    private String textStr = "测试";
+    private String textStr;
 
-    private int textColor = R.color.color_000000;
+    private int textColor ;
 
-    private int rectColor = R.color.color_ff0000;
+    private int rectColor ;
 
     private int index = -1;
 
@@ -53,11 +54,19 @@ public class CtRadioTxView extends View {
     public CtRadioTxView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context = context;
-        paint = new Paint();
-        paint.setColor(Color.BLACK);
-        rectPaint = new Paint();
-        rectPaint.setColor(Color.RED);
+        TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ICtRadioTxViewStyle);
 
+        textStr = typedArray.getString(R.styleable.ICtRadioTxViewStyle_text);
+        textSize = typedArray.getDimension(R.styleable.ICtRadioTxViewStyle_text_size,32f);
+        textColor = typedArray.getColor(R.styleable.ICtRadioTxViewStyle_text_color, getResources().getColor(R.color.color_ffffff));
+        rectColor = typedArray.getColor(R.styleable.ICtRadioTxViewStyle_rect_color,getResources().getColor(R.color.color_ff0000));
+        if(null ==textStr){
+            textStr = "";
+        }
+        paint = new Paint();
+        paint.setColor(textColor);
+        rectPaint = new Paint();
+        rectPaint.setColor(rectColor);
     }
 
     @Override
@@ -69,8 +78,8 @@ public class CtRadioTxView extends View {
     private void initView(Canvas canvas) {
         paint.setStyle(Paint.Style.FILL);
         paint.setAntiAlias(true);
-        paint.setColor(getResources().getColor(textColor));
-        rectPaint.setColor(getResources().getColor(rectColor));
+        paint.setColor(textColor);
+        rectPaint.setColor(rectColor);
 
         Rect rect = new Rect(0, 0, getWidth(), getHeight());
         RectF rectf = new RectF(rect);

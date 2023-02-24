@@ -79,9 +79,9 @@ public class ItemMaskMoreView extends FrameLayout{
             CtRadioTxView radioTxView = new CtRadioTxView(context);
             radioTxView.setIndex(maskItemBean.getIndex());
             radioTxView.setText(maskItemBean.getMsg());
-            radioTxView.setTextColor(maskItemBean.getTextColor());
+            radioTxView.setTextColor(getResources().getColor(maskItemBean.getTextColor()));
             radioTxView.setTextSize(maskItemBean.getTextSize());
-            radioTxView.setRectColor(maskItemBean.getDrawableColor());
+            radioTxView.setRectColor(getResources().getColor(maskItemBean.getDrawableColor()));
             LinearLayout.LayoutParams tvPl = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             tvPl.leftMargin = leftMargin;
             tvPl.rightMargin = rightMargin;

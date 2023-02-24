@@ -10,6 +10,7 @@
     <attr name="ct_padding_right" format="integer"></attr>
     <attr name="right_text" format="string" />
     <attr name="left_text" format="string" />
+    <attr name="text_color" format="color"/>
 
     <declare-styleable name="ISelectBtnStyle">
         <attr name="left_text"/>
@@ -120,4 +121,10 @@
 
     </declare-styleable>
 
+    <declare-styleable name="ICtRadioTxViewStyle">
+        <attr name="text"/>
+        <attr name="text_size"/>
+        <attr name="text_color"/>
+        <attr name="rect_color" format="color"/>
+    </declare-styleable>
 </resources>
