@@ -102,4 +102,14 @@ public class ItemMaskRadioHelper {
             maskMoreView.setMaskBackgroundRes(backgroundRes);
         }
     }
+
+    /**
+     * 设置背景透明度
+     * @param alpha
+     */
+    public void setBackAlpha(int alpha){
+        if (maskMoreView != null) {
+            maskMoreView.setBackAlpha(alpha);
+        }
+    }
 }

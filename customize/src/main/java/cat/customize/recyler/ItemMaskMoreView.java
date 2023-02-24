@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +25,7 @@ import cat.customize.view.CtRadioTxView;
  * on 2022/12/2.
  */
 
-public class ItemMaskMoreView extends FrameLayout{
+public class ItemMaskMoreView extends FrameLayout {
 
     private Context context;
     /**
@@ -59,6 +60,7 @@ public class ItemMaskMoreView extends FrameLayout{
         horizontalScrollView = new HorizontalScrollView(context);
         mainLinear = new LinearLayout(context);
         setBackgroundResource(backgroundColor);
+        getBackground().setAlpha(130);
         itemLs.add(new MaskItemBean(context.getString(R.string.ct_delete), R.color.color_ff0000, 1));
         itemLs.add(new MaskItemBean(context.getString(R.string.ct_reset), R.color.color_FFC107, 2));
         itemLs.add(new MaskItemBean(context.getString(R.string.ct_review), R.color.color_00FF05, 3));
@@ -91,18 +93,18 @@ public class ItemMaskMoreView extends FrameLayout{
             radioTxView.setOnClickListener(new OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(onCtRadioTvItemListener!=null){
+                    if (onCtRadioTvItemListener != null) {
                         onCtRadioTvItemListener.itemClick(radioTxView.getIndex());
                     }
                 }
             });
             mainLinear.addView(radioTxView);
+
         }
 
         mainLinear.setOrientation(LinearLayout.HORIZONTAL);
         mainLinear.setGravity(Gravity.CENTER);
         mainLinear.setLayoutParams(lyPl);
-
         horizontalScrollView.setLayoutParams(hsPl);
         horizontalScrollView.addView(mainLinear);
         addView(horizontalScrollView);
@@ -129,12 +131,13 @@ public class ItemMaskMoreView extends FrameLayout{
 
     /**
      * 设置按钮间距
+     *
      * @param left
      * @param right
      * @param top
      * @param bottom
      */
-    public void setMargin(int left,int right,int top,int bottom){
+    public void setMargin(int left, int right, int top, int bottom) {
         this.leftMargin = left;
         this.rightMargin = right;
         this.topMargin = top;
@@ -143,6 +146,7 @@ public class ItemMaskMoreView extends FrameLayout{
 
     /**
      * 添加数据
+     *
      * @param beanList
      */
     public void addItem(List<MaskItemBean> beanList) {
@@ -151,15 +155,24 @@ public class ItemMaskMoreView extends FrameLayout{
         requestLayout();
     }
 
-    public void setOnCtRadioTvItemListener(OnCtRadioTvItemListener onCtRadioTvItemListener){
+    public void setOnCtRadioTvItemListener(OnCtRadioTvItemListener onCtRadioTvItemListener) {
         this.onCtRadioTvItemListener = onCtRadioTvItemListener;
     }
 
     /**
      * 修改背景色
+     *
      * @param backgroundRes
      */
-    public void setMaskBackgroundRes(int backgroundRes){
+    public void setMaskBackgroundRes(int backgroundRes) {
         setBackgroundResource(backgroundRes);
+    }
+
+    /**
+     * 设置背景透明度
+     * @param alpha
+     */
+    public void setBackAlpha(int alpha){
+        getBackground().setAlpha(alpha);
     }
 }
