@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -65,6 +66,42 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
                 startActivity(intent);
             }
         });
+        findViewById(R.id.test_more_btn).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IRadiosButton radiosButton = (IRadiosButton) findViewById(R.id.ct_second_radios);
+                radiosButton.setMaxLines(3);
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 7; i++) {
+                    list.add("Item"+i);
+                }
+                radiosButton.setButtonLits(list);
+                radiosButton.setOnIRadiosItemClick(new IRadiosButton.OnIRadiosListener() {
+                    @Override
+                    public void onRadiosItemClick(int position, boolean isClick) {
+                        ToastUlit.Toast(SecondActivity.this, position + "");
+                    }
+                });
+            }
+        });
+        findViewById(R.id.test_more_btn_2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                IRadiosButton radiosButton = (IRadiosButton) findViewById(R.id.ct_second_radios);
+                radiosButton.setMaxLines(2);
+                List<String> list = new ArrayList<>();
+                for (int i = 0; i < 3; i++) {
+                    list.add("Item"+i);
+                }
+                radiosButton.setButtonLits(list);
+                radiosButton.setOnIRadiosItemClick(new IRadiosButton.OnIRadiosListener() {
+                    @Override
+                    public void onRadiosItemClick(int position, boolean isClick) {
+                        ToastUlit.Toast(SecondActivity.this, position + "");
+                    }
+                });
+            }
+        });
     }
 
     private void switchBtn() {
@@ -72,9 +109,9 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         switchbutton.setmOnCheckedChangeListener(new ISwitchbutton.OnCheckedChangeListener() {
             @Override
             public void OnCheckedChanged(boolean isChecked) {
-                if(isChecked) {
+                if (isChecked) {
                     switchbutton.setText("2132132132131疯狂测试长度3333");
-                }else {
+                } else {
                     switchbutton.setText(isChecked + "");
                 }
             }
@@ -82,22 +119,29 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
     }
 
     private void radioEd() {
-        CtRadioEdit radioEdit = (CtRadioEdit) findViewById(R.id.ct_radio_ed);
+        final CtRadioEdit radioEdit = (CtRadioEdit) findViewById(R.id.ct_radio_ed);
         radioEdit.setOnCtRadioEditListener(new CtRadioEdit.CtOnRadioEditListener() {
             @Override
             public void onLeftIgClickListener() {
+                ((TextView) findViewById(R.id.ed_test)).setText("点击了左侧图片");
             }
 
             @Override
             public void onRightIgClickListener() {
+                radioEdit.getLeftIg().setImageResource(R.mipmap.ct_search_ig);
+                radioEdit.setText("");
+                ((TextView) findViewById(R.id.ed_test)).setText("点击了删除按钮,左侧图标换回来");
             }
 
             @Override
             public void onConfirmClickListener(String edMsg) {
+                radioEdit.getLeftIg().setImageResource(R.mipmap.ct_tag_ig);
+                ((TextView) findViewById(R.id.ed_test)).setText("点击了确定按钮,换个左侧图标");
             }
 
             @Override
             public void onEditTextChanged(String str) {
+                ((TextView) findViewById(R.id.ed_test)).setText("输入了内容");
             }
         });
     }
@@ -106,13 +150,13 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
         findViewById(R.id.ct_second_hint_dialog_first).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String str = "123444444444444444444444444444444";
+                String str = "内容很长xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
                 final CtPromtDialog hintDialog = new CtPromtDialog(SecondActivity.this);
                 hintDialog.setButtonLeftText("确认", -1);
-                hintDialog.setButtonRightText("leftBtn", -1);
+                hintDialog.setButtonRightText("取消", -1);
                 hintDialog.setCancelable(false);
-                hintDialog.setMsgTextSize(35);
-                hintDialog.setTitleTextSize(35);
+                hintDialog.setMsgTextSize(20);
+                hintDialog.setTitleTextSize(25);
                 hintDialog.setBigByScreenWidthHeight(0.6f, 0.4f);
                 hintDialog.setDialogAttributes(0.5f);
                 hintDialog.setMessageText(str + str + str + str + str + str);
@@ -238,11 +282,11 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
             @Override
             public void onClick(View v) {
                 final CtLoadDialog loadDialog = new CtLoadDialog(SecondActivity.this);
+                count = 0;
                 loadDialog.show();
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
-
                         while (count < 10) {
                             count++;
                             SystemClock.sleep(1000);
@@ -263,6 +307,14 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
                 ig.startAnimation(openAnimation);
             }
         });
+
+//       final TextView tv = (TextView) findViewById(R.id.ct_an_tv);
+//        tv.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                tv.startAnimation(openAnimation);
+//            }
+//        });
         initOpenAnimation();
     }
 
@@ -345,14 +397,24 @@ public class SecondActivity extends AppCompatActivity implements CtCalendarPager
             list.add("ITEM " + i);
         }
         loopView.setData(list);
+        loopView.setOnSelectListener(new DatePickerView.onSelectListener() {
+            @Override
+            public void onSelect(String text) {
+
+            }
+        });
     }
 
     private void radios() {
         IRadiosButton radiosButton = (IRadiosButton) findViewById(R.id.ct_second_radios);
         List<String> list = new ArrayList<>();
-        list.add("新的1");
-        list.add("新的2");
-        list.add("新的3");
+        list.add("1");
+        list.add("2");
+        list.add("3");
+        list.add("4");
+        list.add("5");
+        list.add("6");
+        list.add("7");
         radiosButton.setButtonLits(list);
         radiosButton.setOnIRadiosItemClick(new IRadiosButton.OnIRadiosListener() {
             @Override

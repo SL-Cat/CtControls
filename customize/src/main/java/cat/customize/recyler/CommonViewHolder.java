@@ -18,6 +18,8 @@ public class CommonViewHolder extends RecyclerView.ViewHolder implements View.On
     // 用来存放 View 以减少 findViewById 的次数
     private SparseArray<View> viewSparseArray;
 
+    private int secondTime = 500;
+
     private onItemCommonClickListener commonClickListener;
 
     public CommonViewHolder(View itemView) {
@@ -77,7 +79,7 @@ public class CommonViewHolder extends RecyclerView.ViewHolder implements View.On
     @Override
     public void onClick(View v) {
         if (commonClickListener != null) {
-            if(!SecondClickUtils.isFastClick()) {
+            if(!SecondClickUtils.isFastClick(secondTime)) {
                 commonClickListener.onItemClickListener(getAdapterPosition());
             }
         }
@@ -89,5 +91,9 @@ public class CommonViewHolder extends RecyclerView.ViewHolder implements View.On
             commonClickListener.onItemLongClickListener(v,getAdapterPosition());
         }
         return true;
+    }
+
+    public void setSecondTime(int secondTime){
+        this.secondTime = secondTime;
     }
 }

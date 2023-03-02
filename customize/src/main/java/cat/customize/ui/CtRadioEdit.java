@@ -120,7 +120,7 @@ public class CtRadioEdit extends LinearLayout implements View.OnClickListener, T
         boolean btnStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_edit_button, true);
         boolean leftImageStatus = typedArray.getBoolean(R.styleable.IRadioEditStyle_radio_left_image_status, true);
         String hitStr = typedArray.getString(R.styleable.IRadioEditStyle_radio_edit_input);
-        int leftIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_left_image, R.mipmap.ct_tag_ig);
+        int leftIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_left_image, R.mipmap.ct_search_ig);
         int rightIgRs = typedArray.getResourceId(R.styleable.IRadioEditStyle_radio_edit_right_image, R.mipmap.ct_delete_ig);
 
         editBgLl.setBackgroundResource(bgRs);

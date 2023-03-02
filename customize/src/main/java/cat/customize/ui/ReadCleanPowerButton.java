@@ -259,4 +259,7 @@ public class ReadCleanPowerButton extends LinearLayout implements View.OnClickLi
         return powerLl != null ? powerLl : null;
     }
 
+    public RelativeLayout getReadRl() {
+        return readRl != null ? readRl : null;
+    }
 }

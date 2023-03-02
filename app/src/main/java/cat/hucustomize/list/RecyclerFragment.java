@@ -4,19 +4,23 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.customize.bean.MaskItemBean;
+import cat.customize.listener.OnCtItemMaskHelperClickListener;
 import cat.customize.recyler.BaseRecyclerView;
 import cat.customize.recyler.CommonRecycleAdapter;
-import cat.customize.recyler.ItemLongClickMaskHelper;
+import cat.customize.recyler.ItemMaskRadioHelper;
 import cat.customize.recyler.TouchCallbackRecyclerView;
 import cat.customize.ulite.system.AndroidUtils;
 import cat.hucustomize.R;
@@ -35,14 +39,14 @@ public class RecyclerFragment extends Fragment {
 
 
     private List<String> mList = new ArrayList<>();
-    private ItemLongClickMaskHelper clickMaskHelper;
+    private ItemMaskRadioHelper helper;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_recyer,container,false);
-        for (int i = 0; i < 30; i++) {
+        View view = inflater.inflate(R.layout.activity_recyer, container, false);
+        for (int i = 0; i < 10; i++) {
             mList.add("" + i);
         }
         ry(view);
@@ -53,23 +57,42 @@ public class RecyclerFragment extends Fragment {
 
     private void ry(View view) {
         ry = ((TouchCallbackRecyclerView) view.findViewById(R.id.main_ry_load));
-        View maskView = getLayoutInflater().inflate(R.layout.ct_item_laod_more,null);
-        clickMaskHelper = new ItemLongClickMaskHelper(getActivity(),maskView);
+        helper = new ItemMaskRadioHelper(getActivity());
+        //可不用
+        helper.setMaskBackgroundRes(R.drawable.ct_mask_radius_bg);
 
         adapter = new RecyerLoadAdapter(getActivity(), mList);
+        adapter.setSecondTime(0);
         adapter.setOnItemClickListener(new CommonRecycleAdapter.OnItemClickListener() {
             @Override
             public void onItemClickListener(int position) {
+                Log.d("myDemo", "onItemClickListener: "+position);
                 ToastUlit.Toast(getActivity(), mList.get(position));
             }
 
             @Override
             public void onItemLongClickListener(View view, int position) {
-                clickMaskHelper.dismissMaskLayout(); //关闭之前的
-                clickMaskHelper.setRootFrameLayout((FrameLayout) view, position);
+                    //设置Item内容
+                if (position > 3 && position < 6) {
+                    List<MaskItemBean> maskItemBeans = new ArrayList<>();
+                    maskItemBeans.add(new MaskItemBean("删除",R.color.color_FFC107,25, 1));
+                    maskItemBeans.add(new MaskItemBean("审核",R.color.color_ff0000,25, 1));
+                    maskItemBeans.add(new MaskItemBean("重置",R.color.color_007BFF,25, 1));
+                    helper.setItems(maskItemBeans);
+                } else  {
+                    List<MaskItemBean> maskItemBeans = new ArrayList<>();
+                    maskItemBeans.add(new MaskItemBean("删除", R.color.color_FFC107, 1));
+                    maskItemBeans.add(new MaskItemBean("审核", R.color.color_ff0000, 1));
+                    helper.setItems(maskItemBeans);
+                }
+                helper.dismissMaskLayout(); //关闭之前的
+                //设置自定义动画;可不设置
+                ScaleAnimation scaleAnimation = new ScaleAnimation(0.1f, 1.0f, 0.1f, 1.0f);
+                scaleAnimation.setDuration(200);
+                helper.setRootFrameLayout((FrameLayout) view, position, scaleAnimation);
             }
         });
-        ry.setLayoutManager(new GridLayoutManager(getActivity(),2));
+        ry.setLayoutManager(new LinearLayoutManager(getActivity()));
         ry.setAdapter(adapter);
         ry.setIsCanLoadMore(true);
         ry.setIsCanRefresh(true);
@@ -83,7 +106,7 @@ public class RecyclerFragment extends Fragment {
                     public void run() {
                         ry.stopRefreshOrLoadMore();
                     }
-                },5000);
+                }, 1000);
             }
 
             @Override
@@ -98,7 +121,7 @@ public class RecyclerFragment extends Fragment {
                             adapter.notifyDataSetChanged();
                             ry.stopRefreshOrLoadMore();
                         }
-                    },5000);
+                    }, 1000);
                 } else {
                     ry.stopRefreshOrLoadMore();
                     ry.setIsCanLoadMore(false);
@@ -109,22 +132,13 @@ public class RecyclerFragment extends Fragment {
         ry.setScrollCallback(new BaseRecyclerView.ScrollCallback() {
             @Override
             public void onTouchUp(float diffY) {
-                clickMaskHelper.dismissMaskLayout();
+                helper.dismissMaskLayout();
             }
         });
-        clickMaskHelper.setMaskItemListener(new ItemLongClickMaskHelper.ItemMaskClickListener() {
+        helper.setOnCtItemMaskHelperClickListener(new OnCtItemMaskHelperClickListener() {
             @Override
-            public void fristBtn(int positon) {
-            }
-
-            @Override
-            public void secondBtn(int positon) {
-
-            }
-
-            @Override
-            public void threeBtn(int positon) {
-
+            public void onItemClick(int position, int index ) {
+                Toast.makeText(getActivity(), "index" + index+": position "+position, Toast.LENGTH_SHORT).show();
             }
         });
     }

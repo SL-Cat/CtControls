@@ -5,23 +5,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="15dp"
     tools:context=".ThreeActivity">
 
+
     <cat.customize.view.CtSeekBar
+        android:id="@+id/sek"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        app:track_left_color = "@color/color_FFC107"
+        app:progress_max="10"
+        app:progress_min="0" />
 
+    <TextView
+        android:id="@+id/tv"
+        android:layout_width="match_parent"
+        android:textSize="16sp"
+        android:gravity="center"
+        android:text="0"
+        android:layout_height="wrap_content">
 
+    </TextView>
     <cat.customize.view.CtRadioProgressView
         android:id="@+id/ct_play_btn"
-        android:layout_margin="10dp"
         android:layout_width="80dp"
-        android:layout_height="80dp" />
+        android:layout_height="80dp"
+        android:layout_margin="10dp" />
+
+    <cat.customize.view.CtRadioTxView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:text="100"
+        app:text_color="@color/color_ffffff" />
 
     <LinearLayout
         android:id="@+id/test_frag"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
 
 </LinearLayout>

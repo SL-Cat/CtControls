@@ -203,7 +203,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
         isReadFalg = type;
         if(readStatus)return;
         if (type) {
-            readBtn.setBackgroundResource(R.drawable.ct_right_radius_blue_bg);
+            readBtn.setBackgroundResource(R.drawable.ct_radius_blue_bg);
         } else {
             if (unClickReadDrawable != -1) {
                 readBtn.setBackgroundResource(unClickReadDrawable);

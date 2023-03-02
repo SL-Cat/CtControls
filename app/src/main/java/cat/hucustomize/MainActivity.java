@@ -20,7 +20,6 @@ import java.util.Locale;
 
 import cat.customize.bean.PopuStrBean;
 import cat.customize.datepicker.CustomDatePicker;
-import cat.customize.fragment.CreateFragUlite;
 import cat.customize.ulite.DateUtils;
 import cat.customize.ui.ISelectButton;
 import cat.customize.view.PopuSpringView;
@@ -76,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
                 customDatePicker.showSpecificTime(true); // 显示时和分
                 customDatePicker.setIsLoop(false); // 不允许循环滚动
                 customDatePicker.show(DateUtils.getPreTime(DateUtils.getStringDate(), "-4320"));
-
             }
         });
     }
@@ -107,13 +105,16 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.ct_hide_all).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                readButton.hideOrOpenReadBtn(false);
+                readButton.visibilityLeft(true);
+                readButton.hideOrOpenReadBtn(true);
                 readButton.hideOrOpenScanBtn(false);
             }
         });
         findViewById(R.id.ct_hide_read).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                readButton.visibilityLeft(true);
+                readButton.hideOrOpenScanBtn(true);
                 readButton.hideOrOpenReadBtn(true);
             }
         });
@@ -131,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 PopupWindownView popupWindownView = new PopupWindownView(MainActivity.this);
-                popupWindownView.setWidthMatch(false);
-                popupWindownView.showPop(popuTv, 0, 0,  R.layout.ct_popu_layout,new PopupWindownView.PopupCallBack() {
+                popupWindownView.setWidthMatch(true);//设置宽度撑满：不撑满界面
+                popupWindownView.showPop(popuTv, 0, 0, R.layout.ct_popu_layout, new PopupWindownView.PopupCallBack() {
                     @Override
                     public void onCallBack(PopupWindow mPopupWindow) {
                     }
@@ -186,7 +187,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void readBtn() {
-        ((RfidCleanButton) findViewById(R.id.ct_main_read_clean_btn)).setOnRfidBtnListener(new RfidCleanButton.OnRfidBtnListener() {
+        final RfidCleanButton cleanButton = (RfidCleanButton) findViewById(R.id.ct_main_read_clean_btn);
+        cleanButton.setOnRfidBtnListener(new RfidCleanButton.OnRfidBtnListener() {
             @Override
             public void startRead(boolean isRead) {
                 ToastUlit.Toast(instance, String.valueOf(isRead));
@@ -194,11 +196,33 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void clean() {
+                cleanButton.initView();
                 ToastUlit.Toast(instance, "清除");
             }
         });
 
         final ReadCleanPowerButton readbtn = (ReadCleanPowerButton) findViewById(R.id.ct_main_read_btn);
+        ((TextView) findViewById(R.id.power_tv_01)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readbtn.getPowerLl().setVisibility(View.GONE);
+            }
+        });
+
+        ((TextView) findViewById(R.id.power_tv_02)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readbtn.getResetTv().setVisibility(View.GONE);
+            }
+        });
+
+        ((TextView) findViewById(R.id.power_tv_03)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                readbtn.getReadRl().setBackgroundResource(R.color.color_49AAB9);
+            }
+        });
+
         readbtn.setPowerCode(10);
         readbtn.setOnReadCleanPowerListener(new ReadCleanPowerButton.OnReadCleanPowerListener() {
             @Override
@@ -224,20 +248,12 @@ public class MainActivity extends AppCompatActivity {
         mList.add(new PopuStrBean("code03", 3));
         mList.add(new PopuStrBean("code04", 4));
         final PopuSpringView springView = (PopuSpringView) findViewById(R.id.ct_main_popu_spring);
-
-//两种方法，这种直接设置数据用默认的adapter ，或者换自定义的adapter
+        //两种方法，这种直接设置数据用默认的adapter ，或者换自定义的adapter
         springView.setData(mList, new PopuSpringView.OnPopuSpringListener() {
             @Override
             public void OnClickItem(PopuStrBean bean) {
-
             }
         });
-//        final List<TestStrBean> list = new ArrayList<>();
-//        list.add(new TestStrBean("a"));
-//        list.add(new TestStrBean("b"));
-//        list.add(new TestStrBean("c"));
-//        list.add(new TestStrBean("d"));
-//        list.add(new TestStrBean("e"));
 //        springView.setAdapter(new TestAdapter(instance, list), new AdapterView.OnItemClickListener() {
 //            @Override
 //            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

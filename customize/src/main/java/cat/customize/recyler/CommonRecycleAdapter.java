@@ -24,6 +24,9 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
 
     private int footLayoutId = -1;
 
+    private int secondTime = 500;
+
+
     // 普通布局
     private final int TYPE_ITEM = 1;
 
@@ -60,6 +63,7 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
 
     @Override
     public void onBindViewHolder(CommonViewHolder holder, int position) {
+        holder.setSecondTime(secondTime);
         holder.setCommonClickListener(new CommonViewHolder.onItemCommonClickListener() {
             @Override
             public void onItemClickListener(int position) {
@@ -83,6 +87,15 @@ public abstract class CommonRecycleAdapter<T> extends RecyclerView.Adapter<Commo
         } else {
             return dataList.size();
         }
+    }
+
+    /**
+     * 设置连续点击的时间
+     *
+     * @param secondTime
+     */
+    public void setSecondTime(int secondTime) {
+        this.secondTime = secondTime;
     }
 
 

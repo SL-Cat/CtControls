@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent"
-    tools:context="cat.hucustomize.list.XListViewActivity">
+    android:layout_height="match_parent">
 
     <cat.customize.xlist.XListView
         android:id="@+id/lst"

@@ -211,4 +211,8 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         setRadiosBtn(strList);
     }
 
+
+    public void setMaxLines(int maxLines){
+        this.maxLines = maxLines;
+    }
 }

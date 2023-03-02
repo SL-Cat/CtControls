@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="10dp"
-        android:src="@mipmap/ct_tag_ig" />
+        android:src="@mipmap/ct_search_ig" />
 
     <EditText
         android:id="@+id/ct_radio_edit_input"

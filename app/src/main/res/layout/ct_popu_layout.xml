@@ -9,7 +9,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:text="测试撑满"
+        android:text="数据1"
+        android:textColor="@color/color_000000"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="数据1"
+        android:textColor="@color/color_000000"
+        android:textSize="14sp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:text="数据1"
         android:textColor="@color/color_000000"
         android:textSize="14sp" />
 </LinearLayout>

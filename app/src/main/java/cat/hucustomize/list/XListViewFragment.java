@@ -12,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
+import cat.customize.xlist.CanDragListView;
 import cat.customize.xlist.XListView;
 import cat.hucustomize.R;
 import cat.hucustomize.ToastUlit;

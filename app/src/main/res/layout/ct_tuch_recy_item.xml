@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="50dp">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/test_item_tv"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
             android:padding="10dp"
-            android:text="item"
+            android:text="itemitemitemitemitemitemitemitemitemitemitemitemitemitem"
             android:textColor="@color/color_000000"
             android:textSize="20sp" />
 
@@ -22,4 +25,5 @@
             android:layout_height="1px"
             android:background="@color/color_000000" />
     </LinearLayout>
+
 </FrameLayout>
