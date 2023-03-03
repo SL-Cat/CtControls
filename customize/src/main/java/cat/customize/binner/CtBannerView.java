@@ -3,14 +3,18 @@ package cat.customize.binner;
 import android.content.Context;
 import android.content.res.Resources;
 import android.content.res.TypedArray;
+import android.os.Build;
 import android.os.Handler;
 import android.support.annotation.AttrRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
+import android.support.annotation.StyleRes;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -82,17 +86,27 @@ public class CtBannerView<T> extends RelativeLayout {
     private boolean mIsMiddlePageCover = true;
 
     public CtBannerView(@NonNull Context context) {
-        this(context, null);
+        super(context);
+        init();
     }
 
     public CtBannerView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs);
+        readAttrs(context,attrs);
+        init();
     }
 
     public CtBannerView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        readAttrs(context, attrs);
         this.context = context;
+        readAttrs(context,attrs);
+        init();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public CtBannerView(@NonNull Context context, @Nullable AttributeSet attrs, @AttrRes int defStyleAttr, @StyleRes int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
+        readAttrs(context,attrs);
         init();
     }
 
@@ -119,8 +133,8 @@ public class CtBannerView<T> extends RelativeLayout {
         mViewPager = view.findViewById(R.id.banner_viewpager);
         mViewPager.setOffscreenPageLimit(4);
 
-//        m3DModePadding = dpToPx(30);
-        m3DModePadding = AndroidUtils.dp2px(context, 30);
+        m3DModePadding = dpToPx(30);
+//        m3DModePadding = AndroidUtils.dp2px(context, 30);
         // 初始化Scroller
         initViewPagerScroll();
 
@@ -494,5 +508,9 @@ public class CtBannerView<T> extends RelativeLayout {
     public void setIndicatorRes(int[] image){
         mIndicatorRes = image;
         initIndicator();
+    }
+
+    public static int dpToPx(int dp) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, Resources.getSystem().getDisplayMetrics());
     }
 }

@@ -4,7 +4,7 @@
                 android:clipChildren="false"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-     <cat.customize.binner.CtBannerView
+     <cat.customize.binner.control.BannerViewPager
          android:id="@+id/banner_viewpager"
          android:layout_width="match_parent"
          android:layout_height="wrap_content"

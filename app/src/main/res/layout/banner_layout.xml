@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <cat.customize.binner.CtBannerView
+        android:id="@+id/banner_gallery_radius"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        app:indicatorPaddingLeft="10dp"
+        app:open_radio_mode="true"
+        app:canLoop="true"
+        app:middle_page_cover="false"
+        app:indicatorAlign="center"
+        />
+
+</LinearLayout>

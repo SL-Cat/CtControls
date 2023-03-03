@@ -28,6 +28,15 @@
             android:text="一个可以下拉刷新,上拉加载，横滑Item的XListview" />
 
         <TextView
+            android:id="@+id/ct_main_banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="轮播图" />
+
+        <TextView
             android:id="@+id/ct_main_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

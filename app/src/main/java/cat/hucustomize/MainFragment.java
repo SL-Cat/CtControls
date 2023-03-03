@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.list.RecyclerFragment;
 import cat.hucustomize.list.XListViewFragment;
 
@@ -41,6 +42,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ct_main_bluetooth).setOnClickListener(this);
         view.findViewById(R.id.ct_main_socket).setOnClickListener(this);
         view.findViewById(R.id.ct_main_other).setOnClickListener(this);
+        view.findViewById(R.id.ct_main_banner).setOnClickListener(this);
 
     }
 
@@ -52,6 +54,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.ct_main_xlistview:
                 createHelper.addFragment(new XListViewFragment());
+                break;
+            case R.id.ct_main_banner:
+                createHelper.addFragment(new BannerFragment());
                 break;
             case R.id.ct_main_btn:
                 break;
