@@ -57,7 +57,7 @@ public class CtRadioTxView extends View {
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.ICtRadioTxViewStyle);
 
         textStr = typedArray.getString(R.styleable.ICtRadioTxViewStyle_text);
-        textSize = typedArray.getDimension(R.styleable.ICtRadioTxViewStyle_text_size,32f);
+        textSize = typedArray.getDimension(R.styleable.ICtRadioTxViewStyle_text_size,28f);
         textColor = typedArray.getColor(R.styleable.ICtRadioTxViewStyle_text_color, getResources().getColor(R.color.color_ffffff));
         rectColor = typedArray.getColor(R.styleable.ICtRadioTxViewStyle_rect_color,getResources().getColor(R.color.color_ff0000));
         if(null ==textStr){
@@ -100,7 +100,7 @@ public class CtRadioTxView extends View {
             fontMetrics = paint.getFontMetrics();
         }
         mHeight = (int) mWidth;
-        setMeasuredDimension((int) (mWidth * 1.2), (int) (mHeight * 1.2));
+        setMeasuredDimension((int) (mWidth * 2), (int) (mHeight * 2));
     }
 
 
