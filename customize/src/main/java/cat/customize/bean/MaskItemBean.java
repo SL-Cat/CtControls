@@ -12,7 +12,7 @@ public class MaskItemBean {
     private String msg;
     private int drawableColor;
 
-    private float textSize = 18;
+    private float textSize = 14;
     private int textColor = R.color.color_ffffff;
 
     private int index;

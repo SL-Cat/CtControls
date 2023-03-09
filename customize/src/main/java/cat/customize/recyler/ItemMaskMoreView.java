@@ -39,8 +39,8 @@ public class ItemMaskMoreView extends FrameLayout {
 
     private OnCtRadioTvItemListener onCtRadioTvItemListener;
 
-    private int leftMargin = 10;
-    private int rightMargin = 10;
+    private int leftMargin = 15;
+    private int rightMargin = 15;
     private int topMargin = 4;
     private int bottomMargin = 4;
 
