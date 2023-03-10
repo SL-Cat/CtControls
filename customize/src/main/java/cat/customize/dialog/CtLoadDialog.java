@@ -135,8 +135,8 @@ public class CtLoadDialog extends BaseDialog {
      * @param listener
      */
     public void setAnimation(Animation animation,Animation.AnimationListener listener){
-        this.animation = animation;
         animation.setAnimationListener(listener);
+        this.animation = animation;
     }
 
     /**
