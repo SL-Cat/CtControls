@@ -14,7 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_gravity="center"
         android:layout_margin="5dp"
-        android:background="@mipmap/ct_load" />
+        android:background="@mipmap/ct_lead_logo" />
 
     <TextView
         android:id="@+id/ct_load_dialog_info"
