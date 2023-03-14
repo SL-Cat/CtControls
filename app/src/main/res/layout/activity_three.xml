@@ -13,6 +13,7 @@
         android:id="@+id/sek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:track_left_color = "@color/color_FFC107"
         app:progress_max="10"
         app:progress_min="0" />
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:textSize="16sp"
         android:gravity="center"
+        android:visibility="gone"
         android:text="0"
         android:layout_height="wrap_content">
 
@@ -29,12 +31,14 @@
     <cat.customize.view.CtRadioProgressView
         android:id="@+id/ct_play_btn"
         android:layout_width="80dp"
+        android:visibility="gone"
         android:layout_height="80dp"
         android:layout_margin="10dp" />
 
     <cat.customize.view.CtRadioTxView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
         app:text="删除"
         app:text_color="@color/color_ffffff" />
 

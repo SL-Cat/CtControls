@@ -62,7 +62,7 @@
             android:padding="10dp">
 
             <cat.customize.ui.ISelectButton
-                android:id="@+id/ct_main_select_btn"
+                android:id="@+id/ct_main_select_btn_s"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

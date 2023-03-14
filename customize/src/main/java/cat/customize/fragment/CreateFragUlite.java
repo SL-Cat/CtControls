@@ -15,22 +15,20 @@ public class CreateFragUlite {
     private AppCompatActivity activity;
     private int layoutId = -1;
 
-    private CreateFragUlite(AppCompatActivity activity) {
+    private CreateFragUlite(AppCompatActivity activity,int layoutId) {
         this.activity = activity;
+        this.layoutId = layoutId;
     }
 
-    public static CreateFragUlite getInstance(AppCompatActivity activity) {
+    public static CreateFragUlite getInstance(AppCompatActivity activity,int layoutId) {
         synchronized (CreateFragUlite.class) {
             if (instance == null) {
-                instance = new CreateFragUlite(activity);
+                instance = new CreateFragUlite(activity,layoutId);
             }
             return instance;
         }
     }
 
-    public void setParentActivity(int id) {
-        this.layoutId = id;
-    }
 
     public void addFragment(int id, Fragment fragment) {
         FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
@@ -42,6 +40,7 @@ public class CreateFragUlite {
         if (layoutId == -1) return;
         FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.replace(layoutId, fragment);
         fragmentTransaction.commit();
     }

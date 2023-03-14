@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.text.TextUtils;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,11 +43,11 @@ public class CtToastDialog extends BaseDialog {
         setBigByScreenWidth(0.8f);
     }
 
-    public void setDialogBg(int resource){
+    public void setDialogBg(int resource) {
         dialogBg.setBackgroundResource(resource);
     }
 
-    public void setTime(int time){
+    public void setTime(int time) {
         this.time = time;
     }
 
@@ -61,7 +62,7 @@ public class CtToastDialog extends BaseDialog {
     }
 
     public void setConnectText(String connectText) {
-        contTv.setVisibility(TextUtils.isEmpty(connectText) ? View.GONE:View.VISIBLE);
+        contTv.setVisibility(TextUtils.isEmpty(connectText) ? View.GONE : View.VISIBLE);
         if (!TextUtils.isEmpty(connectText)) {
             contTv.setText(connectText);
         }
@@ -77,6 +78,19 @@ public class CtToastDialog extends BaseDialog {
 
     public void setConnectVisibility(int visibility) {
         contTv.setVisibility(visibility);
+    }
+
+    public TextView getInfoTv() {
+        return infoTv;
+    }
+
+    public TextView getContTv() {
+        return contTv;
+    }
+
+    public void setTextSize(float textSize) {
+        infoTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize);
+        contTv.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSize - 3);
     }
 
     @Override

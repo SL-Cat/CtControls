@@ -3,13 +3,14 @@ package cat.hucustomize;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.circularreveal.CircularRevealFrameLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import cat.hucustomize.frg.BannerFragment;
+import cat.hucustomize.frg.ButtonFragment;
+import cat.hucustomize.frg.SelectFragment;
 import cat.hucustomize.list.RecyclerFragment;
 import cat.hucustomize.list.XListViewFragment;
 
@@ -35,7 +36,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ct_main_touchcallbackrecycler).setOnClickListener(this);
         view.findViewById(R.id.ct_main_xlistview).setOnClickListener(this);
         view.findViewById(R.id.ct_main_btn).setOnClickListener(this);
-        view.findViewById(R.id.ct_main_select_btn).setOnClickListener(this);
+        view.findViewById(R.id.ct_main_select_btn_s).setOnClickListener(this);
         view.findViewById(R.id.ct_main_dialog_btn).setOnClickListener(this);
         view.findViewById(R.id.ct_main_lead_read).setOnClickListener(this);
         view.findViewById(R.id.ct_main_lead_other).setOnClickListener(this);
@@ -59,8 +60,10 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 createHelper.addFragment(new BannerFragment());
                 break;
             case R.id.ct_main_btn:
+                createHelper.addFragment(new ButtonFragment());
                 break;
             case R.id.ct_main_select_btn:
+                createHelper.addFragment(new SelectFragment());
                 break;
             case R.id.ct_main_dialog_btn:
                 break;

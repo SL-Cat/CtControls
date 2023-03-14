@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:padding="10dp"
+        android:gravity="left"
+        android:layout_height="match_parent">
+
+        <cat.customize.view.CtSeekBar
+            android:id="@+id/sek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:track_left_color = "@color/color_FFC107"
+            app:progress_max="10"
+            app:progress_min="0" />
+
+        <cat.customize.view.PopuSpringView
+            android:id="@+id/ct_main_popu_spring"
+            android:layout_width="250dp"
+            android:layout_marginTop="20dp"
+            android:layout_height="wrap_content"
+            app:spring_text="一个popuwind改的spring"></cat.customize.view.PopuSpringView>
+
+        <TextView
+            android:id="@+id/ct_main_wave_popu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="popuwindonw撑满"
+            android:visibility="visible" />
+
+        <TextView
+            android:id="@+id/ct_select_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/ct_radius_divider_white_bg"
+            android:padding="10dp"
+            android:text="年月日时间选择器" />
+
+        <cat.customize.datepicker.DatePickerView
+            android:id="@+id/ct_second_loop"
+            android:layout_width="120dp"
+            android:layout_marginTop="15dp"
+            android:layout_height="160dp" />
+    </LinearLayout>
+
+</ScrollView>

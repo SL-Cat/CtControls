@@ -24,8 +24,7 @@ public class ThreeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_three);
         playBtn();
-        createHelper = CreateFragUlite.getInstance(this);
-        createHelper.setParentActivity(R.id.test_frag);
+        createHelper = CreateFragUlite.getInstance(this,R.id.test_frag);
         createHelper.addFragment(new MainFragment());
         ((CtSeekBar) findViewById(R.id.sek)).setOnCtSeekBarListener(new OnCtSeekBarListener() {
             @Override

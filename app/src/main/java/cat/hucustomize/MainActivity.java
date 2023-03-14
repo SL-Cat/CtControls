@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectBtn() {
-        final ISelectButton selectButton = (ISelectButton) findViewById(R.id.ct_main_select_btn);
+        final ISelectButton selectButton = (ISelectButton) findViewById(R.id.ct_main_select_btn_s);
         selectButton.setChooesOnClickListener(new ISelectButton.IChooesOnClickListener() {
             @Override
             public void onClickChooesItemListerenr(int position) {
