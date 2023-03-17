@@ -36,7 +36,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ct_main_touchcallbackrecycler).setOnClickListener(this);
         view.findViewById(R.id.ct_main_xlistview).setOnClickListener(this);
         view.findViewById(R.id.ct_main_btn).setOnClickListener(this);
-        view.findViewById(R.id.ct_main_select_btn_s).setOnClickListener(this);
+        view.findViewById(R.id.ct_main_select_btn).setOnClickListener(this);
         view.findViewById(R.id.ct_main_dialog_btn).setOnClickListener(this);
         view.findViewById(R.id.ct_main_lead_read).setOnClickListener(this);
         view.findViewById(R.id.ct_main_lead_other).setOnClickListener(this);

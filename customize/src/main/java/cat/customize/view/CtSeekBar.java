@@ -45,6 +45,8 @@ public class CtSeekBar extends View {
     private int thumb_color_on_dragging; // 拖动滑块拖动中颜色
     private int thumb_radius_on_dragging; // 拖动滑块拖动中半径
 
+    private int thumb_radius_outer_color; // 拖动圆块的边线颜色
+
     /********************** 绘制相关 **********************/
 
     private Paint paint; // 画笔
@@ -83,6 +85,7 @@ public class CtSeekBar extends View {
         this.thumb_color_on_dragging = typedArray.getColor(R.styleable.ICtSeekBarStyle_thumb_color_on_dragging, thumb_color_default);
         this.thumb_radius_on_dragging = typedArray.getDimensionPixelSize(R.styleable.ICtSeekBarStyle_thumb_radius_on_dragging, thumb_radius_default + AndroidUtils.dp2px(context, 2));
 
+        this.thumb_radius_outer_color = typedArray.getColor(R.styleable.ICtSeekBarStyle_thumb_radius_outer_color, getResources().getColor(R.color.color_9e9e9e));
         typedArray.recycle();
 
         thumb_radius = thumb_radius_default;
@@ -133,7 +136,7 @@ public class CtSeekBar extends View {
      * 绘制拖动滑块
      */
     private void drawThumb(Canvas canvas, int currentProgress) {
-        paint.setColor(getResources().getColor(R.color.color_9e9e9e));
+        paint.setColor(thumb_radius_outer_color);
         RectF rectF = new RectF();
         rectF.left = yCenter - thumb_radius - 1 +  currentProgress;
         rectF.top = yCenter - thumb_radius - 1;

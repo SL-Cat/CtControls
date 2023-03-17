@@ -119,6 +119,8 @@
         <attr name="thumb_color_on_dragging" format="color|reference"/> <!-- 拖动滑块拖动中颜色 -->
         <attr name="thumb_radius_on_dragging" format="dimension|reference"/> <!-- 拖动滑块拖动中半径 -->
 
+        <attr name="thumb_radius_outer_color" format="color|reference"/> <!-- 拖动圆块的边线颜色 -->
+
     </declare-styleable>
 
     <declare-styleable name="ICtRadioTxViewStyle">

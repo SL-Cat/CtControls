@@ -39,10 +39,10 @@ public class ItemMaskMoreView extends FrameLayout {
 
     private OnCtRadioTvItemListener onCtRadioTvItemListener;
 
-    private int leftMargin = 15;
-    private int rightMargin = 15;
-    private int topMargin = 4;
-    private int bottomMargin = 4;
+    private int leftMargin = 25;
+    private int rightMargin = 25;
+    private int topMargin = 5;
+    private int bottomMargin = 5;
 
     private int backgroundColor = R.drawable.ct_mask_radius_bg;
 

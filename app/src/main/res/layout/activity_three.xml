@@ -13,9 +13,9 @@
         android:id="@+id/sek"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"
         app:track_left_color = "@color/color_FFC107"
         app:progress_max="10"
+        app:thumb_radius_outer_color="@color/color_007BFF"
         app:progress_min="0" />
 
     <TextView

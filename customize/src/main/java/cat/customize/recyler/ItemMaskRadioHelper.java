@@ -23,6 +23,7 @@ public class ItemMaskRadioHelper {
     private FrameLayout mRootFrameLayout; //列表Item根布局FrameLayout
     private int position = 0;
     private final ItemMaskMoreView maskMoreView;
+    private boolean isClose = true;//设置是否点击后直接关闭幕布
 
     private OnCtItemMaskHelperClickListener onCtItemMaskHelperClickListener;
 
@@ -34,6 +35,9 @@ public class ItemMaskRadioHelper {
             public void itemClick(int index) {
                 if (onCtItemMaskHelperClickListener != null) {
                     onCtItemMaskHelperClickListener.onItemClick(position,index);
+                    if(isClose) {
+                        dismissMaskLayout();
+                    }
                 }
             }
         });
@@ -67,6 +71,15 @@ public class ItemMaskRadioHelper {
         if (mRootFrameLayout != null) {
             mRootFrameLayout.removeView(maskMoreView);
         }
+    }
+
+    /**
+     * 设置是否自动关闭幕布
+     * 默认关闭
+     * @param isClose
+     */
+    public void setClose(boolean isClose){
+        this.isClose = isClose;
     }
 
     /**

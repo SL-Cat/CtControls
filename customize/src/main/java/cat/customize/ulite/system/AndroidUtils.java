@@ -23,6 +23,7 @@ import android.os.Vibrator;
 import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Toast;
@@ -59,7 +60,7 @@ public class AndroidUtils {
         MainExecutor.execute(runnable);
     }
 
-    public static final void MainExecutorSchedule(Runnable runnable){
+    public static final void MainExecutorSchedule(Runnable runnable) {
         scheduledThreadPool.schedule(runnable, (long) 0.5, TimeUnit.SECONDS);
     }
 
@@ -69,7 +70,7 @@ public class AndroidUtils {
 
     /**
      * 获取屏幕的分辨率
-     * */
+     */
     public static DisplayMetrics getActivityDisplayMetrics(Activity activity) {
         DisplayMetrics displayMetrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
@@ -78,7 +79,7 @@ public class AndroidUtils {
 
     /**
      * 获取屏幕的物理尺寸（大小）
-     * */
+     */
     public static Point getActivityDisplaySize(Activity activity) {
         Point outSize = new Point();
         activity.getWindowManager().getDefaultDisplay().getSize(outSize);
@@ -107,7 +108,7 @@ public class AndroidUtils {
 
     /**
      * 提示语
-     * */
+     */
     public static void showToast(final Activity activity, final String text) {
         CtLog.d(TAG, "showToast: " + activity + " " + text);
         if (activity == null || text == null) {
@@ -126,7 +127,7 @@ public class AndroidUtils {
      *
      * @param c
      * @param info
-     * @param time  弹出时间
+     * @param time 弹出时间
      */
     public static void setToatBytTime(Context c, String info, int time) {
         final Toast toast = Toast.makeText(c, info, Toast.LENGTH_SHORT);
@@ -255,9 +256,9 @@ public class AndroidUtils {
      */
     public static Intent getLaunchAlbumIntent() {
         Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-         intent.addCategory(Intent.CATEGORY_OPENABLE);
-         intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-         intent.setType("image/*");
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setData(MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+        intent.setType("image/*");
         return intent;
     }
 
@@ -486,6 +487,20 @@ public class AndroidUtils {
         return (int) (pxValue / density + 0.5f);
     }
 
+    /**
+     * 转换px为sp
+     */
+    public static int px2sp(Context context, float pxValue) {
+        final float density = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / density );
+    }
+
+    /**
+     * sp转px
+     */
+    public static int spToPixels(Context context, final float sp) {
+        return (int) Math.ceil(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics()));
+    }
     /**
      * 转换pt为px
      */

@@ -13,8 +13,12 @@ import android.util.TypedValue;
 import android.view.MotionEvent;
 import android.view.View;
 
+import java.time.format.TextStyle;
+
 import cat.customize.R;
 import cat.customize.ulite.system.AndroidUtils;
+
+import static cat.customize.ulite.system.AndroidUtils.*;
 
 /**
  * Created by HSL
