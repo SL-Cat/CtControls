@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 
 import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.frg.ButtonFragment;
+import cat.hucustomize.frg.DialogFragment;
 import cat.hucustomize.frg.SelectFragment;
 import cat.hucustomize.list.RecyclerFragment;
 import cat.hucustomize.list.XListViewFragment;
@@ -66,6 +67,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 createHelper.addFragment(new SelectFragment());
                 break;
             case R.id.ct_main_dialog_btn:
+                createHelper.addFragment(new DialogFragment());
                 break;
             case R.id.ct_main_lead_read:
                 break;

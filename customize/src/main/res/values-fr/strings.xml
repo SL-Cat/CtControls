@@ -1,0 +1,32 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <string name="ct_loading_text">En cours de chargement...</string>
+    <string name="ct_stop_read">Arrêter de lire</string>
+    <string name="ct_start_read">Commencer à lire</string>
+    <string name="ct_start_read_rfid">Commencer à lire(RFID)</string>
+    <string name="ct_stop_read_rfid">Arrêter de lire(RFID)</string>
+    <string name="ct_start_scan">Commencer la scanning</string>
+    <string name="ct_power_setting">Réglage de la puissance</string>
+    <string name="ct_clean">Annuler</string>
+    <string name="ct_confirm">Confirmation</string>
+    <string name="ct_delete">Supprimer</string>
+    <string name="ct_reset">Réinitialiser</string>
+    <string name="ct_review">Audit</string>
+    <string name="ct_promt">Suggestions</string>
+    <string name="ct_select">le choix</string>
+    <string name="ct_year">année</string>
+    <string name="ct_month">mois</string>
+    <string name="ct_day">mois</string>
+    <string name="ct_hour">heure</string>
+    <string name="ct_minute">minute</string>
+
+    <!-- 加载控件  -->
+    <string name="ct_load_all">Tout chargé</string>
+    <string name="ct_load_after_letting_go">Release et charge</string>
+    <string name="ct_pull_up_loading">Charge en haut</string>
+    <string name="ct_is_loading">En cours de chargement</string>
+    <string name="ct_pull_down_to_refresh">Rafriser</string>
+    <string name="ct_refresh_after_letting_go">Rafriser après la libération</string>
+    <string name="ct_refreshing">Mise à jour</string>
+    <string name="ct_loadMore">Encharger plus</string>
+</resources>

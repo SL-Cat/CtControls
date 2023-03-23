@@ -8,6 +8,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import cat.hucustomize.R;
+
 /**
  * Created by HSL
  * on 2023/3/13.
@@ -19,7 +21,7 @@ public class DialogFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-//        View logView
-        return super.onCreateView(inflater, container, savedInstanceState);
+        View logView = inflater.inflate(R.layout.dialog_layout,container,false);
+        return logView;
     }
 }
