@@ -10,6 +10,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="fragment_bg">
+        <item name="android:clickable">true</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:background">@color/color_ffffff</item>
+    </style>
 
     <style name="ct_RadiusDialog" parent="Theme.AppCompat.Dialog">
         <item name="android:windowFrame">@null</item><!--边框-->

@@ -106,48 +106,6 @@ public class AndroidUtils {
         return result;
     }
 
-    /**
-     * 提示语
-     */
-    public static void showToast(final Activity activity, final String text) {
-        CtLog.d(TAG, "showToast: " + activity + " " + text);
-        if (activity == null || text == null) {
-            return;
-        }
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(activity, text, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
-    /**
-     * 根据自己的时间去定义一个Toast 输入时间为毫秒
-     *
-     * @param c
-     * @param info
-     * @param time 弹出时间
-     */
-    public static void setToatBytTime(Context c, String info, int time) {
-        final Toast toast = Toast.makeText(c, info, Toast.LENGTH_SHORT);
-        toast.show();
-        Handler handler = new Handler();
-        handler.postDelayed(new Runnable() {
-            public void run() {
-                toast.cancel();
-            }
-        }, time);
-    }
-
-    public static void showToast(final View view, final String text) {
-        view.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(view.getContext(), text, Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
     public static Dialog createDialog(Activity activity, int theme, View view, boolean cancelable,
                                       boolean canceledOnTouchOutSide) {

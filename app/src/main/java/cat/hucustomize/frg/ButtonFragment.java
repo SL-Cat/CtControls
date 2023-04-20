@@ -17,7 +17,7 @@ import cat.hucustomize.R;
 
 public class ButtonFragment extends Fragment {
 
-    @Nullable
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View logView = inflater.inflate(R.layout.button_layout,container,false);

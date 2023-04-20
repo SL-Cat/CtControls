@@ -6,6 +6,7 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -137,9 +138,9 @@ public class CtRadioProgressView extends View {
 
         viewHalfLength = viewHeight < viewWidth ? viewHeight / 2 : viewWidth / 2;
 
-        int paintAwidth = viewHalfLength / 15;
+        int paintAwidth = viewHalfLength / 2;
 
-        int paintBwidth = viewHalfLength / 8;
+        int paintBwidth = viewHalfLength / 2;
 
         rectF.left = viewCenterX - (viewHalfLength - paintAwidth / 2);
 
@@ -161,6 +162,7 @@ public class CtRadioProgressView extends View {
         paintA.setStrokeWidth(paintAwidth);
         paintA.setAntiAlias(true);
         paintA.setStyle(Paint.Style.STROKE);
+        paintA.setTextSize(50);
 
         paintB.setColor(getResources().getColor(colorb));
         paintB.setStrokeWidth(paintBwidth);
@@ -180,11 +182,13 @@ public class CtRadioProgressView extends View {
         canvas.drawArc(rectF2, -90, progress * 3.6f, false, paintB);
 
         Paint paint = new Paint();
-        float v = paint.measureText("" + current_num);
-        paint.setColor(getResources().getColor(R.color.color_000000));
         paint.setTextSize(32);
+        paint.setColor(getResources().getColor(R.color.color_000000));
         paint.setAntiAlias(true);
-        canvas.drawText(current_num + "", viewCenterX - v, viewCenterY + 16, paint);
+        float v = paint.measureText("" + current_num);
+        canvas.drawText(current_num + "", (getWidth() / 2) - (v / 2), viewCenterY + 16, paint);
+
+
     }
 
     /**
@@ -208,7 +212,6 @@ public class CtRadioProgressView extends View {
             if (maxProgress != -1) {
                 double i = (operation / (double) maxProgress) * 100;
                 progress = (float) i;
-                CtLog.d("" + i);
             } else {
                 progress = 0;
             }

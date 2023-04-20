@@ -1,5 +1,11 @@
 package cat.hucustomize;
 
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,7 +13,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import java.util.List;
+
+import cat.customize.ulite.system.AndroidUtils;
 import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.frg.ButtonFragment;
 import cat.hucustomize.frg.DialogFragment;
@@ -76,9 +86,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             case R.id.ct_main_bluetooth:
                 break;
             case R.id.ct_main_socket:
+                AndroidUtils.startPackage(getActivity(),"com.redstone.ota.ui");
                 break;
             case R.id.ct_main_other:
+                AndroidUtils.startPackage(getActivity(),"com.seuic.uhftool");
                 break;
         }
     }
+
 }

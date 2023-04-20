@@ -31,7 +31,6 @@
     <cat.customize.view.CtRadioProgressView
         android:id="@+id/ct_play_btn"
         android:layout_width="80dp"
-        android:visibility="gone"
         android:layout_height="80dp"
         android:layout_margin="10dp" />
 
@@ -42,7 +41,7 @@
         app:text="删除"
         app:text_color="@color/color_ffffff" />
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/test_frag"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

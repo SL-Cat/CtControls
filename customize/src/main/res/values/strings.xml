@@ -1,5 +1,5 @@
 <resources>
-    <string name="ct_name">CtCustomize</string>
+    <string name="ct_name" translatable="false">CtCustomize</string>
 
     <string name="ct_loading_text" translatable="false">加载中...</string>
     <string name="ct_stop_read">停止读取</string>

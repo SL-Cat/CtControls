@@ -13,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +92,9 @@ public class BannerFragment  extends Fragment {
         @Override
         public void onBind(Context context, int position, Integer data) {
             // 数据绑定
-            mImageView.setImageResource(data);
+//            mImageView.setImageResource(data);
+            Glide.with(context).load(data).into(mImageView);
+
         }
     }
 
