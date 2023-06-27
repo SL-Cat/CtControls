@@ -2,11 +2,11 @@ package cat.hucustomize;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -23,6 +23,8 @@ import cat.customize.bean.PopuStrBean;
 import cat.customize.datepicker.CustomDatePicker;
 import cat.customize.ulite.DateUtils;
 import cat.customize.ui.ISelectButton;
+import cat.customize.ulite.wifi.NetSpeed;
+import cat.customize.ulite.wifi.NetSpeedTimer;
 import cat.customize.view.PopuSpringView;
 import cat.customize.view.PopupWindownView;
 import cat.customize.ui.ReadCleanPowerButton;
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+//        NetSpeedTimer netSpeedTimer = new NetSpeedTimer(this,new NetSpeed(),new Handler());
     }
 
     private void selectDay() {
@@ -164,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void selectBtn() {
-        final ISelectButton selectButton = (ISelectButton) findViewById(R.id.ct_main_select_btn_s);
+        final ISelectButton selectButton = (ISelectButton) findViewById(R.id.ct_select_btn);
         selectButton.setChooesOnClickListener(new ISelectButton.IChooesOnClickListener() {
             @Override
             public void onClickChooesItemListerenr(int position) {

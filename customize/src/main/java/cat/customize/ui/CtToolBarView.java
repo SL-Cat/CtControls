@@ -11,6 +11,8 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.logging.Handler;
+
 import cat.customize.R;
 
 /**
@@ -71,7 +73,6 @@ public class CtToolBarView extends LinearLayout implements View.OnClickListener 
         String rightStr = typedArray.getString(R.styleable.IToolBarStyle_right_text);
         int leftImageBackground = typedArray.getResourceId(R.styleable.IToolBarStyle_left_image, R.mipmap.ct_back_ig);
         boolean hideRightImage = typedArray.getBoolean(R.styleable.IToolBarStyle_hide_right_image, false);
-
         if (titleStr != null) {
             title.setText(titleStr);
         }

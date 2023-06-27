@@ -1,5 +1,6 @@
 package cat.hucustomize;
 
+import android.Manifest;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -9,21 +10,28 @@ import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import cat.customize.ulite.system.AndroidUtils;
 import cat.hucustomize.frg.BannerFragment;
+import cat.hucustomize.frg.BluetoothFragment;
 import cat.hucustomize.frg.ButtonFragment;
 import cat.hucustomize.frg.DialogFragment;
+import cat.hucustomize.frg.LeadReadFragment;
 import cat.hucustomize.frg.SelectFragment;
+import cat.hucustomize.frg.TestViewpager;
 import cat.hucustomize.list.RecyclerFragment;
 import cat.hucustomize.list.XListViewFragment;
+import cat.hucustomize.permission.PermissionListener;
 
 import static cat.hucustomize.ThreeActivity.createHelper;
 
@@ -80,18 +88,66 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 createHelper.addFragment(new DialogFragment());
                 break;
             case R.id.ct_main_lead_read:
+                createHelper.addFragment(new LeadReadFragment());
                 break;
             case R.id.ct_main_lead_other:
                 break;
             case R.id.ct_main_bluetooth:
+                initBluetoothPermission();
                 break;
             case R.id.ct_main_socket:
-                AndroidUtils.startPackage(getActivity(),"com.redstone.ota.ui");
                 break;
             case R.id.ct_main_other:
-                AndroidUtils.startPackage(getActivity(),"com.seuic.uhftool");
+                createHelper.addFragment(new TestViewpager());
                 break;
         }
     }
+
+    public void initBluetoothPermission(){
+        requestRunTimePermission(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}
+                , new PermissionListener() {
+                    @Override
+                    public void onGranted() {  //所有权限授权成功
+                        createHelper.addFragment(new BluetoothFragment());
+                    }
+
+                    @Override
+                    public void onGranted(List<String> grantedPermission) { //授权失败权限集合
+
+                    }
+
+                    @Override
+                    public void onDenied(List<String> deniedPermission) { //授权成功权限集合
+
+                    }
+                });
+    }
+
+    /**
+     * 权限申请
+     *
+     * @param permissions 待申请的权限集合
+     * @param listener    申请结果监听事件
+     */
+    protected void requestRunTimePermission(String[] permissions, PermissionListener listener) {
+        //用于存放为授权的权限
+        List<String> permissionList = new ArrayList<>();
+        //遍历传递过来的权限集合
+        for (String permission : permissions) {
+            //判断是否已经授权
+            if (ContextCompat.checkSelfPermission(getActivity(), permission) != PackageManager.PERMISSION_GRANTED) {
+                //未授权，则加入待授权的权限集合中
+                permissionList.add(permission);
+            }
+        }
+
+        //判断集合
+        if (!permissionList.isEmpty()) {  //如果集合不为空，则需要去授权
+            ActivityCompat.requestPermissions(getActivity(), permissionList.toArray(new String[permissionList.size()]), 1);
+        } else {  //为空，则已经全部授权
+            listener.onGranted();
+        }
+    }
+
 
 }

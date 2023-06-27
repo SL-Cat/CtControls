@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <cat.customize.xlist.SmartScrollView
+        android:id="@+id/smart_sv"
+        android:layout_width="100dp"
+        android:background="@color/colorAccent"
+        android:layout_height="match_parent" >
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条这时一个很长很长的滚动条"
+            android:textSize="50sp"
+            android:gravity="center"
+            android:paddingHorizontal="10dp"
+            android:layout_height="match_parent"/>
+
+    </cat.customize.xlist.SmartScrollView>
+
+</LinearLayout>

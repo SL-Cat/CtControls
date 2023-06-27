@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/fragment_bg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cat.customize.ui.RfidCleanButton
+        android:id="@+id/ct_main_read_clean_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"></cat.customize.ui.RfidCleanButton>
+
+    <cat.customize.ui.ScanResetReadButton
+        android:id="@+id/ct_scan_reset_read_btn"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:layout_height="wrap_content" />
+
+    <cat.customize.ui.ReadCleanPowerButton
+        android:id="@+id/ct_main_read_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_ff0000"></cat.customize.ui.ReadCleanPowerButton>
+
+
+</LinearLayout>

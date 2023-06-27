@@ -2,10 +2,13 @@ package cat.customize.ulite.file;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Environment;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import cat.customize.ulite.DateUtils;
 
@@ -41,20 +44,30 @@ public class FileUlite {
         if (null != startPath) {
             ownFile = true;
             this.startPath = startPath;
-        }else {
+        } else {
             ownFile = false;
         }
     }
 
     private File getFile(String path) {
-        if (path.endsWith("/")) path.substring(0, path.length() - 1);
+        if (null != path && path.length() > 2) {
+            if (path.endsWith("/")) path.substring(0, path.length() - 1);
+        }
         if (!path.startsWith("/")) path = "/" + path;
         File file;
-        if (ownFile && null != startPath) {
-            file = new File(startPath + path);
-        } else {
-            file = new File(context.getExternalFilesDir(null) + path);
-        }
+//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+//            if (ownFile && null != startPath) {
+//                file = new File("/sdcard/" + startPath + path);
+//            } else {
+//                file = new File("/sdcard/" + path);
+//            }
+//        } else {
+            if (ownFile && null != startPath) {
+                file = new File(startPath + path);
+            } else {
+                file = new File(context.getExternalFilesDir(null) + path);
+            }
+//        }
         return file;
     }
 
@@ -165,5 +178,31 @@ public class FileUlite {
             }
         }
     }
+
+
+    /**
+     * 查询文件夹所有文件
+     * 若是文件夹,则递归再查询文件夹下得文件
+     *
+     * @return
+     */
+    public List<String> findAllFlied(Context context, String path) {
+        List<String> list = new ArrayList<>();
+        File file = getFile(path);
+        if (file == null) return list;
+        if (file.isDirectory()) {
+            File[] files = file.listFiles();
+            if (files == null || files.length == 0) {
+                return list;
+            }
+            for (File childFile : files) {
+                list.addAll(findAllFlied(context, path + "/" + childFile.getName()));
+            }
+        } else {
+            list.add(file.getName());
+        }
+        return list;
+    }
+
 
 }

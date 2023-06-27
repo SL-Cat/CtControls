@@ -450,7 +450,7 @@ public class AndroidUtils {
      */
     public static int px2sp(Context context, float pxValue) {
         final float density = context.getResources().getDisplayMetrics().density;
-        return (int) (pxValue / density );
+        return (int) (pxValue / density);
     }
 
     /**
@@ -459,6 +459,7 @@ public class AndroidUtils {
     public static int spToPixels(Context context, final float sp) {
         return (int) Math.ceil(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, sp, context.getResources().getDisplayMetrics()));
     }
+
     /**
      * 转换pt为px
      */
