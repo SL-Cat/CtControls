@@ -32,7 +32,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.UUID;
 
-import cat.customize.ulite.system.CtLog;
+import cat.customize.ulite.system.LogCt;
 
 import static cat.customize.bluetooth.CtBluetoothHandler.DEVICE_NAME;
 import static cat.customize.bluetooth.CtBluetoothHandler.MESSAGE_DEVICE_NAME;
@@ -82,7 +82,7 @@ public class BluetoothChatService {
 
 
     private synchronized void setState(int state) {
-        CtLog.d("setState:" + mState + " -> " + state);
+        LogCt.d("setState:" + mState + " -> " + state);
         mState = state;
         mHandler.obtainMessage(MESSAGE_STATE_CHANGE, state, -1).sendToTarget();
     }
@@ -94,7 +94,7 @@ public class BluetoothChatService {
 
 
     public synchronized void start() {
-        CtLog.d("start:");
+        LogCt.d("start:");
 
         if (mConnectThread != null) {
             mConnectThread.cancel();
@@ -115,7 +115,7 @@ public class BluetoothChatService {
     }
 
     public synchronized void connect(BluetoothDevice device) {
-        CtLog.d("connect to:" + device);
+        LogCt.d("connect to:" + device);
         if (mState == STATE_CONNECTING) {
             if (mConnectThread != null) {
                 mConnectThread.cancel();
@@ -309,7 +309,7 @@ public class BluetoothChatService {
                         tmp = device.createRfcommSocketToServiceRecord(MY_UUID_SECURE);
                         isFlag = true;
                     } catch (IOException e) {
-                        CtLog.d(e.toString());
+                        LogCt.d(e.toString());
                         //  Log.e(TAG, "Socket Type: " + mSocketType + "create() failed", e);
                     }
                 }
@@ -325,11 +325,11 @@ public class BluetoothChatService {
                 try {
                     tmp.connect();
                 } catch (IOException e) {
-                    CtLog.d("e" + e.toString());
+                    LogCt.d("e" + e.toString());
                     try {
                         tmp.close();
                     } catch (IOException e2) {
-                        CtLog.d("e2" + e2.toString());
+                        LogCt.d("e2" + e2.toString());
                         //   Log.e(TAG, "unable to close() " + mSocketType +
                         //         " socket during connection failure", e2);
                     }

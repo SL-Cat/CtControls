@@ -1,12 +1,7 @@
 package cat.hucustomize;
 
 import android.Manifest;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -16,13 +11,10 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cat.customize.ulite.system.AndroidUtils;
-import cat.customize.ulite.system.CtLog;
 import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.frg.BluetoothFragment;
 import cat.hucustomize.frg.ButtonFragment;

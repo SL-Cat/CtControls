@@ -3,16 +3,11 @@ package cat.customize.view;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 
 import cat.customize.R;
-import cat.customize.ulite.system.AndroidUtils;
-import cat.customize.ulite.system.CtLog;
 
 /**
  * /**

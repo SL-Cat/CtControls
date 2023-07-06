@@ -9,9 +9,8 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import cat.customize.ulite.system.CtLog;
+import cat.customize.ulite.system.LogCt;
 
 /**
  * Created by 123 on 2018/6/29.
@@ -29,7 +28,7 @@ public class BluetoothReceiver extends BroadcastReceiver {
         String action = intent.getAction();
         if (bluetoothListener == null) return;
         BluetoothDevice device = null;
-        CtLog.d(action);
+        LogCt.d(action);
         switch (action) {
             case BluetoothDevice.ACTION_FOUND:
                 device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);

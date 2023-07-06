@@ -1,21 +1,13 @@
 package cat.hucustomize.frg;
 
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
-import cat.customize.ulite.system.AndroidUtils;
-import cat.customize.ulite.system.CtLog;
 import cat.customize.xlist.SmartScrollView;
 import cat.hucustomize.R;
 

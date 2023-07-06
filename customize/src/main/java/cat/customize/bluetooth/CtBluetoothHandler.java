@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
 
-import cat.customize.ulite.system.CtLog;
+import cat.customize.ulite.system.LogCt;
 
 /**
  * Created by HSL
@@ -38,7 +38,7 @@ public class CtBluetoothHandler extends Handler {
                 break;
             case MESSAGE_TOAST:
                 String message = msg.getData().getString(TOAST);
-                CtLog.d(message);
+                LogCt.d(message);
                 onCtBluetoothListener.connectError(message);
                 break;
             case MESSAGE_DEVICE_NAME:

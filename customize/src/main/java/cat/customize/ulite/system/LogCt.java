@@ -16,7 +16,7 @@ import cat.customize.ulite.DateUtils;
  * Created by HSL on 2020/12/23.
  */
 
-public class CtLog {
+public class LogCt {
 
     static {
         HandlerThread handlerThread = new HandlerThread("LogToFile");
@@ -44,7 +44,7 @@ public class CtLog {
                             fout.close();
                         }
                     } catch (Exception e) {
-                        CtLog.e("Exception", e.toString());
+                        LogCt.e("Exception", e.toString());
                     }
                 }
             }

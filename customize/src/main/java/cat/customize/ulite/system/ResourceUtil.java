@@ -19,7 +19,7 @@ public class ResourceUtil {
         }
         catch (Exception e)
         {
-            CtLog.w(className, "", e);
+            LogCt.w(className, "", e);
         }
         return null;
     }
