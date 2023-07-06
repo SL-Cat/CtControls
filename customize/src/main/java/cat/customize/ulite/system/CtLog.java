@@ -33,12 +33,12 @@ public class CtLog {
                     FileOutputStream fout = null;
                     try {
                         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            String path = CtBasicConfig.getPath();
+                            String path = CtBasicConfig.getPath() + CtBasicConfig.getFileName();
                             File dir = new File(path);
                             if (!dir.exists()) {
                                 dir.mkdirs();
                             }
-                            fout = new FileOutputStream(path + CtBasicConfig.getFileName(), true);
+                            fout = new FileOutputStream(path, true);
                             fout.write(finalData.toString().getBytes());
                             fout.write("\r\n".getBytes());
                             fout.close();
@@ -80,48 +80,83 @@ public class CtLog {
 
     public static void i(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.i(tag, msg == null ? "" : msg);
+            log(Log.INFO, tag, msg, 0);
             logToFile(Log.INFO, tag, msg);
         }
     }
 
     public static void i(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.i(tag, msg == null ? "" : msg, tr);
+            log(Log.INFO, tag, msg, 0);
             logToFile(Log.INFO, tag, msg, tr);
         }
     }
+
     public static void d(String msg) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.d("cat_d", msg == null ? "" : msg);
+            log(Log.DEBUG, "cat_d", msg, 0);
             logToFile(Log.DEBUG, "cat_d", DateUtils.getStringDate() + ":" + msg);
         }
     }
 
     public static void d(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.d(tag, msg == null ? "" : msg);
+            log(Log.DEBUG, tag, msg, 0);
             logToFile(Log.DEBUG, tag, DateUtils.getStringDate() + ":" + msg);
         }
     }
 
     public static void d(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.d(tag, msg == null ? "" : msg, tr);
+            log(Log.DEBUG, tag, msg, 0);
             logToFile(Log.DEBUG, tag, msg, tr);
+        }
+    }
+
+    private static void log(int type, String tag, String msg, int index) {
+        if (msg.length() > ((4000 * index) + 4000)) {
+            String str = msg.substring(index * 4000, (index * 4000) + 4000);
+            logInfo(type, tag, str, msg, index, true);
+        } else {
+            String str = msg.substring(index * 4000);
+            logInfo(type, tag, str, msg, index, false);
+        }
+    }
+
+    private static void logInfo(int type, String tag, String str, String msg, int index, boolean isLength) {
+        switch (type) {
+            case Log.VERBOSE:
+                Log.v(tag, str == null ? "" : str);
+                break;
+            case Log.DEBUG:
+                Log.d(tag, str == null ? "" : str);
+                break;
+            case Log.INFO:
+                Log.i(tag, str == null ? "" : str);
+                break;
+            case Log.WARN:
+                Log.w(tag, str == null ? "" : str);
+                break;
+            case Log.ERROR:
+                Log.e(tag, str == null ? "" : str);
+                break;
+        }
+        if (isLength) {
+            index++;
+            log(type, tag, msg, index);
         }
     }
 
     public static void e(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.e(tag, msg == null ? "" : msg);
+            log(Log.ERROR, tag, msg, 0);
             logToFile(Log.ERROR, tag, msg);
         }
     }
 
     public static void e(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
-            Log.e(tag, msg == null ? "" : msg, tr);
+            log(Log.ERROR, tag, msg, 0);
             logToFile(Log.ERROR, tag, msg, tr);
         }
     }

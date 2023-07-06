@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.customize.ulite.system.AndroidUtils;
+import cat.customize.ulite.system.CtLog;
 import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.frg.BluetoothFragment;
 import cat.hucustomize.frg.ButtonFragment;
