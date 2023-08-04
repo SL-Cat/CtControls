@@ -17,7 +17,7 @@ import java.util.Locale;
 import cat.customize.datepicker.CustomDatePicker;
 import cat.customize.datepicker.DatePickerView;
 import cat.customize.ulite.DateUtils;
-import cat.customize.ulite.system.LogCt;
+import cat.customize.ulite.system.CtLog;
 import cat.hucustomize.R;
 
 /**
@@ -45,7 +45,7 @@ public class SelectFragment extends Fragment {
                 final CustomDatePicker customDatePicker = new CustomDatePicker(getActivity(), new CustomDatePicker.ResultHandler() {
                     @Override
                     public void handle(String time) {// 回调接口，获得选中的时间
-                        LogCt.d(time);
+                        CtLog.d(time);
                     }
                 }, "2020-01-01 00:00:00", nowTime);// 初始化日期格式请用：yyyy-MM-dd HH:mm，否则不能正常运行
 

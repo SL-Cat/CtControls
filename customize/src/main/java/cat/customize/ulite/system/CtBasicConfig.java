@@ -12,7 +12,7 @@ public class CtBasicConfig {
 
     public static Context ApplicationContext;
     private static boolean DebugMode = true; //日志是否打印
-    private static boolean LogToFile = false; //是否打印成文件保存
+    private static boolean LogToFile = true; //是否打印成文件保存
     private static String Path = "/sdcard/Lead/Logs/";
     private static String FileName = DateUtils.getStringDateS() + "_OkHttpManager.text";
 

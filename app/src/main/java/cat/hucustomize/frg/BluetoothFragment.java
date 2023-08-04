@@ -16,7 +16,7 @@ import java.util.List;
 import cat.customize.bluetooth.CtBluetoothUlite;
 import cat.customize.bluetooth.OnCtBluetoothListener;
 import cat.customize.bluetooth.OnCtBluetoothSearchListener;
-import cat.customize.ulite.system.LogCt;
+import cat.customize.ulite.system.CtLog;
 import cat.customize.xlist.XListView;
 import cat.hucustomize.R;
 import cat.hucustomize.ToastUlit;
@@ -99,16 +99,16 @@ public class BluetoothFragment extends Fragment {
             public void connectStatus(int status) {
                 switch (status) {
                     case 0:
-                        LogCt.d("连接断开");
+                        CtLog.d("连接断开");
                         break;
                     case 1:
-                        LogCt.d("连接状态变化");
+                        CtLog.d("连接状态变化");
                         break;
                     case 2:
-                        LogCt.d("连接中");
+                        CtLog.d("连接中");
                         break;
                     case 3:
-                        LogCt.d("连接成功");
+                        CtLog.d("连接成功");
                         ctBluetoothUlite.sendMessage("string");
                         break;
                 }
@@ -117,7 +117,7 @@ public class BluetoothFragment extends Fragment {
 
             @Override
             public void connectSuccess(String string) {
-                LogCt.d(string);
+                CtLog.d(string);
             }
 
             @Override
@@ -159,25 +159,25 @@ public class BluetoothFragment extends Fragment {
 
             @Override
             public void searchEnd() {
-                LogCt.d("searchEnd");
+                CtLog.d("searchEnd");
             }
 
             @Override
             public void matchBonded() {
-                LogCt.d("matchBonded");
+                CtLog.d("matchBonded");
                 ctBluetoothUlite.searchMatchDevices();
             }
 
             @Override
             public void matchBonding() {
-                LogCt.d("matchBonding");
+                CtLog.d("matchBonding");
                 ctBluetoothUlite.searchMatchDevices();
 
             }
 
             @Override
             public void matchNone() {
-                LogCt.d("matchNone");
+                CtLog.d("matchNone");
 
             }
         });

@@ -16,7 +16,7 @@ import cat.customize.ulite.DateUtils;
  * Created by HSL on 2020/12/23.
  */
 
-public class LogCt {
+public class CtLog {
 
     static {
         HandlerThread handlerThread = new HandlerThread("LogToFile");
@@ -33,18 +33,18 @@ public class LogCt {
                     FileOutputStream fout = null;
                     try {
                         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            String path = CtBasicConfig.getPath() + CtBasicConfig.getFileName();
-                            File dir = new File(path);
+                            File dir = new File(CtBasicConfig.getPath());
                             if (!dir.exists()) {
                                 dir.mkdirs();
                             }
-                            fout = new FileOutputStream(path, true);
+                            File filed = new File(CtBasicConfig.getPath()+CtBasicConfig.getFileName());
+                            fout = new FileOutputStream(filed, true);
                             fout.write(finalData.toString().getBytes());
                             fout.write("\r\n".getBytes());
                             fout.close();
                         }
                     } catch (Exception e) {
-                        LogCt.e("Exception", e.toString());
+                        CtLog.e("Exception", e.toString());
                     }
                 }
             }

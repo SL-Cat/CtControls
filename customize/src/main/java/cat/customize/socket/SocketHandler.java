@@ -33,6 +33,10 @@ public class SocketHandler extends Handler {
                 String close = (String) msg.obj;
                 onSocketSendingListener.closeConnect(close);
                 break;
+            case SocketCode.SERVICE_CONNECT_ERROR://客户端多次连接失败返回异常
+                String error = (String) msg.obj;
+                onSocketSendingListener.onError(error);
+                break;
             case SocketCode.HOST_CONNECT_OPEN://服务端开启
                 onSocketHostListener.receiveOpen();
                 break;
@@ -60,17 +64,19 @@ public class SocketHandler extends Handler {
 
     /**
      * 服务端回调
+     *
      * @param onSocketHostListener
      */
-    public void setOnSocketHostListener(OnSocketHostListener onSocketHostListener){
+    public void setOnSocketHostListener(OnSocketHostListener onSocketHostListener) {
         this.onSocketHostListener = onSocketHostListener;
     }
 
     /**
      * 客户端回调
+     *
      * @param onSocketSendingListener
      */
-    public void setOnSocketSendingListener(OnSocketSendingListener onSocketSendingListener){
+    public void setOnSocketSendingListener(OnSocketSendingListener onSocketSendingListener) {
         this.onSocketSendingListener = onSocketSendingListener;
     }
 }

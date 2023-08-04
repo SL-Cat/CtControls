@@ -111,7 +111,7 @@ public class SocketService implements IClientIOCallback {
         @Override
         public void onClientDisconnected(IClient client, int serverPort, IClientPool clientPool) {
             super.onClientDisconnected(client, serverPort, clientPool);
-            Log.d("result", "onClientDisconnected: ");
+            Log.d("result", "onClientDisconnected: "+client.getHostIp());
         }
 
         @Override

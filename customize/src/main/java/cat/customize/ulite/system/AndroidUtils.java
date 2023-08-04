@@ -334,7 +334,7 @@ public class AndroidUtils {
      * 安装APK应用程序
      */
     public static void installPackage(Context context, File file) throws FileNotFoundException, Exception {
-        LogCt.d(TAG, "installPackage: " + context + " " + file);
+        CtLog.d(TAG, "installPackage: " + context + " " + file);
         if (!file.exists()) {
             throw new FileNotFoundException("File is not exists filePath = " + file.getAbsolutePath());
         }
@@ -366,7 +366,7 @@ public class AndroidUtils {
                 final ActivityInfo activityInfo = resolveInfo.activityInfo;
                 if (packageName.equals(activityInfo.packageName)) {
                     String className = activityInfo.name;
-                    LogCt.i(TAG, "startPackage: " + packageName + " & " + className);
+                    CtLog.i(TAG, "startPackage: " + packageName + " & " + className);
                     ComponentName cn = new ComponentName(packageName, className);
                     final Intent it = new Intent(Intent.ACTION_MAIN);
                     it.addCategory(Intent.CATEGORY_LAUNCHER);

@@ -57,6 +57,7 @@ public class SocketSend {
     private class MyServerAction extends SocketActionAdapter {
 
         private Handler handler;
+        private int failedCount = 0;
         public MyServerAction(Handler handler) {
             this.handler = handler;
         }
@@ -77,8 +78,16 @@ public class SocketSend {
         @Override
         public void onSocketConnectionFailed(ConnectionInfo info, String action, Exception e) {
             super.onSocketConnectionFailed(info, action, e);
-            //连接失败
-            handler.sendEmptyMessage(SocketCode.SERVICE_CONNECT_FILED);
+            if(failedCount<3){
+                failedCount++;
+                handler.sendEmptyMessage(SocketCode.SERVICE_CONNECT_FILED);
+            }else {
+                //连接失败
+                Message msg = handler.obtainMessage();
+                msg.what = SocketCode.SERVICE_CONNECT_ERROR;
+                msg.obj = e.toString();
+                handler.sendMessage(msg);
+            }
 
         }
 

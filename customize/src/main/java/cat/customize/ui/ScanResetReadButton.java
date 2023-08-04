@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import cat.customize.R;
 import cat.customize.ulite.system.AndroidUtils;
-import cat.customize.ulite.system.LogCt;
+import cat.customize.ulite.system.CtLog;
 
 /**
  * Created by HSL
@@ -97,7 +97,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.ct_scan_read_leaner_scan) {
-            LogCt.d("customize", "onClick: ct_scan_read_leaner_scan");
+            CtLog.d("customize", "onClick: ct_scan_read_leaner_scan");
             if (!isScanFalg) return;
             if (onScanResetReadListener != null) {
                 if (!readStatus) {
@@ -108,7 +108,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
             }
         }
         if (v.getId() == R.id.ct_scan_read_leaner_mid_ig) {
-            LogCt.d("customize", "onClick: ct_scan_read_leaner_mid_ig");
+            CtLog.d("customize", "onClick: ct_scan_read_leaner_mid_ig");
             if (onScanResetReadListener != null) {
                 if (!readStatus) {
                     onScanResetReadListener.midImage();
@@ -118,7 +118,7 @@ public class ScanResetReadButton extends RelativeLayout implements View.OnClickL
             }
         }
         if (v.getId() == R.id.ct_scan_read_leaner_raed) {
-            LogCt.d("customize", "onClick: ct_scan_read_leaner_raed");
+            CtLog.d("customize", "onClick: ct_scan_read_leaner_raed");
             if (!isReadFalg) return;
             if (readStatus) {
                 stopRead();
