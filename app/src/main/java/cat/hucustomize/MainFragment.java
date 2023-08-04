@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
+import cat.customize.ulite.DateUtils;
 import cat.customize.ulite.system.CtLog;
 import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.frg.BluetoothFragment;
@@ -23,6 +24,7 @@ import cat.hucustomize.frg.DialogFragment;
 import cat.hucustomize.frg.LeadReadFragment;
 import cat.hucustomize.frg.SelectFragment;
 import cat.hucustomize.frg.TestViewpager;
+import cat.hucustomize.list.RecyclerFragment;
 import cat.hucustomize.list.XListViewFragment;
 import cat.hucustomize.permission.PermissionListener;
 
@@ -56,19 +58,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ct_main_socket).setOnClickListener(this);
         view.findViewById(R.id.ct_main_other).setOnClickListener(this);
         view.findViewById(R.id.ct_main_banner).setOnClickListener(this);
-        for (int i = 0; i < 100; i++) {
-            CtLog.d(System.currentTimeMillis() + "---" + i);
-        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ct_main_touchcallbackrecycler:
-                for (int i = 0; i < 100; i++) {
-                    CtLog.d(System.currentTimeMillis() + "---" + i);
-                }
-//                createHelper.addFragment(new RecyclerFragment());
+                createHelper.addFragment(new RecyclerFragment());
                 break;
             case R.id.ct_main_xlistview:
                 createHelper.addFragment(new XListViewFragment());

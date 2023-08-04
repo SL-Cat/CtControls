@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Locale;
 import java.util.Random;
+import java.util.TimeZone;
 
 /**
  * Created by HSL
@@ -24,6 +25,14 @@ public class DateUtils {
     public static final String FORMAT_TIME_S = "yyyy-MM-dd HH:mm:ss:SSS";
     static Calendar cal = Calendar.getInstance();
 
+    /**
+     * 获取当前设备时区
+     * @return
+     */
+    public static String getTimeZone(){
+        String displayName = TimeZone.getDefault().getDisplayName(false, TimeZone.SHORT);
+        return displayName;
+    }
 
     /**
      * 获取当前日期时间
