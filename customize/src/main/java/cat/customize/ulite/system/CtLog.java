@@ -33,11 +33,12 @@ public class CtLog {
                     FileOutputStream fout = null;
                     try {
                         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            File dir = new File(CtBasicConfig.getPath());
+                            String pathname = CtBasicConfig.getPath() + "/" + getLevelText(info.level)+"/";
+                            File dir = new File(pathname);
                             if (!dir.exists()) {
                                 dir.mkdirs();
                             }
-                            File filed = new File(CtBasicConfig.getPath()+CtBasicConfig.getFileName());
+                            File filed = new File(pathname+CtBasicConfig.getFileName());
                             fout = new FileOutputStream(filed, true);
                             fout.write(finalData.toString().getBytes());
                             fout.write("\r\n".getBytes());
@@ -196,6 +197,9 @@ public class CtLog {
      */
     public static void logToFile(String logFileName, int level, String tag, String message, Throwable throwable) {
         if (CtBasicConfig.isLogToFile()) {
+            //判断禁用了这个级别的日志返回false, 不输出
+            boolean log = CtBasicConfig.isLog(level);
+            if(!log)return;
             LogFileInfo info = new LogFileInfo();
             info.logFileName = logFileName;
             info.level = level;

@@ -9,6 +9,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import cat.customize.ulite.DateUtils;
 
@@ -19,7 +20,7 @@ import cat.customize.ulite.DateUtils;
 
 public class FileUlite {
 
-    private FileUlite instance;
+    private static FileUlite instance;
     private Context context;
     private boolean ownFile = false;
     private String startPath;
@@ -28,7 +29,7 @@ public class FileUlite {
         this.context = context;
     }
 
-    public FileUlite getInstance(Context context) {
+    public static FileUlite getInstance(Context context) {
         if (instance == null) {
             instance = new FileUlite(context);
         }
@@ -51,23 +52,24 @@ public class FileUlite {
 
     private File getFile(String path) {
         if (null != path && path.length() > 2) {
-            if (path.endsWith("/")) path.substring(0, path.length() - 1);
+            if (path.endsWith("/")) path = path.substring(0, path.length() - 1);
         }
         if (!path.startsWith("/")) path = "/" + path;
         File file;
-//        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-//            if (ownFile && null != startPath) {
-//                file = new File("/sdcard/" + startPath + path);
-//            } else {
-//                file = new File("/sdcard/" + path);
-//            }
-//        } else {
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            if (ownFile && null != startPath) {
+                file = new File(startPath + path);
+            } else {
+                file = new File(path);
+            }
+        } else {
             if (ownFile && null != startPath) {
                 file = new File(startPath + path);
             } else {
                 file = new File(context.getExternalFilesDir(null) + path);
             }
-//        }
+        }
+
         return file;
     }
 
@@ -103,10 +105,9 @@ public class FileUlite {
     /**
      * 给文件名，删除该路径下所有文件和文件夹
      *
-     * @param context
      * @param path
      */
-    public void deleteAllFile(Context context, String path) {
+    public void deleteAllFile( String path) {
         File tempFile = getFile(path);
         try {
             if (!tempFile.exists()) return;
@@ -117,7 +118,7 @@ public class FileUlite {
                     return;
                 }
                 for (File file : files) {
-                    deleteAllFile(context, path + "/" + file.getName());
+                    deleteAllFile(path + "/" + file.getName());
                 }
             }
             tempFile.delete();
@@ -186,7 +187,7 @@ public class FileUlite {
      *
      * @return
      */
-    public List<String> findAllFlied(Context context, String path) {
+    public List<String> findAllFlied(String path) {
         List<String> list = new ArrayList<>();
         File file = getFile(path);
         if (file == null) return list;
@@ -196,7 +197,7 @@ public class FileUlite {
                 return list;
             }
             for (File childFile : files) {
-                list.addAll(findAllFlied(context, path + "/" + childFile.getName()));
+                list.addAll(findAllFlied(path + "/" + childFile.getName()));
             }
         } else {
             list.add(file.getName());
@@ -204,5 +205,42 @@ public class FileUlite {
         return list;
     }
 
+    /**
+     * 获取文件单位显示
+     *
+     * @param size
+     * @return
+     */
+    public static String formatSize(long size) {
+        String suffix = "B";
+        double fSize = size;
+        if (fSize > 1024) {
+            suffix = "KB";
+            fSize /= 1024;
+        }
+        if (fSize > 1024) {
+            suffix = "MB";
+            fSize /= 1024;
+        }
+        if (fSize > 1024) {
+            suffix = "GB";
+            fSize /= 1024;
+        }
+        return String.format(Locale.getDefault(), "%.2f %s", fSize, suffix);
+    }
 
+    /**
+     * 获取路径下所有文件大小
+     * @param pathStr
+     * @return
+     */
+    public long getFiledLength(String pathStr) {
+        long length = 0;
+        List<String> allFlied = findAllFlied(pathStr);
+        for (String s : allFlied) {
+            File file = getFile(s);
+            length += file.length();
+        }
+        return length;
+    }
 }

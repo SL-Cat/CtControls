@@ -239,6 +239,7 @@ public class CtSeekBar extends View {
 
     public CtSeekBar setProgressDefault(float progressDefault) {
         this.progress_default = progressDefault;
+        invalidate();
         return this;
     }
 
