@@ -11,6 +11,11 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    packagingOptions {
+        /*解决异常：  More than one file was found with OS independent path 'META-INF/DEPENDENCIES'*/
+        /*这个问题是因为引入了多个第三方库，而第三方库中拥有很多重名的文件，所以会报这种错误*/
+        exclude 'META-INF/DEPENDENCIES'
+    }
     buildTypes {
         release {
             //开启混淆
