@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -39,14 +40,18 @@ public class FolderDialog extends BaseDialog {
     private List<FileInfo> mList = new ArrayList<>();
     private OnFolderListener onFolderListener; //导出文件的监听
     private OnFolderSearchListener onFolderSearchListener; //查找文件的监听
+    private LinearLayout viewBg;
+    private TextView titleTv;
 
-    public interface OnFolderListener{
+    public interface OnFolderListener {
         void onStartImport(); //开始导入
+
         void onSuccess(List<ExcelBean.RowData> datas); //导入成功
+
         void onError(); //导入失败
     }
 
-    public interface OnFolderSearchListener{
+    public interface OnFolderSearchListener {
         void onSearchOver();
     }
 
@@ -61,6 +66,8 @@ public class FolderDialog extends BaseDialog {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View dialogView = layoutInflater.inflate(R.layout.ct_folder_layout, null, false);
         setContentView(dialogView);
+        viewBg = (LinearLayout) dialogView.findViewById(R.id.folder_ll);
+        titleTv = (TextView) dialogView.findViewById(R.id.folder_title);
         ry = ((ListView) dialogView.findViewById(R.id.folder_ry));
         TextView closeTv = ((TextView) dialogView.findViewById(R.id.folder_close_btn));
         closeTv.setOnClickListener(new View.OnClickListener() {
@@ -74,14 +81,14 @@ public class FolderDialog extends BaseDialog {
         ry.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if(onFolderListener!=null) {
+                if (onFolderListener != null) {
                     onFolderListener.onStartImport();
                     AndroidUtils.MainHandler.postDelayed(new Runnable() {
                         @Override
                         public void run() {
                             selectWord(position, context);
                         }
-                    },200);
+                    }, 200);
                 }
             }
         });
@@ -90,6 +97,7 @@ public class FolderDialog extends BaseDialog {
 
     /**
      * 选择文件进行异步导出
+     *
      * @param position
      * @param context
      */
@@ -111,16 +119,17 @@ public class FolderDialog extends BaseDialog {
         });
     }
 
-    public void setOnFolderListener(OnFolderListener onFolderListener){
+    public void setOnFolderListener(OnFolderListener onFolderListener) {
         this.onFolderListener = onFolderListener;
     }
 
     /**
      * 代码调用开始查找文件
+     *
      * @return
      */
     public void startSearch(OnFolderSearchListener onFolderSearchListener) {
-        if(onFolderSearchListener!=null){
+        if (onFolderSearchListener != null) {
             AndroidUtils.MainHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -149,7 +158,21 @@ public class FolderDialog extends BaseDialog {
                     adapter.notifyDataSetChanged();
                     onFolderSearchListener.onSearchOver();
                 }
-            },200);
+            }, 200);
+        }
+    }
+
+    /**
+     * 设置弹窗背景和标题文字颜色
+     * @param titleBgColor
+     * @param textColor
+     */
+    public void setTitleStyle(int titleBgColor, int textColor) {
+        if (titleBgColor != -1) {
+            viewBg.setBackgroundResource(titleBgColor);
+        }
+        if (textColor != -1) {
+            titleTv.setTextColor(textColor);
         }
     }
 }

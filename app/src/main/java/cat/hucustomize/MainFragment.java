@@ -11,12 +11,15 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cat.customize.bean.PopuStrBean;
 import cat.customize.media.ExportHelper;
+import cat.customize.media.FolderDialog;
+import cat.customize.media.excel.ExcelBean;
 import cat.customize.media.excel.ExcelTitleBean;
 import cat.customize.ulite.system.CtLog;
 import cat.hucustomize.frg.BannerFragment;
@@ -69,7 +72,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 ExportHelper instance = ExportHelper.getInstance(getActivity());
                 List<PopuStrBean> list = new ArrayList<>();
                 for (int i = 0; i < 5; i++) {
-                    list.add(new PopuStrBean("index:" + i, i));
+                    list.add(new PopuStrBean("index:232--" + i, i));
                 }
                 List<ExcelTitleBean> titleBeans = new ArrayList<>();
                 titleBeans.add(new ExcelTitleBean("1","id"));
@@ -89,7 +92,34 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 //                createHelper.addFragment(new RecyclerFragment());
                 break;
             case R.id.ct_main_xlistview:
-                createHelper.addFragment(new XListViewFragment());
+                FolderDialog folderDialog = new FolderDialog(getActivity());
+                folderDialog.startSearch(new FolderDialog.OnFolderSearchListener() {
+                    @Override
+                    public void onSearchOver() {
+                        Toast.makeText(getActivity(), "成功", Toast.LENGTH_SHORT).show();
+                    }
+                });
+                folderDialog.setOnFolderListener(new FolderDialog.OnFolderListener() {
+                    @Override
+                    public void onStartImport() {
+                        Toast.makeText(getActivity(), "开始导入", Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onSuccess(List<ExcelBean.RowData> datas) {
+                        Toast.makeText(getActivity(), "成功导入: "+datas.size(), Toast.LENGTH_SHORT).show();
+
+                    }
+
+                    @Override
+                    public void onError() {
+                        Toast.makeText(getActivity(), "ERROR: ", Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+                folderDialog.show();
+//                createHelper.addFragment(new XListViewFragment());
                 break;
             case R.id.ct_main_banner:
                 createHelper.addFragment(new BannerFragment());

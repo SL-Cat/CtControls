@@ -11,11 +11,6 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    packagingOptions {
-        /*解决异常：  More than one file was found with OS independent path 'META-INF/DEPENDENCIES'*/
-        /*这个问题是因为引入了多个第三方库，而第三方库中拥有很多重名的文件，所以会报这种错误*/
-        exclude 'META-INF/DEPENDENCIES'
-    }
     buildTypes {
         release {
             //开启混淆
@@ -33,7 +28,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation files('libs\\jxl.jar')
+    implementation 'net.sourceforge.jexcelapi:jxl:2.6.12'
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
     //基础的 OkSocket 功能集成包.您的Socket开发无论是客户端还是Java,都需要此包 (必须集成)
