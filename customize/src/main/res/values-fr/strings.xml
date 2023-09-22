@@ -29,4 +29,7 @@
     <string name="ct_refresh_after_letting_go">Rafriser après la libération</string>
     <string name="ct_refreshing">Mise à jour</string>
     <string name="ct_loadMore">Encharger plus</string>
+
+    <string name="default_import_data">导入</string>
+
 </resources>

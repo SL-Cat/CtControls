@@ -30,4 +30,7 @@
     <string name="ct_refresh_after_letting_go">松手后刷新</string>
     <string name="ct_refreshing">正在刷新</string>
     <string name="ct_loadMore">加载更多</string>
+
+    <string name="default_import_data" >导入</string>
+
 </resources>

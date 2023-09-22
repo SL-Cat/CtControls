@@ -30,4 +30,7 @@
     <string name="ct_refresh_after_letting_go" >Loose to refresh</string>
     <string name="ct_refreshing" >Refresing</string>
     <string name="ct_loadMore" >Loading more</string>
+
+    <string name="default_import_data">Import</string>
+
 </resources>

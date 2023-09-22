@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/fragment_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/default_import_data"
+        android:textSize="16sp"
+        android:paddingHorizontal="10dp"
+        android:paddingVertical="15dp"
+        android:textColor="@color/color_000000"
+        android:background="@drawable/ct_radius_top_bg"
+        android:layout_height="wrap_content"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_474646"/>
+
+    <ListView
+        android:id="@+id/folder_ry"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="0dp"/>
+
+
+        <TextView
+            android:id="@+id/folder_close_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="25dp"
+            android:text="@string/ct_clean"
+            android:textColor="@color/color_000000" />
+
+
+
+</LinearLayout>

@@ -15,8 +15,9 @@ import android.view.ViewGroup;
 import java.util.ArrayList;
 import java.util.List;
 
-import cat.customize.ulite.DateUtils;
-import cat.customize.ulite.system.CtBasicConfig;
+import cat.customize.bean.PopuStrBean;
+import cat.customize.media.ExportHelper;
+import cat.customize.media.excel.ExcelTitleBean;
 import cat.customize.ulite.system.CtLog;
 import cat.hucustomize.frg.BannerFragment;
 import cat.hucustomize.frg.BluetoothFragment;
@@ -25,7 +26,6 @@ import cat.hucustomize.frg.DialogFragment;
 import cat.hucustomize.frg.LeadReadFragment;
 import cat.hucustomize.frg.SelectFragment;
 import cat.hucustomize.frg.TestViewpager;
-import cat.hucustomize.list.RecyclerFragment;
 import cat.hucustomize.list.XListViewFragment;
 import cat.hucustomize.permission.PermissionListener;
 
@@ -59,7 +59,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ct_main_socket).setOnClickListener(this);
         view.findViewById(R.id.ct_main_other).setOnClickListener(this);
         view.findViewById(R.id.ct_main_banner).setOnClickListener(this);
-        CtBasicConfig.setDebugMode(true,2);
 
     }
 
@@ -67,7 +66,27 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.ct_main_touchcallbackrecycler:
-                createHelper.addFragment(new RecyclerFragment());
+                ExportHelper instance = ExportHelper.getInstance(getActivity());
+                List<PopuStrBean> list = new ArrayList<>();
+                for (int i = 0; i < 5; i++) {
+                    list.add(new PopuStrBean("index:" + i, i));
+                }
+                List<ExcelTitleBean> titleBeans = new ArrayList<>();
+                titleBeans.add(new ExcelTitleBean("1","id"));
+                titleBeans.add(new ExcelTitleBean("2","name"));
+                instance.initExport(titleBeans,null);
+                instance.exportWord(list, new ExportHelper.OnExportListener() {
+                    @Override
+                    public void exportSuccess() {
+                        CtLog.d("exportSuccess");
+                    }
+
+                    @Override
+                    public void exportError(String s) {
+                        CtLog.d("exportError");
+                    }
+                });
+//                createHelper.addFragment(new RecyclerFragment());
                 break;
             case R.id.ct_main_xlistview:
                 createHelper.addFragment(new XListViewFragment());
