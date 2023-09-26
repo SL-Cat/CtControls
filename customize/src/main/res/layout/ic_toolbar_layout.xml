@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="10dp"
-                android:src="@mipmap/down_ig_02"
+                android:src="@mipmap/ic_down_ig"
                 android:visibility="gone" />
         </LinearLayout>
 
@@ -49,7 +49,7 @@
             android:alpha="0.65"
             android:text="标题"
             android:textColor="@color/color_6B7D99"
-            android:textSize="@dimen/text_14sp"
+            android:textSize="14sp"
             android:visibility="gone" />
 
     </LinearLayout>
