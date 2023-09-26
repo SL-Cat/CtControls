@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/ct_radius_divider_white_bg"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/ct_power_setting"
+        android:padding="15dp"
+        android:textColor="@color/color_000000"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingHorizontal="18dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/dialog_power_code"
+            android:layout_width="match_parent"
+            android:text="10"
+            android:textColor="@color/color_FD7557"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:layout_height="wrap_content"/>
+
+        <cat.customize.view.CtSeekBar
+            android:id="@+id/dialog_power_sk"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:paddingTop="5dp"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:text="1dBM"
+                android:textSize="12sp"
+                android:textColor="@color/color_6B7D99"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="30dBM"
+                android:textSize="12sp"
+                android:textColor="@color/color_6B7D99"
+                android:layout_height="wrap_content"/>
+        </RelativeLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+
+        <TextView
+            android:id="@+id/ic_dialog_left_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/ct_clean"
+            android:textColor="@color/color_FD7557"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/ic_dialog_right_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/ct_confirm"
+            android:textColor="@color/color_FD7557"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>

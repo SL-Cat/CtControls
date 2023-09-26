@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -59,11 +60,11 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         this.context = context;
         setOrientation(VERTICAL);
         TypedArray typedArray = getContext().obtainStyledAttributes(attrs, R.styleable.IRadiosStyle);
-        textUnColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_un_color, context.getResources().getColor(R.color.color_000000));
-        textClickColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_click_color, context.getResources().getColor(R.color.color_007BFF));
+        textUnColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_un_color, context.getResources().getColor(R.color.color_6B7D99));
+        textClickColor = typedArray.getColor(R.styleable.IRadiosStyle_item_text_click_color, context.getResources().getColor(R.color.color_ffffff));
         textSize = typedArray.getDimension(R.styleable.IRadiosStyle_item_text_size, 16);
         maxLines = typedArray.getInteger(R.styleable.IRadiosStyle_max_num, 3);
-        buttonBackground = typedArray.getResourceId(R.styleable.IRadiosStyle_item_background, R.drawable.ct_radios_item_select_bg);
+        buttonBackground = typedArray.getResourceId(R.styleable.IRadiosStyle_item_background, R.drawable.ct_radius_divider_white_bg);
         selectType = typedArray.getBoolean(R.styleable.IRadiosStyle_radios_click_more, false);
 
         strList.add("按钮1");
@@ -86,15 +87,20 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
         linearLayout.setOrientation(HORIZONTAL);
         for (String data : datas) {
             TextView textButton = new TextView(context);
-            LinearLayout.LayoutParams weight1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1.0f);
+            LayoutParams weight1;
+            if (maxLines > 1) {
+            weight1 = new LayoutParams(0, LayoutParams.MATCH_PARENT, 1.0f);
+            } else {
+                weight1 = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+            }
             weight1.setMargins(10, 10, 10, 10);
             textButton.setLayoutParams(weight1);
             textButton.setGravity(Gravity.CENTER);
-            textButton.setPadding(20, 10, 20, 10);
+            textButton.setPadding(10, 15, 10, 15);
             //android 获取资源id 0 表示没有找到资源,所以设置id 从 1 开始
-            textButton.setId(buttonLits.size()+1);
+            textButton.setId(buttonLits.size() + 1);
             textButton.setText(data);
-            textButton.setTextSize(textSize);
+            textButton.setTextSize(TypedValue.COMPLEX_UNIT_PX,textSize);
             textButton.setTextColor(textUnColor);
             textButton.setBackgroundResource(buttonBackground);
             textButton.setOnClickListener(this);
@@ -212,7 +218,7 @@ public class IRadiosButton extends LinearLayout implements View.OnClickListener 
     }
 
 
-    public void setMaxLines(int maxLines){
+    public void setMaxLines(int maxLines) {
         this.maxLines = maxLines;
     }
 }

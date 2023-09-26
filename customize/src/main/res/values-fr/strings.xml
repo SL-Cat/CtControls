@@ -4,8 +4,10 @@
     <string name="ct_stop_read">Arrêter de lire</string>
     <string name="ct_start_read">Commencer à lire</string>
     <string name="ct_start_read_rfid">Commencer à lire(RFID)</string>
+    <string name="ct_read">lire(RFID)</string>
     <string name="ct_stop_read_rfid">Arrêter de lire(RFID)</string>
     <string name="ct_start_scan">Commencer la scanning</string>
+    <string name="ct_scan">Scanning</string>
     <string name="ct_power_setting">Réglage de la puissance</string>
     <string name="ct_clean">Annuler</string>
     <string name="ct_confirm">Confirmation</string>
