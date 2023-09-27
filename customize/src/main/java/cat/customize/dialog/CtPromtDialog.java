@@ -44,8 +44,8 @@ public class CtPromtDialog extends BaseDialog {
         View view = LayoutInflater.from(getContext()).inflate(R.layout.ct_hint_dialog_layout, null);
         dialogTitle = view.findViewById(R.id.dialog_title);
         dialogMessage = view.findViewById(R.id.dialog_message);
-        dialogLeft = view.findViewById(R.id.ic_dialog_left_button);
-        dialogRight = view.findViewById(R.id.ic_dialog_right_button);
+        dialogLeft = view.findViewById(R.id.dialog_left_button);
+        dialogRight = view.findViewById(R.id.dialog_right_button);
         setContentView(view);  //设置显示的视图
         setBigByScreenWidth(0.8f);
         setDialogAttributes(0.2f);
