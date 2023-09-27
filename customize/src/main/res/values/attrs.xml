@@ -145,18 +145,5 @@
         <attr name="middle_page_cover" format="boolean"/>
     </declare-styleable>
 
-    <declare-styleable name="IcToolBar">
-        <attr name="text"/>
-    </declare-styleable>
-
-    <declare-styleable name="InputEditText">
-        <attr name="hintText" format="string"/>
-        <attr name="image"/>
-        <attr name="background"/>
-    </declare-styleable>
-
-    <declare-styleable name="ICScanReadButton">
-        <attr name="text"/>
-        <attr name="type" format="integer"/>
-    </declare-styleable>
+  
 </resources>
