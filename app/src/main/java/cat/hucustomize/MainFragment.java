@@ -17,6 +17,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cat.customize.bean.PopuStrBean;
+import cat.customize.dialog.CtLoadDialog;
+import cat.customize.dialog.CtToastDialog;
+import cat.customize.fragment.CtUiHelper;
+import cat.customize.fragment.CtUiHelperListener;
 import cat.customize.media.ExportHelper;
 import cat.customize.media.FolderDialog;
 import cat.customize.media.excel.ExcelBean;
@@ -62,7 +66,6 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         view.findViewById(R.id.ct_main_socket).setOnClickListener(this);
         view.findViewById(R.id.ct_main_other).setOnClickListener(this);
         view.findViewById(R.id.ct_main_banner).setOnClickListener(this);
-
     }
 
     @Override
@@ -103,19 +106,14 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onStartImport() {
                         Toast.makeText(getActivity(), "开始导入", Toast.LENGTH_SHORT).show();
-
                     }
-
                     @Override
                     public void onSuccess(List<ExcelBean.RowData> datas) {
                         Toast.makeText(getActivity(), "成功导入: "+datas.size(), Toast.LENGTH_SHORT).show();
-
                     }
-
                     @Override
                     public void onError() {
                         Toast.makeText(getActivity(), "ERROR: ", Toast.LENGTH_SHORT).show();
-
                     }
                 });
                 folderDialog.show();

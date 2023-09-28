@@ -76,10 +76,9 @@ public class CtUiHelper {
 
     /**
      * 显示加载框 or 更新加载框内容
-     * @param context
      * @param msg
      */
-    public void showLoading(Context context, String msg) {
+    public void showLoading(String msg) {
         AndroidUtils.MainHandler.post(new Runnable() {
             @Override
             public void run() {

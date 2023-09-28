@@ -3,6 +3,8 @@ package cat.customize.media;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
+import android.os.Handler;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.view.LayoutInflater;
@@ -42,6 +44,7 @@ public class FolderDialog extends BaseDialog {
     private OnFolderSearchListener onFolderSearchListener; //查找文件的监听
     private LinearLayout viewBg;
     private TextView titleTv;
+    private Thread thread;
 
     public interface OnFolderListener {
         void onStartImport(); //开始导入
@@ -83,17 +86,39 @@ public class FolderDialog extends BaseDialog {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (onFolderListener != null) {
                     onFolderListener.onStartImport();
-                    AndroidUtils.MainHandler.postDelayed(new Runnable() {
+                    Runnable selectRun = new Runnable() {
                         @Override
                         public void run() {
                             selectWord(position, context);
                         }
-                    }, 200);
+                    };
+                    thread = new Thread(selectRun);
+                    thread.start();
                 }
             }
         });
         setBigByScreenWidthHeight(0.8f, 0.6f);
     }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            switch (msg.what) {
+                case 0:
+                    adapter.notifyDataSetChanged();
+                    onFolderSearchListener.onSearchOver();
+                    break;
+                case 1:
+                    ExcelBean excelBean = (ExcelBean) msg.obj;
+                    if (excelBean.getExcelName().equals("error")) {
+                        onFolderListener.onError();
+                    } else {
+                        onFolderListener.onSuccess(excelBean.getDatas());
+                    }
+                    break;
+            }
+        }
+    };
 
     /**
      * 选择文件进行异步导出
@@ -105,16 +130,10 @@ public class FolderDialog extends BaseDialog {
         ExcelUtils.readExcel(context, mList.get(position).getFilePath(), new ExcelUtils.OnExcelDataCallback() {
             @Override
             public void onExcelDataResult(ExcelBean excelBean) {
-                AndroidUtils.MainHandler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        if (excelBean.getExcelName().equals("error")) {
-                            onFolderListener.onError();
-                        } else {
-                            onFolderListener.onSuccess(excelBean.getDatas());
-                        }
-                    }
-                }, 200);
+                Message msg = handler.obtainMessage();
+                msg.what = 1;
+                msg.obj = excelBean;
+                handler.sendMessage(msg);
             }
         });
     }
@@ -130,7 +149,8 @@ public class FolderDialog extends BaseDialog {
      */
     public void startSearch(OnFolderSearchListener onFolderSearchListener) {
         if (onFolderSearchListener != null) {
-            AndroidUtils.MainHandler.postDelayed(new Runnable() {
+            this.onFolderSearchListener = onFolderSearchListener;
+            Runnable searchRun = new Runnable() {
                 @Override
                 public void run() {
                     String[] columns = new String[]{MediaStore.Files.FileColumns._ID, MediaStore.Files.FileColumns.MIME_TYPE,
@@ -154,16 +174,18 @@ public class FolderDialog extends BaseDialog {
 
                         }
                         cursor.close();
+                        handler.sendEmptyMessage(0);
                     }
-                    adapter.notifyDataSetChanged();
-                    onFolderSearchListener.onSearchOver();
                 }
-            }, 200);
+            };
+            thread = new Thread(searchRun);
+            thread.start();
         }
     }
 
     /**
      * 设置弹窗背景和标题文字颜色
+     *
      * @param titleBgColor
      * @param textColor
      */
@@ -174,5 +196,11 @@ public class FolderDialog extends BaseDialog {
         if (textColor != -1) {
             titleTv.setTextColor(textColor);
         }
+    }
+
+    @Override
+    public void dismiss() {
+        super.dismiss();
+        handler.removeCallbacksAndMessages(null);
     }
 }
