@@ -106,6 +106,7 @@ public class CtRadioTxView extends View {
 
     public void setText(String text) {
         this.textStr = text;
+        invalidate();
     }
 
     public void setTextColor(int color) {
