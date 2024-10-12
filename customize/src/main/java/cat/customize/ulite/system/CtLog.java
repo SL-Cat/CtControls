@@ -9,6 +9,7 @@ import android.util.Log;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import cat.customize.ulite.DateUtils;
 
@@ -33,13 +34,14 @@ public class CtLog {
                     FileOutputStream fout = null;
                     try {
                         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                            String pathname = CtBasicConfig.getPath() + "/" + getLevelText(info.level)+"/";
+                            String pathname = CtBasicConfig.getPath() + "/" + getLevelText(info.level) + "/";
                             File dir = new File(pathname);
                             if (!dir.exists()) {
                                 dir.mkdirs();
                             }
-                            File filed = new File(pathname+CtBasicConfig.getFileName());
+                            File filed = new File(pathname + CtBasicConfig.getFileName());
                             fout = new FileOutputStream(filed, true);
+                            writeInfo(fout, finalData, 0);
                             fout.write(finalData.toString().getBytes());
                             fout.write("\r\n".getBytes());
                             fout.close();
@@ -50,6 +52,17 @@ public class CtLog {
                 }
             }
         };
+    }
+
+    private static void writeInfo(FileOutputStream fout, String msg, int page) throws IOException {
+        if (msg.length() > (page * 100000) + 100000) {
+            String writeStr = msg.substring((page * 100000), (page * 100000) + 100000);
+            fout.write(writeStr.getBytes());
+            writeInfo(fout, msg, page + 1);
+        } else {
+            String writeStr = msg.substring((page * 100000));
+            fout.write(writeStr.getBytes());
+        }
     }
 
     private static final Handler mLogFileHandler;
@@ -82,36 +95,36 @@ public class CtLog {
     public static void i(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.INFO, tag, msg, 0);
-            logToFile(Log.INFO, tag, msg);
         }
+        logToFile(Log.INFO, tag, msg);
     }
 
     public static void i(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.INFO, tag, msg, 0);
-            logToFile(Log.INFO, tag, msg, tr);
         }
+        logToFile(Log.INFO, tag, msg, tr);
     }
 
     public static void d(String msg) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.DEBUG, "cat_d", msg, 0);
-            logToFile(Log.DEBUG, "cat_d", DateUtils.getStringDate() + ":" + msg);
         }
+        logToFile(Log.DEBUG, "cat_d", DateUtils.getStringDate() + ":" + msg);
     }
 
     public static void d(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.DEBUG, tag, msg, 0);
-            logToFile(Log.DEBUG, tag, DateUtils.getStringDate() + ":" + msg);
         }
+        logToFile(Log.DEBUG, tag, DateUtils.getStringDate() + ":" + msg);
     }
 
     public static void d(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.DEBUG, tag, msg, 0);
-            logToFile(Log.DEBUG, tag, msg, tr);
         }
+        logToFile(Log.DEBUG, tag, msg, tr);
     }
 
     private static void log(int type, String tag, String msg, int index) {
@@ -151,43 +164,43 @@ public class CtLog {
     public static void e(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.ERROR, tag, msg, 0);
-            logToFile(Log.ERROR, tag, msg);
         }
+        logToFile(Log.ERROR, tag, msg);
     }
 
     public static void e(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
             log(Log.ERROR, tag, msg, 0);
-            logToFile(Log.ERROR, tag, msg, tr);
         }
+        logToFile(Log.ERROR, tag, msg, tr);
     }
 
     public static void v(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
             Log.v(tag, msg == null ? "" : msg);
-            logToFile(Log.VERBOSE, tag, msg);
         }
+        logToFile(Log.VERBOSE, tag, msg);
     }
 
     public static void v(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
             Log.v(tag, msg == null ? "" : msg, tr);
-            logToFile(Log.VERBOSE, tag, msg, tr);
         }
+        logToFile(Log.VERBOSE, tag, msg, tr);
     }
 
     public static void w(String tag, String msg) {
         if (CtBasicConfig.isDebugMode()) {
             Log.w(tag, msg == null ? "" : msg);
-            logToFile(Log.WARN, tag, msg);
         }
+        logToFile(Log.WARN, tag, msg);
     }
 
     public static void w(String tag, String msg, Throwable tr) {
         if (CtBasicConfig.isDebugMode()) {
             Log.w(tag, msg == null ? "" : msg, tr);
-            logToFile(Log.WARN, tag, msg, tr);
         }
+        logToFile(Log.WARN, tag, msg, tr);
     }
 
     /**
@@ -199,7 +212,7 @@ public class CtLog {
         if (CtBasicConfig.isLogToFile()) {
             //判断禁用了这个级别的日志返回false, 不输出
             boolean log = CtBasicConfig.isLog(level);
-            if(!log)return;
+            if (!log) return;
             LogFileInfo info = new LogFileInfo();
             info.logFileName = logFileName;
             info.level = level;

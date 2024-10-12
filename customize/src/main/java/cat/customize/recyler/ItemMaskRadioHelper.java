@@ -1,6 +1,7 @@
 package cat.customize.recyler;
 
 import android.content.Context;
+import android.view.View;
 import android.view.animation.ScaleAnimation;
 import android.widget.FrameLayout;
 
@@ -42,6 +43,7 @@ public class ItemMaskRadioHelper {
             }
         });
     }
+
 
     public synchronized void setRootFrameLayout(FrameLayout frameLayout, int position) {
         if (mRootFrameLayout != null) {

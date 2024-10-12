@@ -33,58 +33,6 @@ public class ItemLongClickMaskHelper {
         this.view = view;
     }
 
-    public ItemLongClickMaskHelper(Context context) {
-        this.context = context;
-        view = LayoutInflater.from(context).inflate(R.layout.ct_list_item_mask, null);
-        fristBtn = view.findViewById(R.id.default_list_item_mask_tv_delete);
-        secondBtn = view.findViewById(R.id.default_list_item_mask_tv_reset);
-        threeBtn = view.findViewById(R.id.default_list_item_mask_tv_review);
-
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dismissMaskLayout();
-            }
-        });
-        view.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                dismissMaskLayout();
-                return true;
-            }
-        });
-
-        fristBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mItemMaskClickListener != null) {
-                    dismissMaskLayout();
-                    mItemMaskClickListener.fristBtn(position);
-                }
-            }
-        });
-
-        secondBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mItemMaskClickListener != null) {
-                    dismissMaskLayout();
-                    mItemMaskClickListener.secondBtn(position);
-                }
-            }
-        });
-
-        threeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mItemMaskClickListener != null) {
-                    dismissMaskLayout();
-                    mItemMaskClickListener.threeBtn(position);
-                }
-            }
-        });
-    }
-
     public synchronized void setRootFrameLayout(FrameLayout frameLayout, int position) {
         if (mRootFrameLayout != null) {
             mRootFrameLayout.removeView(view);

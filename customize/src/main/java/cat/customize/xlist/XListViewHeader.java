@@ -35,6 +35,8 @@ public class XListViewHeader extends LinearLayout {
 	public final static int STATE_READY = 1;
 	public final static int STATE_REFRESHING = 2;
 
+	private Context context;
+
 	public XListViewHeader(Context context) {
 		super(context);
 		initView(context);
@@ -50,6 +52,7 @@ public class XListViewHeader extends LinearLayout {
 	}
 
 	private void initView(Context context) {
+		this.context = context;
 		LayoutParams lp = new LayoutParams(
 				android.view.ViewGroup.LayoutParams.MATCH_PARENT, 0);
 		mContainer = (LinearLayout) LayoutInflater.from(context).inflate(
@@ -95,17 +98,17 @@ public class XListViewHeader extends LinearLayout {
 			if (mState == STATE_REFRESHING) {
 				mArrowImageView.clearAnimation();
 			}
-			mHintTextView.setText("下拉刷新");
+			mHintTextView.setText(context.getString(R.string.ct_pull_down_to_refresh));
 			break;
 		case STATE_READY:
 			if (mState != STATE_READY) {
 				mArrowImageView.clearAnimation();
 				mArrowImageView.startAnimation(mRotateUpAnim);
-				mHintTextView.setText("松开刷新数据");
+				mHintTextView.setText(context.getString(R.string.ct_refresh_after_letting_go));
 			}
 			break;
 		case STATE_REFRESHING:
-			mHintTextView.setText("正在加载...");
+			mHintTextView.setText(context.getString(R.string.ct_is_loading));
 			Time time = new Time();
 			time.setToNow();
 			setRefreshTime(time.format("%Y-%m-%d %T"));

@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,9 +79,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                     list.add(new PopuStrBean("index:232--" + i, i));
                 }
                 List<ExcelTitleBean> titleBeans = new ArrayList<>();
-                titleBeans.add(new ExcelTitleBean("1","id"));
-                titleBeans.add(new ExcelTitleBean("2","name"));
-                instance.initExport(titleBeans,null);
+                titleBeans.add(new ExcelTitleBean("1", "id"));
+                titleBeans.add(new ExcelTitleBean("2", "name"));
+                instance.initExport(titleBeans, null);
                 instance.exportWord(list, new ExportHelper.OnExportListener() {
                     @Override
                     public void exportSuccess() {
@@ -107,10 +108,12 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                     public void onStartImport() {
                         Toast.makeText(getActivity(), "开始导入", Toast.LENGTH_SHORT).show();
                     }
+
                     @Override
                     public void onSuccess(List<ExcelBean.RowData> datas) {
-                        Toast.makeText(getActivity(), "成功导入: "+datas.size(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), "成功导入: " + datas.size(), Toast.LENGTH_SHORT).show();
                     }
+
                     @Override
                     public void onError() {
                         Toast.makeText(getActivity(), "ERROR: ", Toast.LENGTH_SHORT).show();
@@ -140,12 +143,34 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 initBluetoothPermission();
                 break;
             case R.id.ct_main_socket:
+                //测试日志输出功能
+                for (int i = 0; i < 10; i++) {
+                    final int finalI = i;
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            StringBuffer msg = new StringBuffer();
+                            for (int j = (finalI * length); j < (finalI + 1) * length; j++) {
+                                msg.append(j + ";");
+                            }
+                            page++;
+                            str.append(msg);
+                        }
+                    }).start();
+                }
+                while (page < 10) {
+                    CtLog.d(str.toString());
+                }
                 break;
             case R.id.ct_main_other:
                 createHelper.addFragment(new TestViewpager());
                 break;
         }
     }
+
+    StringBuffer str = new StringBuffer();
+    int page = 0;
+    int length = 500000;
 
     public void initBluetoothPermission() {
         requestRunTimePermission(new String[]{Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION}
